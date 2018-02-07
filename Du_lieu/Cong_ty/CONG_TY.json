@@ -1,8 +1,8 @@
 {
   "Ten": "Galaxy Cinema",
   "Ma_so": "GALAXY_CINEMA",
-  "Dien_thoai": "(0283) 775 2527",
-  "Dia_chi": "Tầng 3 Lotte Mart NSG, 469 Nguyễn Hữu Thọ, q7, TPHCM",
+  "Dien_thoai": "04 3974 6122",
+  "Dia_chi": "Tòa nhà Mặt Trời Sông Hồng, số 23 đường Phan Chu Trinh, Phường Phan Chu Trinh, Quận Hoàn Kiếm, Hà Nội",
   "Danh_sach_Rap":[
   	{
   		"Ma_so":"RAP_1",
@@ -11,7 +11,7 @@
   			{
   				"Ma_so":"RAP_1_PC_1",
   				"Tên": "Phòng chiếu 1",
-          "So_Ghe": 100,
+          "So_Ghe": 81,
           "Danh_sach_Ghe": [
             {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
             {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
@@ -27,7 +27,7 @@
   			{
   				"Ma_so":"RAP_1_PC_2",
   				"Tên": "Phòng chiếu 2",
-          "So_Ghe": 100,
+          "So_Ghe": 81,
           "Danh_sach_Ghe": [
             {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
             {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
@@ -44,12 +44,12 @@
   	},
   	{
   		"Ma_so":"RAP_2",
-  		"Ten": "Galaxy Lotte",
+  		"Ten": "Galaxy Tân Bình",
   		"Danh_sach_Phong_chieu":[
   			{
   				"Ma_so":"RAP_2_PC_1",
   				"Tên": "Phòng chiếu 1",
-          "So_Ghe": 100,
+          "So_Ghe": 81,
           "Danh_sach_Ghe": [
             {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
             {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
@@ -65,7 +65,7 @@
   			{
   				"Ma_so":"RAP_2_PC_2",
   				"Tên": "Phòng chiếu 2",
-          "So_Ghe": 100,
+          "So_Ghe": 81,
           "Danh_sach_Ghe": [
             {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
             {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
@@ -113,7 +113,7 @@
       "Mat_khau": "NV_4",
       "Rap": {
         "Ma_so": "RAP_2",
-        "Ten": "Galaxy Lotte",
+        "Ten": "Galaxy Tân Bình",
         "Danh_sach_Phong_chieu": [
         ]
       }
@@ -125,7 +125,7 @@
       "Mat_khau": "NV_3",
       "Rap": {
         "Ma_so": "RAP_2",
-        "Ten": "Galaxy Lotte",
+        "Ten": "Galaxy Tân Bình",
         "Danh_sach_Phong_chieu": [
         ]
       }
