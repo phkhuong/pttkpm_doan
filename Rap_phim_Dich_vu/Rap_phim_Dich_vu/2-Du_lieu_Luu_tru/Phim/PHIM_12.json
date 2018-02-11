@@ -1,0 +1,55 @@
+{
+	"Ma_so": "PHIM_12",
+	"Ten": "",
+	"Ten_tieng_Anh": "PADDINGTON 2",
+	"Don_gia": 50000,
+	"Doanh_thu": 0,
+	"Trang_thai": "DANG_CHIEU",
+	"Rating": 10.0,
+	"Phan_loai": "",
+	"Thoi_luong": 103,
+	"The_loai": ["Hài", "Hoạt Hình"],
+	"Quoc_gia": "Anh",
+	"Nha_san_xuat": "Anton Capital Entertainment",
+	"Dao_dien": "Paul King",
+	"Dien_vien": "Sally Hawkins, Ben Whishaw",	
+	"Khoi_chieu": "\/Date(1515801600000)\/",
+	"Noi_dung": "Chú gấu Paddington vui vẻ hòa nhập với nhà Brown tại Windsor Gardens, nơi chú trở thành thành viên nổi tiếng của cộng đồng, mang lại niềm vui và bánh mứt cho mọi người. Trong khi tìm kiếm một món quà hoàn hảo cho ngày sinh nhật 100 của người dì Lucy yêu dấu của mình, Paddington phát hiện ra một cuốn sách độc đáo trong cửa hàng đồ cổ của ông Gruber nên tìm cách mua nó. Nhưng vào phút chót, cuốn sách bị đánh cắp nên Paddington và Browns phải đi tìm kẻ trộm.",
+	"Dich_thuat":"DIGITAL -  L.Tiếng",
+	"Danh_sach_Suat_chieu": [
+		{
+			"Ma_so": "S_1",
+			"Bat_dau": "\/Date(1518191700000)\/",
+			   "Danh_sach_Ghe_trong": [
+				{"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+				{"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+				{"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+				{"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+				{"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+				{"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+				{"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+				{"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+				{"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"}, 	{"Ma_so": "A2"}, 	{"Ma_so": "A1"}
+			  ],
+				"Rap": {
+				"Ma_so": "RAP_1",
+				  "Ten": "Galaxy Nguyễn Du",
+				  "Danh_sach_Phong_chieu":[
+				  ]
+			  },
+			  "Phong_chieu": {
+				  "Ma_so":"RAP_1_PC_1",
+				  "Tên": "Phòng chiếu 1",
+				"So_Ghe": 81,
+				"Danh_sach_Ghe": [
+				]
+			  }
+			}			
+	],
+	"Danh_sach_Dat_ve": [
+		
+	],
+	"Danh_sach_Ban_ve": [
+		
+	]
+}

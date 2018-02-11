@@ -1,0 +1,250 @@
+{
+	"Ma_so": "PHIM_2",
+	"Ten": "VỆ BINH LĂNG MỘ CỔ",
+	"Ten_tieng_Anh": "GUARDIANS OF THE TOMB",
+	"Don_gia": 50000,
+	"Doanh_thu": 0,
+	"Trang_thai": "DANG_CHIEU",
+	"Thoi_luong": 91,
+	"Rating": 5.3,
+	"Phan_loai": "C13",
+	"Quoc_gia": "Mỹ, Trung Quốc",
+	"Dao_dien": "Kimble Rendall",
+	"Nha_san_xuat": "Arclight Films",
+	"The_loai": ["Hành Động", "Phiêu Lưu"],
+	"Dien_vien":"Lý Băng Băng, Ngô Tôn, Kelsey Grammer, Kellan Lutz",
+	"Khoi_chieu": "\/Date(1517529600000)\/",
+	"Noi_dung": "Một nhóm những nhà khảo cổ học tình cờ phát hiện ra lăng mộ bí mật, trong đó chứa xác ướp của Hoàng Đế Trung Hoa có tuổi đời từ 200 năm trước Công Nguyên. Họ đã quật dậy một bí mật kinh hoàng mà đáng lý ra nên chôn vùi vĩnh viễn.",
+	"Danh_sach_Suat_chieu": [
+		{
+		"Ma_so": "S_1",
+		"Bat_dau": "\/Date(1518177900000)\/",
+       	"Danh_sach_Ghe_trong": [
+        	{"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+        	{"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+        	{"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+        	{"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+        	{"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"}, 	{"Ma_so": "A2"}, 	{"Ma_so": "A1"}
+          ],
+			"Rap": {
+	        "Ma_so": "RAP_1",
+		  	"Ten": "Galaxy Nguyễn Du",
+		  	"Danh_sach_Phong_chieu":[
+		  	]
+		  },
+		  "Phong_chieu": {
+		  	"Ma_so":"RAP_1_PC_1",
+  			"Tên": "Phòng chiếu 1",
+        	"So_Ghe": 81,
+        	"Danh_sach_Ghe": [
+        	]
+		  }
+		},
+		{
+			"Ma_so": "S_2",
+			"Bat_dau": "\/Date(1518184800000)\/",
+			"Danh_sach_Ghe_trong": [
+				{"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+				{"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+				{"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+				{"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+				{"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+				{"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+				{"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+				{"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+				{"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"}, 	{"Ma_so": "A2"}, 	{"Ma_so": "A1"}
+          		],
+			"Rap": {
+		  	"Ma_so":"RAP_1",
+		  	"Ten": "Galaxy Nguyễn Du",
+		  	"Danh_sach_Phong_chieu":[
+		  	]
+			  },
+		 	 "Phong_chieu": {
+		  	"Ma_so":"RAP_1_PC_1",
+  			"Tên": "Phòng chiếu 1",
+        	"So_Ghe": 81,
+        	"Danh_sach_Ghe": [
+        ]
+		  }
+		},
+		{
+			"Ma_so": "S_3",
+			"Bat_dau": "\/Date(1518199200000)\/",
+			"Danh_sach_Ghe_trong": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ],
+			"Rap": {
+		  	"Ma_so":"RAP_1",
+		  	"Ten": "Galaxy Nguyễn Du",
+		  	"Danh_sach_Phong_chieu":[
+		  	]
+		  },
+		  "Phong_chieu": {
+		  	"Ma_so":"RAP_1_PC_1",
+  			"Tên": "Phòng chiếu 1",
+        "So_Ghe": 81,
+        "Danh_sach_Ghe": [
+        ]
+		  }
+		},
+		{
+			"Ma_so": "S_4",
+			"Bat_dau": "\/Date(1518207000000)\/",
+			"Danh_sach_Ghe_trong": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ],
+			"Rap": {
+		  	"Ma_so":"RAP_1",
+		  	"Ten": "Galaxy Nguyễn Du",
+		  	"Danh_sach_Phong_chieu":[
+		  	]
+		  },
+		  "Phong_chieu": {
+		  	"Ma_so":"RAP_1_PC_1",
+  			"Tên": "Phòng chiếu 1",
+        "So_Ghe": 81,
+        "Danh_sach_Ghe": [
+        ]
+		  }
+		},
+		{
+			"Ma_so": "S_5",
+			"Bat_dau": "\/Date(1518180300000)\/",
+			"Danh_sach_Ghe_trong": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ],
+			"Rap": {
+		  	"Ma_so":"RAP_2",
+		  	"Ten": "Galaxy Tân Bình",
+		  	"Danh_sach_Phong_chieu":[
+		  	]
+		  },
+		  "Phong_chieu": {
+		  	"Ma_so":"RAP_2_PC_1",
+  			"Tên": "Phòng chiếu 1",
+        "So_Ghe": 81,
+        "Danh_sach_Ghe": [
+        ]
+		  }
+		},
+		{
+			"Ma_so": "S_6",
+			"Bat_dau": "\/Date(1518187200000)\/",
+			"Danh_sach_Ghe_trong": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ],
+			"Rap": {
+		  	"Ma_so":"RAP_2",
+		  	"Ten": "Galaxy Tân Bình",
+		  	"Danh_sach_Phong_chieu":[
+		  	]
+		  },
+		  "Phong_chieu": {
+		  	"Ma_so":"RAP_2_PC_1",
+  			"Tên": "Phòng chiếu 1",
+        "So_Ghe": 81,
+        "Danh_sach_Ghe": [
+        ]
+		  }
+		},
+		{
+			"Ma_so": "S_7",
+			"Bat_dau": "\/Date(1518197100000)\/",
+			"Danh_sach_Ghe_trong": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ],
+			"Rap": {
+		  	"Ma_so":"RAP_2",
+		  	"Ten": "Galaxy Tân Bình",
+		  	"Danh_sach_Phong_chieu":[
+		  	]
+		  },
+		  "Phong_chieu": {
+		  	"Ma_so":"RAP_2_PC_1",
+  			"Tên": "Phòng chiếu 1",
+        "So_Ghe": 81,
+        "Danh_sach_Ghe": [
+        ]
+		  }
+		},
+		{
+			"Ma_so": "S_8",
+			"Bat_dau": "\/Date(1518208800000)\/",
+			"Danh_sach_Ghe_trong": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ],
+			"Rap": {
+		  	"Ma_so":"RAP_2",
+		  	"Ten": "Galaxy Tân Bình",
+		  	"Danh_sach_Phong_chieu":[
+		  	]
+		  },
+		  "Phong_chieu": {
+		  	"Ma_so":"RAP_2_PC_1",
+  			"Tên": "Phòng chiếu 1",
+        "So_Ghe": 81,
+        "Danh_sach_Ghe": [
+        ]
+		  }
+		}
+	],
+	"Danh_sach_Dat_ve": [
+		
+	],
+	"Danh_sach_Ban_ve": [
+		
+	]
+}
