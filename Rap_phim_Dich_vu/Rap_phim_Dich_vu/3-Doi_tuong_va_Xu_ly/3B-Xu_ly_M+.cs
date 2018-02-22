@@ -28,13 +28,13 @@ public partial class XL_DU_LIEU
         var Du_lieu_Phan_he = new XL_DU_LIEU();
         Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Ung_dung.Cong_ty.Ten;
         Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Ung_dung.Cong_ty.Ma_so;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Rap = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Rap;
         Du_lieu_Ung_dung.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();
             Du_lieu_Phan_he.Danh_sach_Phim.Add(Phim_cua_Phan_he);
             Phim_cua_Phan_he.Ten = Phim.Ten;
             Phim_cua_Phan_he.Ma_so = Phim.Ma_so;
-            Phim_cua_Phan_he.Ten = Phim.Ten;
             Phim_cua_Phan_he.Ten_tieng_Anh = Phim.Ten_tieng_Anh;
             Phim_cua_Phan_he.Phan_loai = Phim.Phan_loai;
             Phim_cua_Phan_he.Quoc_gia = Phim.Quoc_gia;
