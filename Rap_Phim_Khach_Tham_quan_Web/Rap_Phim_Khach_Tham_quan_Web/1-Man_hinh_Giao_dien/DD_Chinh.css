@@ -14,7 +14,7 @@ a {
 }
 
 .TIEU_DE{
-    padding:10px;
+    padding:20px;
 }
 
 .TEN_HE_THONG {
@@ -73,7 +73,8 @@ a {
 }
 
 .KHUNG_CHUC_NANG {
-    height: 85vh;
+    height: 83vh;
     width: 100vw;
     border: none;
 }
+

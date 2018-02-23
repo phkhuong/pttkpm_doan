@@ -7,14 +7,12 @@
     //******************* Khai báo Biến  ********************
     var Chuoi_Tra_cuu = Session["Chuoi_Tra_cuu"].ToString();
     var Danh_sach_Phim_Xem = Danh_sach_Phim;
-    int So_luong = Danh_sach_Phim.Count();
 
     //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
     if (Chuoi_Tra_cuu != null)
     {
         Danh_sach_Phim_Xem = Du_lieu.Tra_cuu_Phim(Chuoi_Tra_cuu, Danh_sach_Phim);
-        Danh_sach_Phim_Xem = Danh_sach_Phim_Xem.OrderBy(Mon_an => Mon_an.Ten).ToList();
-        So_luong = Danh_sach_Phim_Xem.Count;
+        Danh_sach_Phim_Xem = Danh_sach_Phim_Xem.OrderByDescending(Phim => Phim.Khoi_chieu).ToList();
     }
 
     //******************* Kết xuất  **********
@@ -39,16 +37,14 @@
         <form id="HE_THONG" name="HE_THONG" method="post">
             @if (Danh_sach_Phim_Xem.Count > 0)
             {
-                <div>
-                    Hiện tại có @So_luong phim
-                    @if (Chuoi_Tra_cuu.Trim() != "")
-                    {
-                        <span>thỏa tiêu chí <strong>@Chuoi_Tra_cuu</strong></span>
-                    }
-                </div>
-
                 <div class="DANH_SACH">
                     @Html.Raw(Chuoi_HTML_Danh_sach_Phim)
+                </div>
+            }
+            else
+            {
+                <div>
+                    <span>Không tìm được dữ liệu</span>
                 </div>
             }
         </form>

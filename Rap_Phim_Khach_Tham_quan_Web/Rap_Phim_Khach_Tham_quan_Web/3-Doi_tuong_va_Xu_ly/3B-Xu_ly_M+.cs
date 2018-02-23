@@ -25,24 +25,54 @@ public partial class XL_DU_LIEU
     public string Dia_chi_Media = $"{Dia_chi_Dich_vu}/Media";
     public CultureInfo Dinh_dang_VN = CultureInfo.GetCultureInfo("vi-VN");
 
+    //public string Tao_Chuoi_HTML_Danh_sach_Phim(List<XL_PHIM> Danh_sach)
+    //{
+    //    var Chuoi_HTML_Danh_sach = "<div class='row'>";
+
+    //    Danh_sach.ForEach(Phim =>
+    //    {
+    //        var Chuoi_Hinh = $"<div class='KHUNG_HINH mx-auto'>" +
+    //                            $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='img-thumbnail HINH'/>" +
+    //                         "</div>";
+
+    //        var Chuoi_Thong_tin = $"<div>" +
+    //                                  $"<strong>{Phim.Ten}</strong>" +
+    //                                  $"<br />Đơn giá: { Phim.Don_gia.ToString("c0", Dinh_dang_VN) }" +
+    //                              $"</div>";
+
+    //        var Chuoi_HTML = $"<div class='KHUNG col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
+    //                             $"<div class='THONG_TIN'>" +
+    //                                 $"{Chuoi_Hinh}" +
+    //                                 $"{Chuoi_Thong_tin}" +
+    //                             $"</div>" +
+    //                         "</div>";
+
+    //        Chuoi_HTML_Danh_sach += Chuoi_HTML;
+    //    });
+
+    //    Chuoi_HTML_Danh_sach += "</div>";
+
+    //    return Chuoi_HTML_Danh_sach;
+    //}
+
     public string Tao_Chuoi_HTML_Danh_sach_Phim(List<XL_PHIM> Danh_sach)
     {
         var Chuoi_HTML_Danh_sach = "<div class='row'>";
 
         Danh_sach.ForEach(Phim =>
         {
-            var Chuoi_Hinh = $"<div class='KHUNG_HINH mx-auto'>" +
-                                $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='img-thumbnail HINH'/>" +
-                             "</div>";
+            var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='card-img-top HINH'/>";
 
-            var Chuoi_Thong_tin = $"<div>" +
-                                      $"<strong>{Phim.Ten}</strong>" +
-                                      $"<br />Đơn giá: { Phim.Don_gia.ToString("c0", Dinh_dang_VN) }" +
+            var Chuoi_Thong_tin = $"<div class='card-block THONG_TIN'>" +
+                                      $"<h6 class='text-center'>{Phim.Ten}</h6>" +
                                   $"</div>";
 
             var Chuoi_HTML = $"<div class='KHUNG col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
-                                 $"<div class='THONG_TIN'>" +
+                                 $"<div class='card'>" +
                                      $"{Chuoi_Hinh}" +
+                                     $"<div class='middle'><div class='text'>Mua vé</div><div class='text'>Chi tiết</div></div>" +
+
+
                                      $"{Chuoi_Thong_tin}" +
                                  $"</div>" +
                              "</div>";

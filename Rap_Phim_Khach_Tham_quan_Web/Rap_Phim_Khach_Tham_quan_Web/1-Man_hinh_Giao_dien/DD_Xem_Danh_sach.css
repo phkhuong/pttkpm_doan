@@ -26,16 +26,26 @@ a {
 .DANH_SACH {
     color: black;
     margin-top: 5px;
+    padding-top: 20px;
 }
 
 .DANH_SACH .KHUNG {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.KHUNG h6 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    color: #3e3e3e;
 }
 
 .THONG_TIN {
     cursor: pointer;
-    border: 1px solid silver;
-    padding: 10px;
+    padding: 0.7rem;
 }
 
 .THONG_TIN div {
@@ -59,5 +69,42 @@ a {
 }
 
 .HINH {
-    max-height: 150px;
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.card:hover .HINH {
+    opacity: 0.7;
+}
+
+.card:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    border: 1px solid #ffffff;
+    color: white;
+    font-size: 16px;
+    padding: 10px 32px;
+    margin-bottom: 5px;
+}
+
+.text:hover {
+    background-color: #f26b38;
 }
