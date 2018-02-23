@@ -70,7 +70,7 @@ public partial class XL_DU_LIEU
             var Chuoi_HTML = $"<div class='KHUNG col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
                                  $"<div class='card'>" +
                                      $"{Chuoi_Hinh}" +
-                                     $"<div class='middle'><div class='text'>Mua vé</div><div class='text'>Chi tiết</div></div>" +
+                                     $"<div class='OVERLAY'><div class='OVERLAY_TEXT'>Mua vé</div><div class='OVERLAY_TEXT'>Chi tiết</div></div>" +
 
 
                                      $"{Chuoi_Thong_tin}" +
