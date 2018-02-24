@@ -57,7 +57,6 @@ public class XL_PHIM
     public List<XL_SUAT_CHIEU> Danh_sach_Suat_chieu = new List<XL_SUAT_CHIEU>();
     public List<XL_DAT_VE> Danh_sach_Dat_ve = new List<XL_DAT_VE>();
     public List<XL_BAN_VE> Danh_sach_Ban_ve = new List<XL_BAN_VE>();
-
     public long Doanh_thu;
 }
 
