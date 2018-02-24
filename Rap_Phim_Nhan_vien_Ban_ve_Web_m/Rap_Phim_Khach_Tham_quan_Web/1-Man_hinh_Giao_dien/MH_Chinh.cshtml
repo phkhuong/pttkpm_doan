@@ -1,0 +1,177 @@
+﻿@{
+    //****************** Xử lý Bảo mật và Phân quyền  **********
+    var Nhan_vien = (XL_NHAN_VIEN_BAN_VE)Session["Nhan_vien_Dang_nhap"];
+    if (Nhan_vien == null)
+    {
+        Response.Write("Người dùng chưa Đăng nhập");
+        Response.End();
+    }
+    //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
+    var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
+    var Cong_ty = Du_lieu.Cong_ty;
+    //var Danh_sach_Tivi = Du_lieu.Tao_Danh_sach_Tivi_cua_Nhan_vien(Nhan_vien);
+    //var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
+
+    Session["Chuoi_Tra_cuu"] = "";
+
+    if (IsPost)
+    {
+        Session["Chuoi_Tra_cuu"] = Request["Th_Tra_cuu"];
+    }
+
+    var Chuoi_Tra_cuu = Session["Chuoi_Tra_cuu"];
+}
+
+
+
+    @*//************ Khai báo Biến ********************
+    var Tong_Doanh_thu = Danh_sach_Tivi.Sum(Tivi => Tivi.Doanh_thu);
+    var Chuoi_HTML_Thong_bao = "<div class='alert alert-info'>
+    Tổng Doanh thu hiện nay " +
+    Tong_Doanh_thu.ToString("n0", Du_lieu.Dinh_dang_VN) +
+    "<br />Danh sách " + Danh_sach_Tivi.Count + " Tivi " +
+    "
+</div>";
+    //####### Chức năng Tra cứu :
+    var Chuoi_Tra_cuu = "";// Biến Nhập
+    var Danh_sach_Tivi_Xem = Danh_sach_Tivi; // Biến Kết quả
+    //####### Chức năng Nhập Tivi :
+    var Ma_so_Tivi = "";// Biến Nhập
+    var So_luong = 1;// Biến Nhập
+    var Ban_hang = new XL_BAN_HANG(); // Biến Kết quả
+
+    //**** Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
+    //####### Chức năng Tra cứu :
+    if (Request["Th_Chuoi_Tra_cuu"] != null)
+    {
+        Chuoi_Tra_cuu = Request["Th_Chuoi_Tra_cuu"];
+        Danh_sach_Tivi_Xem = Du_lieu.Tra_cuu_Tivi(Chuoi_Tra_cuu, Danh_sach_Tivi);
+        Danh_sach_Tivi_Xem = Danh_sach_Tivi_Xem.OrderBy(x => x.Don_gia_Ban).ToList();
+        Tong_Doanh_thu = Danh_sach_Tivi.Sum(Tivi => Tivi.Doanh_thu);
+        Chuoi_HTML_Thong_bao = "<div class='alert alert-info'>
+    Tổng Doanh thu hiện nay " +
+    Tong_Doanh_thu.ToString ("n0",Du_lieu.Dinh_dang_VN)   +
+    "<br />Danh sách " +Danh_sach_Tivi_Xem.Count + " Tivi " +
+    "
+</div>";
+    }
+    //####### Chức năng Nhập Tivi :
+    if (Request["Th_Ma_so_Tivi"] != null)
+    {
+        Ma_so_Tivi = Request["Th_Ma_so_Tivi"];
+        So_luong = int.Parse(Request["Th_So_luong"]);
+        var Tivi = Danh_sach_Tivi.FirstOrDefault(x => x.Ma_so == Ma_so_Tivi);
+        var Hop_le =Tivi !=null  && So_luong >=1 && So_luong<=Tivi.So_luong_Ton;
+        if (Hop_le)
+        {
+            Ban_hang.So_luong = So_luong;
+            Ban_hang.Don_gia = Tivi.Don_gia_Ban;
+            Ban_hang.Ngay = DateTime.Now;
+            Ban_hang.Tien = So_luong * Tivi.Don_gia_Ban;
+            var Kq_Ghi = Du_lieu.Ghi_Ban_hang_Moi(Tivi, Ban_hang);
+            // Lưu ý : Chưa xem xét Kq_Ghi , Chưa Ghi nhận Ai Bán hàng
+            Tong_Doanh_thu = Danh_sach_Tivi.Sum(x => x.Doanh_thu);
+            Chuoi_HTML_Thong_bao = "<div class='alert alert-success'>
+    Tổng Doanh thu hiện nay " +
+    Tong_Doanh_thu.ToString("n0", Du_lieu.Dinh_dang_VN) +
+    "<br />Tiền phải thu khi bán " + So_luong + " " + Tivi.Ten + " là "
+    + Ban_hang.Tien.ToString("n0", Du_lieu.Dinh_dang_VN) + "
+</div>";
+        }
+        else
+        {
+            Chuoi_HTML_Thong_bao = "<div class='alert alert-warning'>Dữ liệu Nhập không hợp lệ</div>";
+        }
+    }
+
+    //******************* Kết xuất  **********
+    var Chuoi_HTML_Danh_sach_Tivi = Du_lieu.Tao_Chuoi_HTML_Danh_sach_Tivi(Danh_sach_Tivi_Xem);
+}*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="DD_Chinh.css?v=@DateTime.Now.Ticks" type="text/css" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row TIEU_DE justify-content-center">
+            <div class="col-md-10 col-md-offset-1 content-section">
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-4 col-4 text-center hidden-sm-down LOGO">
+                        <a href="#">
+                            <img src="@Du_lieu.Dia_chi_Media/LOGO.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-4 text-center hidden-md-up LOGO">
+                        <a href="#">
+                            <img src="@Du_lieu.Dia_chi_Media/LOGO_MOBILE.png" style="width:70%" class="d-inline-block align-top" alt="">
+                        </a>
+                    </div>
+                    <div class="TIM_KIEM col-md-8 col-sm-8 col-8">
+                        <form id="HE_THONG" name="HE_THONG" action="MH_Chinh.cshtml" method="post">
+                            <input type="text" id="Th_Tra_cuu" name="Th_Tra_cuu" value="@Chuoi_Tra_cuu" class="form-control" placeholder="Tìm tên phim..." />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row DANH_SACH_CHUC_NANG">
+            <div class="container">
+                <table class="table-responsive">
+                    <thead>
+                        <tr id="Th_Danh_sach_Chuc_nang">
+                            <td id="MH_Danh_sach_Phim_dang_chieu" class="CHUC_NANG">
+                                PHIM ĐANG CHIẾU
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <iframe class="KHUNG_CHUC_NANG" id='Khung_Chuc_nang'></iframe>
+        </div>
+    </div>
+   
+    <script>
+        MH_Danh_sach_Phim_dang_chieu.onclick = () => {
+            Khung_Chuc_nang.src = "MH_Danh_sach_Phim_dang_chieu.cshtml";
+            Danh_dau_Chon_Chuc_nang(MH_Danh_sach_Phim_dang_chieu);
+        }
+
+        function Chon_Chuc_nang(Chuc_nang_Chon) {
+            for (var i = 0; i < Th_Danh_sach_Chuc_nang.childNodes.length; i++) {
+                if (Th_Danh_sach_Chuc_nang.childNodes[i].id == Chuc_nang_Chon) {
+                    Th_Danh_sach_Chuc_nang.childNodes[i].click();
+                    return;
+                }
+            }
+        }
+
+        function Danh_dau_Chon_Chuc_nang(Th_Chuc_nang_Chon) {
+            for (var i = 0; i < Th_Danh_sach_Chuc_nang.childNodes.length; i++)
+                Th_Danh_sach_Chuc_nang.childNodes[i].className = "CHUC_NANG";
+            Th_Chuc_nang_Chon.className += " CHON";
+        }
+    </script>
+
+    @if (Session["Chuc_nang_Chon"] == null)
+    {
+        <script>MH_Danh_sach_Phim_dang_chieu.click();</script>
+    }
+    else
+    {
+        <script>Chon_Chuc_nang('@Session["Chuc_nang_Chon"]');</script>
+    }
+</body>
+</html>
