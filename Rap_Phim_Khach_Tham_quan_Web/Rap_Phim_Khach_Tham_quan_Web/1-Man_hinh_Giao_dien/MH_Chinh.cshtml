@@ -55,6 +55,9 @@
                                     <td id="MH_Danh_sach_Phim_dang_chieu" class="CHUC_NANG">
                                         PHIM ĐANG CHIẾU
                                     </td>
+                                    <td id="MH_Mua_ve" class="CHUC_NANG">
+                                        MUA VÉ
+                                    </td>
                                 </tr>
                             </thead>
                         </table>
@@ -104,7 +107,10 @@
                     Khung_Chuc_nang.src = "MH_Danh_sach_Phim_dang_chieu.cshtml";
                     Danh_dau_Chon_Chuc_nang(MH_Danh_sach_Phim_dang_chieu);
                 }
+                MH_Mua_ve.onclick = () => {
 
+                    Danh_dau_Chon_Chuc_nang(MH_Mua_ve);
+                }
                 function Chon_Chuc_nang(Chuc_nang_Chon) {
                     for (var i = 0; i < Th_Danh_sach_Chuc_nang.childNodes.length; i++) {
                         if (Th_Danh_sach_Chuc_nang.childNodes[i].id == Chuc_nang_Chon) {

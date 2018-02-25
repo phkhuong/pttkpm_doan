@@ -89,11 +89,11 @@ a {
     text-align: center;
 }
 
-.card:hover .HINH {
+.KHUNG:hover .HINH {
     opacity: 0.7;
 }
 
-.card:hover .OVERLAY {
+.KHUNG:hover .OVERLAY {
     opacity: 1;
 }
 
@@ -101,7 +101,7 @@ a {
     border: 1px solid #ffffff;
     color: white;
     font-size: 16px;
-    padding: 10px 32px;
+    padding: 10px 20px;
     margin-bottom: 5px;
 }
 
