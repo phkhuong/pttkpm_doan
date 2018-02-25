@@ -67,7 +67,7 @@ public partial class XL_DU_LIEU
                                       $"<h6 class='text-center'>{Phim.Ten}</h6>" +
                                   $"</div>";
 
-            var Chuoi_HTML = $"<div class='KHUNG col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
+            var Chuoi_HTML = $"<div class='KHUNG col-6 col-sm-6 col-md-4 col-lg-3'>" +
                                  $"<div class='card'>" +
                                      $"{Chuoi_Hinh}" +
                                      $"<div class='OVERLAY'><div class='OVERLAY_TEXT'>Mua vé</div><div class='OVERLAY_TEXT'>Chi tiết</div></div>" +
