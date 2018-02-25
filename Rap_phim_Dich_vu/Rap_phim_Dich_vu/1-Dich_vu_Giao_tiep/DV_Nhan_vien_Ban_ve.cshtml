@@ -17,20 +17,20 @@
             var Du_lieu_Kq = Du_lieu.Tao_Du_lieu_Phan_he_Nhan_vien();
             Chuoi_Kq = Json.Encode(Du_lieu_Kq);
         }
-        else if (Ma_so_Xu_ly == "GHI_BAN_HANG_MOI")
-        {
-            var Ma_so_Tivi = Request["Ma_so_Tivi"];
-            var Tivi = Du_lieu.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Tivi);
-            var Ban_hang = Json.Decode<XL_BAN_VE>(Chuoi_Nhan);
-            Chuoi_Kq = Du_lieu.Ghi_Ban_ve_Moi(Tivi, Ban_hang);
-        }
-        else if (Ma_so_Xu_ly == "GHI_DAT_HANG_MOI")
-        {
-            var Ma_so_Tivi = Request["Ma_so_Tivi"];
-            var Tivi = Du_lieu.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Tivi);
-            var Dat_hang = Json.Decode<XL_DAT_VE>(Chuoi_Nhan);
-            Chuoi_Kq = Du_lieu.Ghi_Dat_ve_Moi(Tivi, Dat_hang);
-        }
+        //else if (Ma_so_Xu_ly == "GHI_BAN_HANG_MOI")
+        //{
+        //    var Ma_so_Tivi = Request["Ma_so_Tivi"];
+        //    var Tivi = Du_lieu.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Tivi);
+        //    var Ban_hang = Json.Decode<XL_BAN_VE>(Chuoi_Nhan);
+        //    Chuoi_Kq = Du_lieu.Ghi_Ban_ve_Moi(Tivi, Ban_hang);
+        //}
+        //else if (Ma_so_Xu_ly == "GHI_DAT_HANG_MOI")
+        //{
+        //    var Ma_so_Tivi = Request["Ma_so_Tivi"];
+        //    var Tivi = Du_lieu.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Tivi);
+        //    var Dat_hang = Json.Decode<XL_DAT_VE>(Chuoi_Nhan);
+        //    Chuoi_Kq = Du_lieu.Ghi_Dat_ve_Moi(Tivi, Dat_hang);
+        //}
 
     }
 
