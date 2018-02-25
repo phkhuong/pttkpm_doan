@@ -57,7 +57,6 @@
             </div>
         </div>
 
-
         <div class="row DANH_SACH_CHUC_NANG">
             <div class="container">
                 <table class="table-responsive">
@@ -65,6 +64,9 @@
                         <tr id="Th_Danh_sach_Chuc_nang">
                             <td id="MH_Danh_sach_Phim_dang_chieu" class="CHUC_NANG">
                                 PHIM ĐANG CHIẾU
+                            </td>
+                            <td id="MH_Quan_ly_Dat_ve" class="CHUC_NANG">
+                                QUẢN LÝ ĐẶT VÉ
                             </td>
                         </tr>
                     </thead>
@@ -76,13 +78,16 @@
             <iframe class="KHUNG_CHUC_NANG" id='Khung_Chuc_nang'></iframe>
         </div>
     </div>
-   
+
     <script>
         MH_Danh_sach_Phim_dang_chieu.onclick = () => {
             Khung_Chuc_nang.src = "MH_Danh_sach_Phim_dang_chieu.cshtml";
             Danh_dau_Chon_Chuc_nang(MH_Danh_sach_Phim_dang_chieu);
         }
-
+        MH_Quan_ly_Dat_ve.onclick = () => {
+            Khung_Chuc_nang.src = "MH_Quan_ly_Dat_ve.cshtml";
+            Danh_dau_Chon_Chuc_nang(MH_Quan_ly_Dat_ve);
+        }
         function Chon_Chuc_nang(Chuc_nang_Chon) {
             for (var i = 0; i < Th_Danh_sach_Chuc_nang.childNodes.length; i++) {
                 if (Th_Danh_sach_Chuc_nang.childNodes[i].id == Chuc_nang_Chon) {
@@ -97,6 +102,7 @@
                 Th_Danh_sach_Chuc_nang.childNodes[i].className = "CHUC_NANG";
             Th_Chuc_nang_Chon.className += " CHON";
         }
+
     </script>
 
     @if (Session["Chuc_nang_Chon"] == null)
