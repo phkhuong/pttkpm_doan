@@ -39,7 +39,7 @@
 		  },
 		  "Phong_chieu": {
 		  	"Ma_so":"RAP_1_PC_1",
-  			"Tên": "Phòng chiếu 1",
+  			"Ten": "Phòng chiếu 1",
         "So_Ghe": 81,
         "Danh_sach_Ghe": [
         ]
@@ -67,7 +67,7 @@
 		  },
 		  "Phong_chieu": {
 		  	"Ma_so":"RAP_1_PC_1",
-  			"Tên": "Phòng chiếu 1",
+  			"Ten": "Phòng chiếu 1",
         "So_Ghe": 81,
         "Danh_sach_Ghe": [
         ]
@@ -95,7 +95,7 @@
 		  },
 		  "Phong_chieu": {
 		  	"Ma_so":"RAP_1_PC_1",
-  			"Tên": "Phòng chiếu 1",
+  			"Ten": "Phòng chiếu 1",
         "So_Ghe": 81,
         "Danh_sach_Ghe": [
         ]
@@ -123,7 +123,7 @@
 		  },
 		  "Phong_chieu": {
 		  	"Ma_so":"RAP_1_PC_1",
-  			"Tên": "Phòng chiếu 1",
+  			"Ten": "Phòng chiếu 1",
         "So_Ghe": 81,
         "Danh_sach_Ghe": [
         ]
@@ -151,7 +151,7 @@
 		  },
 		  "Phong_chieu": {
 		  	"Ma_so":"RAP_2_PC_1",
-  			"Tên": "Phòng chiếu 1",
+  			"Ten": "Phòng chiếu 1",
         "So_Ghe": 81,
         "Danh_sach_Ghe": [
         ]
@@ -179,7 +179,7 @@
 		  },
 		  "Phong_chieu": {
 		  	"Ma_so":"RAP_2_PC_1",
-  			"Tên": "Phòng chiếu 1",
+  			"Ten": "Phòng chiếu 1",
         "So_Ghe": 81,
         "Danh_sach_Ghe": [
         ]
@@ -207,7 +207,7 @@
 		  },
 		  "Phong_chieu": {
 		  	"Ma_so":"RAP_2_PC_1",
-  			"Tên": "Phòng chiếu 1",
+  			"Ten": "Phòng chiếu 1",
         "So_Ghe": 81,
         "Danh_sach_Ghe": [
         ]
@@ -235,7 +235,7 @@
 		  },
 		  "Phong_chieu": {
 		  	"Ma_so":"RAP_2_PC_1",
-  			"Tên": "Phòng chiếu 1",
+  			"Ten": "Phòng chiếu 1",
         "So_Ghe": 81,
         "Danh_sach_Ghe": [
         ]
@@ -264,7 +264,7 @@
 		    },
 		    "Phong_chieu": {
 		  	  "Ma_so":"RAP_1_PC_1",
-  			  "Tên": "Phòng chiếu 1",
+  			  "Ten": "Phòng chiếu 1",
           "So_Ghe": 81,
           "Danh_sach_Ghe": [
           ]
@@ -303,7 +303,7 @@
 		    },
 		    "Phong_chieu": {
 		  	  "Ma_so":"RAP_1_PC_1",
-  			  "Tên": "Phòng chiếu 1",
+  			  "Ten": "Phòng chiếu 1",
           "So_Ghe": 81,
           "Danh_sach_Ghe": [
           ]
@@ -347,7 +347,7 @@
 		    },
 		    "Phong_chieu": {
 		  	  "Ma_so":"RAP_1_PC_1",
-  			  "Tên": "Phòng chiếu 1",
+  			  "Ten": "Phòng chiếu 1",
           "So_Ghe": 81,
           "Danh_sach_Ghe": [
           ]
@@ -400,7 +400,7 @@
         },
         "Phong_chieu": {
           "Ma_so": "RAP_1_PC_1",
-          "Tên": "Phòng chiếu 1",
+          "Ten": "Phòng chiếu 1",
           "So_Ghe": 81,
           "Danh_sach_Ghe": [
           ]

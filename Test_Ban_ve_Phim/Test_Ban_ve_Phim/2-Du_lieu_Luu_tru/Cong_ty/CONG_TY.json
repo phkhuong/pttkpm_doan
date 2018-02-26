@@ -1,0 +1,146 @@
+{
+  "Ten": "Galaxy Cinema",
+  "Ma_so": "GALAXY_CINEMA",
+  "Dien_thoai": "(0283) 775 2527",
+  "Dia_chi": "Tầng 3 Lotte Mart NSG, 469 Nguyễn Hữu Thọ, q7, TPHCM",
+  "Danh_sach_Rap":[
+  	{
+  		"Ma_so":"RAP_1",
+  		"Ten": "Galaxy Nguyễn Du",
+  		"Danh_sach_Phong_chieu":[
+  			{
+  				"Ma_so":"RAP_1_PC_1",
+  				"Tên": "Phòng chiếu 1",
+          "So_Ghe": 100,
+          "Danh_sach_Ghe": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ]
+  			},
+  			{
+  				"Ma_so":"RAP_1_PC_2",
+  				"Tên": "Phòng chiếu 2",
+          "So_Ghe": 100,
+          "Danh_sach_Ghe": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ]
+  			}
+  		]
+  	},
+  	{
+  		"Ma_so":"RAP_2",
+  		"Ten": "Galaxy Lotte",
+  		"Danh_sach_Phong_chieu":[
+  			{
+  				"Ma_so":"RAP_2_PC_1",
+  				"Tên": "Phòng chiếu 1",
+          "So_Ghe": 100,
+          "Danh_sach_Ghe": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ]
+  			},
+  			{
+  				"Ma_so":"RAP_2_PC_2",
+  				"Tên": "Phòng chiếu 2",
+          "So_Ghe": 100,
+          "Danh_sach_Ghe": [
+            {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
+            {"Ma_so": "H9"},	{"Ma_so": "H8"},	{"Ma_so": "H7"},	{"Ma_so": "H6"},	{"Ma_so": "H5"},	{"Ma_so": "H4"},	{"Ma_so": "H3"},	{"Ma_so": "H2"},	{"Ma_so": "H1"},
+            {"Ma_so": "G9"},	{"Ma_so": "G8"},	{"Ma_so": "G7"},	{"Ma_so": "G6"},	{"Ma_so": "G5"},	{"Ma_so": "G4"},	{"Ma_so": "G3"},	{"Ma_so": "G2"},	{"Ma_so": "G1"},
+            {"Ma_so": "F9"},	{"Ma_so": "F8"},	{"Ma_so": "F7"},	{"Ma_so": "F6"},	{"Ma_so": "F5"},	{"Ma_so": "F4"},	{"Ma_so": "F3"},	{"Ma_so": "F2"},	{"Ma_so": "F1"},
+            {"Ma_so": "E9"},	{"Ma_so": "E8"},	{"Ma_so": "E7"},	{"Ma_so": "E6"},	{"Ma_so": "E5"},	{"Ma_so": "E4"},	{"Ma_so": "E3"},	{"Ma_so": "E2"},	{"Ma_so": "E1"},
+            {"Ma_so": "D9"},	{"Ma_so": "D8"},	{"Ma_so": "D7"},	{"Ma_so": "D6"},	{"Ma_so": "D5"},	{"Ma_so": "D4"},	{"Ma_so": "D3"},	{"Ma_so": "D2"},	{"Ma_so": "D1"},
+            {"Ma_so": "C9"},	{"Ma_so": "C8"},	{"Ma_so": "C7"},	{"Ma_so": "C6"},	{"Ma_so": "C5"},	{"Ma_so": "C4"},	{"Ma_so": "C3"},	{"Ma_so": "C2"},	{"Ma_so": "C1"},
+            {"Ma_so": "B9"},	{"Ma_so": "B8"},	{"Ma_so": "B7"},	{"Ma_so": "B6"},	{"Ma_so": "B5"},	{"Ma_so": "B4"},	{"Ma_so": "B3"},	{"Ma_so": "B2"},	{"Ma_so": "B1"},
+            {"Ma_so": "A9"},	{"Ma_so": "A8"},	{"Ma_so": "A7"},	{"Ma_so": "A6"},	{"Ma_so": "A5"},	{"Ma_so": "A4"},	{"Ma_so": "A3"},	{"Ma_so": "A2"},	{"Ma_so": "A1"}
+          ]
+  			}
+  		]
+  	}
+  ],
+  "Danh_sach_Nhan_vien_Ban_ve": [
+    {
+      "Ho_ten": "Nguyễn Thị A",
+      "Ma_so": "NV_1",
+      "Ten_Dang_nhap": "NV_1",
+      "Mat_khau": "NV_1",
+      "Rap": {
+  		  "Ma_so":"RAP_1",
+  		  "Ten": "Galaxy Nguyễn Du",
+  		  "Danh_sach_Phong_chieu":[
+  		  ]
+  	  }
+    },
+    {
+      "Ho_ten": "Nguyễn Thị B",
+      "Ma_so": "NV_2",
+      "Ten_Dang_nhap": "NV_2",
+      "Mat_khau": "NV_2",
+      "Rap": {
+        "Ma_so": "RAP_1",
+        "Ten": "Galaxy Nguyễn Du",
+        "Danh_sach_Phong_chieu": [
+        ]
+      }
+    },
+    {
+      "Ho_ten": "Nguyễn Thị C",
+      "Ma_so": "NV_2",
+      "Ten_Dang_nhap": "NV_4",
+      "Mat_khau": "NV_4",
+      "Rap": {
+        "Ma_so": "RAP_2",
+        "Ten": "Galaxy Lotte",
+        "Danh_sach_Phong_chieu": [
+        ]
+      }
+    },
+    {
+      "Ho_ten": "Nguyễn Thị D",
+      "Ma_so": "NV_3",
+      "Ten_Dang_nhap": "NV_3",
+      "Mat_khau": "NV_3",
+      "Rap": {
+        "Ma_so": "RAP_2",
+        "Ten": "Galaxy Lotte",
+        "Danh_sach_Phong_chieu": [
+        ]
+      }
+    }
+  ],
+  "Danh_sach_Quan_ly": [
+    {
+      "Ho_ten": "Nguyễn Đức Hồng",
+      "Ma_so": "NV_4",
+      "Ten_Dang_nhap": "QL",
+      "Mat_khau": "QL",
+      "Nhom_Quan_ly": {
+        "Ten": "Quản lý Rạp",
+        "Ma_so": "QUAN_LY_RAP"
+      }
+    }
+  ]
+}

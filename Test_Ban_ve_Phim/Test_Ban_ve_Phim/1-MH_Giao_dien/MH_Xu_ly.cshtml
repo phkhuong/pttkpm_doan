@@ -1,0 +1,64 @@
+﻿
+@{  XL_DU_LIEU Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
+    var Cong_ty = Du_lieu.Cong_ty;
+    var Danh_sach_Phim = Du_lieu.Danh_sach_Phim;
+    var Ma_so_Xu_ly = ""; // Biến Nhận
+    var Chuoi_Kq = ""; // Biến Kêt quả
+
+    //*********Xử lý Nhập liệu Nếu có + Tạo Kết quả Nếu Hợp lệ  *********
+    if (Request["Ma_so_Xu_ly"] != null)
+    {
+        Ma_so_Xu_ly = Request["Ma_so_Xu_ly"];// Nhận Tham số 
+        if (Ma_so_Xu_ly == "CHON_PHIM")
+        {
+            var Ma_so_Phim = Request["Ma_so_Phim"];
+            var Phim = Danh_sach_Phim.Find(x => x.Ma_so == Ma_so_Phim);
+            var Danh_sach_Rap = new List<XL_RAP>();
+            Phim.Danh_sach_Suat_chieu.ForEach(x =>
+            {
+                bool DaCo = false;
+
+                for (int i = 0; i < Danh_sach_Rap.Count; i++)
+                {
+                    if (Danh_sach_Rap[i].Ma_so == x.Rap.Ma_so)
+                    {
+                        DaCo = true;
+                        break;
+                    }
+                }
+                if (!DaCo)
+                {
+                    Danh_sach_Rap.Add(x.Rap);
+                }
+
+
+
+            });
+            Chuoi_Kq += "<option value=''>Chọn Rạp:</option>";
+            Danh_sach_Rap.ForEach(Rap =>
+            {
+                Chuoi_Kq += "<option value='"+ Rap.Ma_so+"'>"+ Rap.Ten + "</option>";
+            });
+
+        }
+        else if(Ma_so_Xu_ly == "CHON_RAP")
+        {
+            var Ma_so_Phim = Request["Ma_so_Phim"];
+            var Phim = Danh_sach_Phim.Find(x => x.Ma_so == Ma_so_Phim);
+            var Ma_so_Rap = Request["Ma_so_Rap"];
+            Chuoi_Kq += "<option value=''>Chọn Suất chiếu:</option>";
+            Phim.Danh_sach_Suat_chieu.ForEach(Suat_chieu =>
+            {
+                if(Suat_chieu.Rap.Ma_so == Ma_so_Rap)
+                {
+                    Chuoi_Kq += "<option value='" + Suat_chieu.Ma_so + "'>" + Suat_chieu.Bat_dau.ToShortTimeString() + "</option>";
+                }
+            });
+        }
+
+    }
+
+    // Xử lý trả Kết quả
+    Response.ContentType = "text/json";
+    Response.Write(Chuoi_Kq);
+}

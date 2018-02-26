@@ -1,0 +1,87 @@
+﻿@{
+    XL_DU_LIEU Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
+    var Cong_ty = Du_lieu.Cong_ty;
+    var Danh_sach_Phim = Du_lieu.Danh_sach_Phim;
+    var Phim = (XL_PHIM) Session["Phim"];
+    var Dat_ve = (XL_DAT_VE)Session["Dat_ve"];
+    var So_luong = Dat_ve.So_luong;
+    var Rap = Cong_ty.Danh_sach_Rap.Find(x => x.Ma_so == Dat_ve.Suat_chieu.Rap.Ma_so);
+    var Phong_chieu = Rap.Danh_sach_Phong_chieu.Find(x => x.Ma_so == Dat_ve.Suat_chieu.Phong_chieu.Ma_so);
+    var Danh_sach_Ghe = Phong_chieu.Danh_sach_Ghe;
+    var Danh_sach_Ghe_trong = Dat_ve.Suat_chieu.Danh_sach_Ghe_trong;
+    var Count = 0;
+    var Chuoi_HTML = "";
+
+    var Danh_sach_Ghe_Chon = (List<XL_GHE>)Session["Danh_sach_Ghe_Chon"];
+    if(Danh_sach_Ghe_Chon == null)
+    {
+        Danh_sach_Ghe_Chon = new List<XL_GHE>();
+        Session["Danh_sach_Ghe_Chon"] = Danh_sach_Ghe_Chon;
+    }
+
+    if (IsPost)
+    {
+        var Ma_so = Request["Th_Ma_so"];
+        var Ghe_Chon = Danh_sach_Ghe_trong.FirstOrDefault(x => x.Ma_so == Ma_so);
+        var Da_chon = Danh_sach_Ghe_Chon.Any(x => x.Ma_so == Ghe_Chon.Ma_so);
+        if (Da_chon)
+        {
+            Danh_sach_Ghe_Chon.Remove(Danh_sach_Ghe_Chon.FirstOrDefault(x => x.Ma_so == Ghe_Chon.Ma_so));
+        }
+        else if (Danh_sach_Ghe_Chon.Count == So_luong)
+        {
+            Danh_sach_Ghe_Chon.RemoveAt(0);
+            Danh_sach_Ghe_Chon.Add(Ghe_Chon);
+        }
+        else
+        {
+            Danh_sach_Ghe_Chon.Add(Ghe_Chon);
+        }
+        Session["Danh_sach_Ghe_Chon"] = Danh_sach_Ghe_Chon;
+    }
+    Danh_sach_Ghe.ForEach(Ghe =>
+    {
+        Count++;
+        var Tinh_trang_Ghe = 0;
+        var Chuoi_Xu_ly_Click = "Th_Ma_so.value='XXX';He_thong.submit() ";
+        Chuoi_Xu_ly_Click = Chuoi_Xu_ly_Click.Replace("XXX", Ghe.Ma_so);
+        var Da_chon = Danh_sach_Ghe_Chon.Any(x => x.Ma_so == Ghe.Ma_so);
+        var Chua_dat = Danh_sach_Ghe_trong.Any(x => x.Ma_so == Ghe.Ma_so);
+        if (Da_chon)
+        {
+            Tinh_trang_Ghe = 1;
+        }
+        if (!Chua_dat)
+        {
+            Tinh_trang_Ghe = -1;
+        }
+        Chuoi_HTML += Du_lieu.Tao_chuoi_HTML_Ghe(Ghe, Chuoi_Xu_ly_Click, Tinh_trang_Ghe, Count);
+
+    });
+    //var Chuoi_The_hien = new HtmlString(Chuoi_HTML);
+
+    //var Chuoi_HTML_Ghe = Du_lieu.Tao_chuoi_HTML_Ghe(Dat_ve.Suat_chieu.Danh_sach_Ghe_trong);
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @Html.Raw(Chuoi_HTML)
+</div>
+    <button id="myButton" class="float-left submit-button">Đặt chỗ</button>
+    <form id="He_thong" action="MH_Chon_Ghe.cshtml" method="post">
+        <input name="Th_Ma_so" id="Th_Ma_so" type="hidden" />
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "MH_Ket_qua.cshtml";
+    };
+</script>

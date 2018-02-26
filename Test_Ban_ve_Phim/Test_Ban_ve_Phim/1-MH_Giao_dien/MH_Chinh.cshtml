@@ -1,0 +1,84 @@
+﻿@{
+    XL_DU_LIEU Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
+    var Cong_ty = Du_lieu.Cong_ty;
+    var Danh_sach_Phim = Du_lieu.Danh_sach_Phim;
+    var  Chuoi_Phim = "<option value=''>Chọn Phim:</option>";
+    Danh_sach_Phim.ForEach(Phim =>
+    {
+        Chuoi_Phim += "<option value='" + Phim.Ma_so + "'>" + Phim.Ten + "</option>";
+    });
+    if (IsPost)
+    {
+        var Ma_Phim = Request["Th_Phim"];
+        var Phim = Danh_sach_Phim.Find(x => x.Ma_so == Ma_Phim);
+        var Ma_Suat_chieu = Request["Th_Suat_chieu"];
+        var So_luong = Request["Th_So_luong"];
+        var Suat_chieu = Phim.Danh_sach_Suat_chieu.Find(x => x.Ma_so == Ma_Suat_chieu);
+        var Dat_ve = new XL_DAT_VE();
+        Dat_ve.Suat_chieu = Suat_chieu;
+        Dat_ve.So_luong = int.Parse(So_luong);
+        Session["Phim"] = Phim;
+        Session["Dat_ve"] = Dat_ve;
+        Response.Redirect("MH_Chon_Ghe.cshtml");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body style="font-family:Arial">
+    <form action="MH_Chinh.cshtml" method="post">
+        <select id="Phim" name="Th_Phim" onchange="chonPhim(this.value)">
+            @Html.Raw(Chuoi_Phim)
+        </select>
+        <select id="Rap" name="Th_Rap" onchange="chonRap(this.value)">
+            <option value="">Chọn Rạp:</option>
+        </select>
+        <select id="Suat_chieu" name="Th_Suat_chieu">
+            <option value="">Chọn Suất chiếu:</option>
+        </select>
+        <input id="So_luong" name="Th_So_luong" type="number" value="1" min="1" max="10"/>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    @*<div id="txtHint">Customer info will be listed here...</div>*@
+
+
+</body>
+</html>
+<script>
+    function chonPhim(str) {
+        var xhttp;
+        if (str == "") {
+            document.getElementById("Rap").innerHTML = "";
+            return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("Rap").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "MH_Xu_ly.cshtml?Ma_so_Xu_ly=CHON_PHIM&Ma_so_Phim=" + str, true);
+        xhttp.send();
+    }
+    function chonRap(str) {
+        var xhttp;
+        if (str == "") {
+            document.getElementById("Suat_chieu").innerHTML = "";
+            return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("Suat_chieu").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "MH_Xu_ly.cshtml?Ma_so_Xu_ly=CHON_RAP&Ma_so_Phim=" + Phim.value + "&Ma_so_Rap=" + str, true);
+        xhttp.send();
+    }
+</script>
