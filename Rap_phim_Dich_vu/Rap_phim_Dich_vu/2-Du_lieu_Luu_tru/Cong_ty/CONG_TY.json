@@ -131,7 +131,7 @@
       }
     }
   ],
-  "Danh_sach_Quan_ly": [
+  "Danh_sach_Quan_ly_Nhan_vien": [
     {
       "Ho_ten": "Nguyễn Đức Hồng",
       "Ma_so": "QL_1",
@@ -146,12 +146,26 @@
     },
     {
       "Ho_ten": "Nguyễn Đức Hồng",
-      "Ma_so": "QL_1",
+      "Ma_so": "QL_2",
       "Ten_Dang_nhap": "QL_2",
-      "Mat_khau": "QL_3",
+      "Mat_khau": "QL_2",
       "Rap": {
         "Ma_so": "RAP_2",
         "Ten": "Galaxy Tân Bình",
+        "Danh_sach_Phong_chieu": [
+        ]
+      }
+    }
+  ],
+  "Danh_sach_Quan_ly_Phim": [
+    {
+      "Ho_ten": "Nguyễn Đức Hồng",
+      "Ma_so": "QL_3",
+      "Ten_Dang_nhap": "QL_3",
+      "Mat_khau": "QL_3",
+      "Rap": {
+        "Ma_so": "RAP_1",
+        "Ten": "Galaxy Nguyễn Du",
         "Danh_sach_Phong_chieu": [
         ]
       }

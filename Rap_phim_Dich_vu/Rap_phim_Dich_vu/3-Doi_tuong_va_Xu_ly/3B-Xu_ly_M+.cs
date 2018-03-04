@@ -46,6 +46,7 @@ public partial class XL_DU_LIEU
             Phim_cua_Phan_he.Don_gia = Phim.Don_gia;
             Phim_cua_Phan_he.Trang_thai = Phim.Trang_thai;
             Phim_cua_Phan_he.Thoi_luong = Phim.Thoi_luong;
+            Phim_cua_Phan_he.Danh_sach_Suat_chieu = Phim.Danh_sach_Suat_chieu;
         });
         return Du_lieu_Phan_he;
     }
@@ -66,16 +67,26 @@ public partial class XL_DU_LIEU
             Phim_cua_Phan_he.Don_gia = Phim.Don_gia;
             Phim_cua_Phan_he.Trang_thai = Phim.Trang_thai;
             Phim_cua_Phan_he.Thoi_luong = Phim.Thoi_luong;
+            Phim_cua_Phan_he.Danh_sach_Suat_chieu = Phim.Danh_sach_Suat_chieu;
             Phim_cua_Phan_he.Danh_sach_Dat_ve = Phim.Danh_sach_Dat_ve.FindAll(x=>x.Trang_thai=="CHO_TINH_TIEN");
         });
         return Du_lieu_Phan_he;
     }
-    public XL_DU_LIEU Tao_Du_lieu_Phan_he_Quan_ly()
+    public XL_DU_LIEU Tao_Du_lieu_Phan_he_Quan_ly_Nhan_vien()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
         Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Ung_dung.Cong_ty.Ten;
         Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Ung_dung.Cong_ty.Ma_so;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Quan_ly = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Quan_ly;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Nhan_vien = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Nhan_vien;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Quan_ly_Nhan_vien = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Quan_ly_Nhan_vien;
+        return Du_lieu_Phan_he;
+    }
+    public XL_DU_LIEU Tao_Du_lieu_Phan_he_Quan_ly_Phim()
+    {
+        var Du_lieu_Phan_he = new XL_DU_LIEU();
+        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Ung_dung.Cong_ty.Ten;
+        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Ung_dung.Cong_ty.Ma_so;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Quan_ly_Phim = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Quan_ly_Phim;
 
         Du_lieu_Ung_dung.Danh_sach_Phim.ForEach(Phim =>
         {
@@ -83,10 +94,19 @@ public partial class XL_DU_LIEU
             Du_lieu_Phan_he.Danh_sach_Phim.Add(Phim_cua_Phan_he);
             Phim_cua_Phan_he.Ten = Phim.Ten;
             Phim_cua_Phan_he.Ma_so = Phim.Ma_so;
+            Phim_cua_Phan_he.Ten_tieng_Anh = Phim.Ten_tieng_Anh;
+            Phim_cua_Phan_he.Phan_loai = Phim.Phan_loai;
+            Phim_cua_Phan_he.Khoi_chieu = Phim.Khoi_chieu;
+            Phim_cua_Phan_he.Quoc_gia = Phim.Quoc_gia;
+            Phim_cua_Phan_he.Dao_dien = Phim.Dao_dien;
+            Phim_cua_Phan_he.Dien_vien = Phim.Dien_vien;
+            Phim_cua_Phan_he.Noi_dung = Phim.Noi_dung;
+            Phim_cua_Phan_he.Dich_thuat = Phim.Dich_thuat;
             Phim_cua_Phan_he.Don_gia = Phim.Don_gia;
             Phim_cua_Phan_he.Trang_thai = Phim.Trang_thai;
             Phim_cua_Phan_he.Thoi_luong = Phim.Thoi_luong;
-            Phim_cua_Phan_he.Doanh_thu = Tinh_Doanh_thu_Phim(Phim,DateTime.Today );
+            Phim_cua_Phan_he.Danh_sach_Suat_chieu = Phim.Danh_sach_Suat_chieu;
+            Phim_cua_Phan_he.Doanh_thu = Tinh_Doanh_thu_Phim(Phim, DateTime.Today);
         });
         return Du_lieu_Phan_he;
     }

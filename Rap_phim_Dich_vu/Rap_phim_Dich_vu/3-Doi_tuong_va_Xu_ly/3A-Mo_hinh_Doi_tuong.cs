@@ -14,7 +14,8 @@ public class XL_CONG_TY
     public string Ten, Ma_so = "",Dien_thoai,Dia_chi;
     public List<XL_RAP> Danh_sach_Rap = new List<XL_RAP>();
     public List<XL_NHAN_VIEN_BAN_VE> Danh_sach_Nhan_vien = new  List<XL_NHAN_VIEN_BAN_VE>();
-    public List<XL_QUAN_LY> Danh_sach_Quan_ly = new List<XL_QUAN_LY>();
+    public List<XL_QUAN_LY_NHAN_VIEN> Danh_sach_Quan_ly_Nhan_vien = new List<XL_QUAN_LY_NHAN_VIEN>();
+    public List<XL_QUAN_LY_PHIM> Danh_sach_Quan_ly_Phim = new List<XL_QUAN_LY_PHIM>();
 }
 public class XL_RAP
 {
@@ -36,10 +37,14 @@ public class XL_NHAN_VIEN_BAN_VE
     public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
     public XL_RAP Rap = new XL_RAP();
 }
-public class XL_QUAN_LY
+public class XL_QUAN_LY_NHAN_VIEN
 {
     public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
     public XL_RAP Rap = new XL_RAP();
+}
+public class XL_QUAN_LY_PHIM
+{
+    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
 }
 public class XL_KHACH_HANG
 {
