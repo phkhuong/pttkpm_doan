@@ -36,6 +36,7 @@ public partial class XL_DU_LIEU
             Phim_cua_Phan_he.Ten = Phim.Ten;
             Phim_cua_Phan_he.Ma_so = Phim.Ma_so;
             Phim_cua_Phan_he.Ten_tieng_Anh = Phim.Ten_tieng_Anh;
+            Phim_cua_Phan_he.Rating = Phim.Rating;
             Phim_cua_Phan_he.Phan_loai = Phim.Phan_loai;
             Phim_cua_Phan_he.Khoi_chieu = Phim.Khoi_chieu;
             Phim_cua_Phan_he.Quoc_gia = Phim.Quoc_gia;
@@ -95,6 +96,7 @@ public partial class XL_DU_LIEU
             Phim_cua_Phan_he.Ten = Phim.Ten;
             Phim_cua_Phan_he.Ma_so = Phim.Ma_so;
             Phim_cua_Phan_he.Ten_tieng_Anh = Phim.Ten_tieng_Anh;
+            Phim_cua_Phan_he.Rating = Phim.Rating;
             Phim_cua_Phan_he.Phan_loai = Phim.Phan_loai;
             Phim_cua_Phan_he.Khoi_chieu = Phim.Khoi_chieu;
             Phim_cua_Phan_he.Quoc_gia = Phim.Quoc_gia;

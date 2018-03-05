@@ -102,6 +102,7 @@
                         <iframe class="KHUNG_CHUC_NANG" id='Khung_Chuc_nang'></iframe>
                     </div>
                 </div>*@
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
             <script>
                 MH_Danh_sach_Phim_dang_chieu.onclick = () => {
                     Khung_Chuc_nang.src = "MH_Danh_sach_Phim_dang_chieu.cshtml";
@@ -125,8 +126,15 @@
                         Th_Danh_sach_Chuc_nang.childNodes[i].className = "CHUC_NANG";
                     Th_Chuc_nang_Chon.className += " CHON";
                 }
-            </script>
+                //$('#Khung_Chuc_nang').on('load',function () {
 
+                //    var iframe = $('#Khung_Chuc_nang').contents();
+
+                //    iframe.find("#choose_pics").click(function () {
+                //        alert("test");
+                //    });
+                //});
+            </script>
             @if (Session["Chuc_nang_Chon"] == null)
             {
                 <script>MH_Danh_sach_Phim_dang_chieu.click();</script>
