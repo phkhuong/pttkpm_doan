@@ -121,7 +121,25 @@ public partial class XL_DU_LIEU
         Chuoi_HTML += Chuoi_Hinh + Chuoi_Thong_tin + Chuoi_Noi_dung + "</div>";
         return Chuoi_HTML;
     }
+    public string Tao_Chuoi_Suat_chieu(XL_PHIM Phim, List<XL_RAP> Danh_sach_Rap)
+    {
+        var Chuoi_Html = "<h3>LỊCH CHIẾU</h3>";
+        foreach(XL_RAP Rap in Danh_sach_Rap)
+        {
+            Chuoi_Html += $"<h5>{Rap.Ten}</h5>";
+            var Chuoi_Danh_sach_Suat_chieu = "<div><ul>";
+            foreach(XL_SUAT_CHIEU Suat_chieu in Phim.Danh_sach_Suat_chieu)
+            {
+                if(Suat_chieu.Rap.Ma_so == Rap.Ma_so)
+                    Chuoi_Danh_sach_Suat_chieu += $"<li>{Suat_chieu.Bat_dau.ToString("HH:mm")}</li>";
+            }
+            Chuoi_Danh_sach_Suat_chieu += "</ul></div>";
+            Chuoi_Html += Chuoi_Danh_sach_Suat_chieu;
+        }
+        return Chuoi_Html;
+    }
 }
+
 
 //************************* Business-Layers BL **********************************
 public partial class XL_DU_LIEU

@@ -1,11 +1,14 @@
 ﻿@{
     //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
     var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
+    var Cong_ty = Du_lieu.Cong_ty;
+    var Danh_sach_Rap = Du_lieu.Cong_ty.Danh_sach_Rap;
     var Danh_sach_Phim = Du_lieu.Danh_sach_Phim;
     //******************* Khai báo Biến  ********************
     var Ma_so = (string)Session["Ma_so_Phim"];
     var Phim = Du_lieu.Tim_Phim(Ma_so, Danh_sach_Phim);
-    var Chuoi_Phim = Du_lieu.Tao_Chuoi_Chi_tiet_Phim(Phim);
+    var Chuoi_Html_Suat_chieu = Du_lieu.Tao_Chuoi_Suat_chieu(Phim, Danh_sach_Rap);
+    var Chuoi_Html_Phim = Du_lieu.Tao_Chuoi_Chi_tiet_Phim(Phim);
     //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
 
 }
@@ -26,7 +29,8 @@
 
 <body>
     <div class="container" style="padding-top:20px;">
-        @Html.Raw(Chuoi_Phim)
+        @Html.Raw(Chuoi_Html_Suat_chieu)
+        @Html.Raw(Chuoi_Html_Phim)
     </div>
 </body>
 </html>
