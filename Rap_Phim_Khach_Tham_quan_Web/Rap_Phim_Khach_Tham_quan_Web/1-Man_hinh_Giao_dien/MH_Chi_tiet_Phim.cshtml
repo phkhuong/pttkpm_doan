@@ -7,7 +7,7 @@
     //******************* Khai báo Biến  ********************
     var Ma_so = (string)Session["Ma_so_Phim"];
     var Phim = Du_lieu.Tim_Phim(Ma_so, Danh_sach_Phim);
-    var Chuoi_Html_Suat_chieu = Du_lieu.Tao_Chuoi_Suat_chieu(Phim, Danh_sach_Rap);
+   // var Chuoi_Html_Suat_chieu = Du_lieu.Tao_Chuoi_Suat_chieu(Phim, Danh_sach_Rap);
     var Chuoi_Html_Phim = Du_lieu.Tao_Chuoi_Chi_tiet_Phim(Phim);
     //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
 
@@ -29,8 +29,35 @@
 
 <body>
     <div class="container" style="padding-top:20px;">
-        @Html.Raw(Chuoi_Html_Suat_chieu)
+        <h3>LỊCH CHIẾU</h3>
+        <form style="margin:30px 0px;">
+            <label for="Ngay">Chọn ngày</label>
+            <input id="Ngay" type="date" value="2018-02-09" onchange="chonNgay(this.value)" style="margin-left:20px"/>
+            <input id="Ma_so_Phim" type="hidden" value="@Phim.Ma_so" />
+        </form>
+        <div id="Kq">
+
+        </div>
+      @*  @Html.Raw(Chuoi_Html_Suat_chieu)*@
         @Html.Raw(Chuoi_Html_Phim)
     </div>
 </body>
 </html>
+<script>
+    function chonNgay(str) {
+        var xhttp;
+        if (str == "") {
+            document.getElementById("Kq").innerHTML = "";
+            return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("Kq").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "MH_Xu_ly_Ajax.cshtml?Ma_so_Xu_ly=CHON_NGAY&Ma_so_Phim=" + Ma_so_Phim.value + "&Ngay=" + str, true);
+        xhttp.send();
+    }
+    chonNgay(Ngay.value);
+</script>
