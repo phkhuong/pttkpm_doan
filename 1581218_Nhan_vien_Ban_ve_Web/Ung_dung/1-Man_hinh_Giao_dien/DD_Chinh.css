@@ -13,8 +13,8 @@ a {
     color: #008CBA;
 }
 
-.TIEU_DE{
-    padding:20px;
+.TIEU_DE {
+    padding: 20px;
 }
 
 .TEN_HE_THONG {
@@ -55,15 +55,15 @@ a {
 
 .CHUC_NANG {
     font-size: 1em;
-    color: #666;
+    color: white;
     text-align: center;
     padding: 10px 10px;
     cursor: pointer;
 }
 
-.CHUC_NANG:hover:not(.CHON) {
-    background-color: #f26b38;
-}
+    .CHUC_NANG:hover:not(.CHON) {
+        background-color: #f26b38;
+    }
 
 .CHON {
     background: #f26b38;
@@ -77,4 +77,3 @@ a {
     width: 100vw;
     border: none;
 }
-

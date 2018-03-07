@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1-Man_hinh_Giao_dien\DD_Chinh.css" />
+    <Content Include="1-Man_hinh_Giao_dien\DD_Chi_tiet_Phim.css" />
     <Content Include="1-Man_hinh_Giao_dien\DD_Xem_Danh_sach.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -95,6 +96,8 @@
     <Content Include="1-Man_hinh_Giao_dien\MH_Dang_nhap.cshtml" />
     <Content Include="1-Man_hinh_Giao_dien\MH_Danh_sach_Phim_dang_chieu.cshtml" />
     <Content Include="1-Man_hinh_Giao_dien\MH_Quan_ly_Dat_ve.cshtml" />
+    <Content Include="1-Man_hinh_Giao_dien\MH_Chi_tiet_Phim.cshtml" />
+    <Content Include="1-Man_hinh_Giao_dien\MH_Xu_ly_Ajax.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

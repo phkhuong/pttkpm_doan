@@ -13,7 +13,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <StartPageUrl>1-Dich_vu_Giao_tiep/DV_Nhan_vien_Ban_ve.cshtml</StartPageUrl>
+          <StartPageUrl>1-Dich_vu_Giao_tiep/DV_Khach_tham_quan.cshtml</StartPageUrl>
           <StartAction>SpecificPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>
           <SilverlightDebugging>False</SilverlightDebugging>

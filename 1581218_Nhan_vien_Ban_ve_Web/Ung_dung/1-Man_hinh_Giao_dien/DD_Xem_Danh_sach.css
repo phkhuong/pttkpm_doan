@@ -29,9 +29,9 @@ a {
     padding-top: 20px;
 }
 
-.DANH_SACH .KHUNG {
-    margin-bottom: 30px;
-}
+    .DANH_SACH .KHUNG {
+        margin-bottom: 30px;
+    }
 
 .KHUNG h6 {
     overflow: hidden;
@@ -48,17 +48,17 @@ a {
     padding: 0.7rem;
 }
 
-.THONG_TIN div {
-    text-align: center;
-}
+    .THONG_TIN div {
+        text-align: center;
+    }
 
-.THONG_TIN span {
-    font-weight: bold;
-}
+    .THONG_TIN span {
+        font-weight: bold;
+    }
 
-.THONG_TIN:hover {
-    background: #f1f1f1;
-}
+    .THONG_TIN:hover {
+        background: #f1f1f1;
+    }
 
 .MOT_DONG {
     white-space: nowrap;
@@ -89,11 +89,11 @@ a {
     text-align: center;
 }
 
-.card:hover .HINH {
+.KHUNG:hover .HINH {
     opacity: 0.7;
 }
 
-.card:hover .OVERLAY {
+.KHUNG:hover .OVERLAY {
     opacity: 1;
 }
 
@@ -101,10 +101,10 @@ a {
     border: 1px solid #ffffff;
     color: white;
     font-size: 16px;
-    padding: 10px 32px;
+    padding: 10px 20px;
     margin-bottom: 5px;
 }
 
-.OVERLAY_TEXT:hover {
-    background-color: #f26b38;
-}
+    .OVERLAY_TEXT:hover {
+        background-color: #f26b38;
+    }

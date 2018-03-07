@@ -6,6 +6,7 @@
 
     //******************* Khai báo Biến  ********************
     var Chuoi_Tra_cuu = Session["Chuoi_Tra_cuu"].ToString();
+    var Th_Ma_so = Request["Th_Ma_so"];
     var Danh_sach_Phim_Xem = Danh_sach_Phim;
 
     //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
@@ -14,7 +15,11 @@
         Danh_sach_Phim_Xem = Du_lieu.Tra_cuu_Phim(Chuoi_Tra_cuu, Danh_sach_Phim);
         Danh_sach_Phim_Xem = Danh_sach_Phim_Xem.OrderByDescending(Phim => Phim.Khoi_chieu).ToList();
     }
-
+    if (Th_Ma_so != null)
+    {
+        Session["Ma_so_Phim"] = Th_Ma_so;
+        Response.Redirect("MH_Chi_tiet_Phim");
+    }
     //******************* Kết xuất  **********
     var Chuoi_HTML_Danh_sach_Phim = Du_lieu.Tao_Chuoi_HTML_Danh_sach_Phim(Danh_sach_Phim_Xem);
 }
@@ -35,6 +40,7 @@
 <body>
     <div class="container">
         <form id="HE_THONG" name="HE_THONG" method="post">
+            <input name="Th_Ma_so" id="Th_Ma_so" type="hidden" />
             @if (Danh_sach_Phim_Xem.Count > 0)
             {
                 <div class="DANH_SACH">

@@ -23,7 +23,37 @@ public partial class XL_DU_LIEU
 public partial class XL_DU_LIEU
 {
     public string Dia_chi_Media = $"{Dia_chi_Dich_vu}/Media";
-    public CultureInfo Dinh_dang_VN = CultureInfo.GetCultureInfo("vi-VN");   
+    public CultureInfo Dinh_dang_VN = CultureInfo.GetCultureInfo("vi-VN");
+
+    //public string Tao_Chuoi_HTML_Danh_sach_Phim(List<XL_PHIM> Danh_sach)
+    //{
+    //    var Chuoi_HTML_Danh_sach = "<div class='row'>";
+
+    //    Danh_sach.ForEach(Phim =>
+    //    {
+    //        var Chuoi_Hinh = $"<div class='KHUNG_HINH mx-auto'>" +
+    //                            $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='img-thumbnail HINH'/>" +
+    //                         "</div>";
+
+    //        var Chuoi_Thong_tin = $"<div>" +
+    //                                  $"<strong>{Phim.Ten}</strong>" +
+    //                                  $"<br />Đơn giá: { Phim.Don_gia.ToString("c0", Dinh_dang_VN) }" +
+    //                              $"</div>";
+
+    //        var Chuoi_HTML = $"<div class='KHUNG col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
+    //                             $"<div class='THONG_TIN'>" +
+    //                                 $"{Chuoi_Hinh}" +
+    //                                 $"{Chuoi_Thong_tin}" +
+    //                             $"</div>" +
+    //                         "</div>";
+
+    //        Chuoi_HTML_Danh_sach += Chuoi_HTML;
+    //    });
+
+    //    Chuoi_HTML_Danh_sach += "</div>";
+
+    //    return Chuoi_HTML_Danh_sach;
+    //}
 
     public string Tao_Chuoi_HTML_Danh_sach_Phim(List<XL_PHIM> Danh_sach)
     {
@@ -31,16 +61,18 @@ public partial class XL_DU_LIEU
 
         Danh_sach.ForEach(Phim =>
         {
+            var Chuoi_Xu_ly_Click = "Th_Ma_so.value='XXX';HE_THONG.submit() ";
+            Chuoi_Xu_ly_Click = Chuoi_Xu_ly_Click.Replace("XXX", Phim.Ma_so);
             var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='card-img-top HINH'/>";
 
             var Chuoi_Thong_tin = $"<div class='card-block THONG_TIN'>" +
                                       $"<h6 class='text-center'>{Phim.Ten}</h6>" +
                                   $"</div>";
 
-            var Chuoi_HTML = $"<div class='KHUNG col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
+            var Chuoi_HTML = $"<div class='KHUNG col-6 col-sm-6 col-md-4 col-lg-3' onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" +
                                  $"<div class='card'>" +
                                      $"{Chuoi_Hinh}" +
-                                     $"<div class='OVERLAY'><div class='OVERLAY_TEXT'>Mua vé</div><div class='OVERLAY_TEXT'>Chi tiết</div></div>" +
+                                     $"<div class='OVERLAY'><div class='OVERLAY_TEXT'>Mua vé</div></div>" +
 
 
                                      $"{Chuoi_Thong_tin}" +
@@ -54,7 +86,62 @@ public partial class XL_DU_LIEU
 
         return Chuoi_HTML_Danh_sach;
     }
+
+    public string Tao_Chuoi_Chi_tiet_Phim(XL_PHIM Phim)
+    {
+        var Chuoi_HTML = "<div class='row'>";
+        var Ten = Phim.Ten;
+        var Ten_tieng_Anh = Phim.Ten_tieng_Anh;
+        var Rating = Phim.Rating;
+        var Thoi_luong = Phim.Thoi_luong;
+        var Quoc_gia = Phim.Quoc_gia;
+        var Dao_dien = Phim.Dao_dien;
+        var Dien_vien = Phim.Dien_vien;
+        var The_loai = Phim.The_loai;
+        var Ngay_Khoi_chieu = Phim.Khoi_chieu;
+        var Noi_dung = Phim.Noi_dung;
+        var Chuoi_Hinh = $"<div class='col-md-4'><img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' /></div>";
+        var Chuoi_Thong_tin = $"<div class='col-md-8'>"
+                                + $"<h2>{Ten}</h2>";
+
+        if (Phim.Ten_tieng_Anh != "")
+        {
+            Chuoi_Thong_tin += $"<h2 style='color:#a0a3a7;'>{Ten_tieng_Anh}</h2>";
+        }
+        Chuoi_Thong_tin += $"<div class='RATING'><strong style='font-size:20px;line-height:24px;'>{Rating.ToString()}</strong><span>/10</span></div>" +
+
+                            $"<div class='THONG_TIN'><label><i class='far fa-clock'></i></label><span>&nbsp;{Thoi_luong} Phút</span></div>" +
+                            $"<div class='THONG_TIN'><label>Quốc gia:&nbsp;</label><span>{Quoc_gia}</span></div>" +
+                            $"<div class='THONG_TIN'><label>Đạo diễn:&nbsp;</label><span>{Dao_dien}</span></div>" +
+                            $"<div class='THONG_TIN'><label>Diễn viên:&nbsp;</label><span>{Dien_vien}</span></div>" +
+                            //                            $"<div class='THONG_TIN'><label>Thể loại:&nbsp;</label><p></p></div>" +
+                            $"<div class='THONG_TIN'><label>Ngày:&nbsp;</label><span>{Ngay_Khoi_chieu.ToShortDateString()}</span></div>";
+        Chuoi_Thong_tin += "</div>";
+        var Chuoi_Noi_dung = $"<div class='col-md-12' style='margin-top:15px'><h3>NỘI DUNG PHIM</h3><div class='NOI_DUNG'>{Noi_dung}</div></div>";
+        Chuoi_HTML += Chuoi_Hinh + Chuoi_Thong_tin + Chuoi_Noi_dung + "</div>";
+        return Chuoi_HTML;
+    }
+    public string Tao_Chuoi_Suat_chieu(XL_PHIM Phim, List<XL_RAP> Danh_sach_Rap, DateTime Ngay_chon)
+    {
+        var Chuoi_Html = "";
+        foreach (XL_RAP Rap in Danh_sach_Rap)
+        {
+            Chuoi_Html += $"<h5>{Rap.Ten}</h5>";
+            var Chuoi_Danh_sach_Suat_chieu = "<div><ul>";
+            foreach (XL_SUAT_CHIEU Suat_chieu in Phim.Danh_sach_Suat_chieu)
+            {
+                if (Suat_chieu.Rap.Ma_so == Rap.Ma_so && Suat_chieu.Bat_dau.Date == Ngay_chon.Date)
+                    Chuoi_Danh_sach_Suat_chieu += $"<li>{Suat_chieu.Bat_dau.ToString("HH:mm")}</li>";
+            }
+            Chuoi_Danh_sach_Suat_chieu += "</ul></div>";
+            Chuoi_Html += Chuoi_Danh_sach_Suat_chieu;
+        }
+        return Chuoi_Html;
+    }
+
+
 }
+
 
 //************************* Business-Layers BL **********************************
 public partial class XL_DU_LIEU
@@ -68,8 +155,15 @@ public partial class XL_DU_LIEU
         return Danh_sach;
     }
 
+    public XL_PHIM Tim_Phim(string Ma_so, List<XL_PHIM> Danh_sach)
+    {
+        var Phim = Danh_sach.Find(P =>
+        P.Ma_so.Contains(Ma_so));
+        return Phim;
+    }
 
 }
+
 
 //************************* Data-Layers DL **********************************
 public partial class XL_DU_LIEU
