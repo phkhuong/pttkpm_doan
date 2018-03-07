@@ -24,37 +24,21 @@ public partial class XL_DU_LIEU
 {
     public string Dia_chi_Media = $"{Dia_chi_Dich_vu}/Media";
     public CultureInfo Dinh_dang_VN = CultureInfo.GetCultureInfo("vi-VN");
+    public string Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(XL_NHAN_VIEN_BAN_VE Nguoi_dung)
+    {
+        var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Nguoi_dung.Ma_so}.png' " +
+                 "style='width:90px;height:90px;' />";
+        var Chuoi_Thong_tin = $"<div class='btn' style='text-align:left'> " +
+                       $"Nhân viên Bán vé {Nguoi_dung.Ho_ten}" +
+                       
+                      $"</div>";
 
-    //public string Tao_Chuoi_HTML_Danh_sach_Phim(List<XL_PHIM> Danh_sach)
-    //{
-    //    var Chuoi_HTML_Danh_sach = "<div class='row'>";
+        var Chuoi_HTML = $"<div   style='margin-bottom:10px' >" +
+                           $"{Chuoi_Hinh}" + $"{Chuoi_Thong_tin}" +
 
-    //    Danh_sach.ForEach(Phim =>
-    //    {
-    //        var Chuoi_Hinh = $"<div class='KHUNG_HINH mx-auto'>" +
-    //                            $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='img-thumbnail HINH'/>" +
-    //                         "</div>";
-
-    //        var Chuoi_Thong_tin = $"<div>" +
-    //                                  $"<strong>{Phim.Ten}</strong>" +
-    //                                  $"<br />Đơn giá: { Phim.Don_gia.ToString("c0", Dinh_dang_VN) }" +
-    //                              $"</div>";
-
-    //        var Chuoi_HTML = $"<div class='KHUNG col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
-    //                             $"<div class='THONG_TIN'>" +
-    //                                 $"{Chuoi_Hinh}" +
-    //                                 $"{Chuoi_Thong_tin}" +
-    //                             $"</div>" +
-    //                         "</div>";
-
-    //        Chuoi_HTML_Danh_sach += Chuoi_HTML;
-    //    });
-
-    //    Chuoi_HTML_Danh_sach += "</div>";
-
-    //    return Chuoi_HTML_Danh_sach;
-    //}
-
+                          $"</div>";
+        return Chuoi_HTML;
+    }
     public string Tao_Chuoi_HTML_Danh_sach_Phim(List<XL_PHIM> Danh_sach)
     {
         var Chuoi_HTML_Danh_sach = "<div class='row'>";
@@ -72,7 +56,7 @@ public partial class XL_DU_LIEU
             var Chuoi_HTML = $"<div class='KHUNG col-6 col-sm-6 col-md-4 col-lg-3' onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" +
                                  $"<div class='card'>" +
                                      $"{Chuoi_Hinh}" +
-                                     $"<div class='OVERLAY'><div class='OVERLAY_TEXT'>Mua vé</div></div>" +
+                                     $"<div class='OVERLAY'><div class='OVERLAY_TEXT'>Chọn</div></div>" +
 
 
                                      $"{Chuoi_Thong_tin}" +
