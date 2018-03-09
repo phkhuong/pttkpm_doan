@@ -120,6 +120,7 @@
     <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_7.json" />
     <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_8.json" />
     <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_9.json" />
+    <Content Include="1-Dich_vu_Giao_tiep\DV_Quan_ly_Phim.cshtml" />
     <None Include="packages.config" />
     <Content Include="ViewPage1.cshtml" />
     <None Include="Web.Debug.config">

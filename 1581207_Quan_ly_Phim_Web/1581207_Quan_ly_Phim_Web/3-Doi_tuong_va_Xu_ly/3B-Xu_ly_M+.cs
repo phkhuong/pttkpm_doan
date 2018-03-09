@@ -105,14 +105,14 @@ public partial class XL_DU_LIEU
 public partial class XL_DU_LIEU
 {
     static string Dia_chi_Dich_vu = "http://localhost:59900";
-    static string Dia_chi_Dich_vu_Quan_ly_Rap_Phim = $"{Dia_chi_Dich_vu}/1-Dich_vu_Giao_tiep/DV_Khach_tham_quan.cshtml";
+    static string Dia_chi_Dich_vu_Quan_ly_Rap_Phim = $"{Dia_chi_Dich_vu}/1-Dich_vu_Giao_tiep/DV_Quan_ly_Phim.cshtml";
 
     static XL_DU_LIEU Doc_Du_lieu()
     {
         var Xu_ly = new WebClient();
         Xu_ly.Encoding = System.Text.Encoding.UTF8;
 
-        var Tham_so = "Ma_so_Xu_ly=KHOI_DONG_DU_LIEU_PHAN_HE_KHACH_THAM_QUAN";
+        var Tham_so = "Ma_so_Xu_ly=KHOI_DONG_DU_LIEU_PHAN_HE_QUAN_LY_PHIM";
         var Dia_chi_Xu_ly = $"{Dia_chi_Dich_vu_Quan_ly_Rap_Phim}?{Tham_so}";
         var Chuoi_JSON = Xu_ly.DownloadString(Dia_chi_Xu_ly);
         var Du_lieu = Json.Decode<XL_DU_LIEU>(Chuoi_JSON);
