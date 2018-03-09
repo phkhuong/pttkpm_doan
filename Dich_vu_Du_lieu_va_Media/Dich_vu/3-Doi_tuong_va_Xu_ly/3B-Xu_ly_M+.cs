@@ -7,29 +7,40 @@ using System.Web.Helpers;
 using System.Web.Hosting;
 using System.Globalization;
 //************************* M+ (Model for All ) **********************************
-public partial class XL_DU_LIEU
+public partial class XL_DICH_VU
 {
-    static XL_DU_LIEU Du_lieu_Ung_dung;
-    public static XL_DU_LIEU Khoi_dong_Du_lieu_Ung_dung()
-    {   // Không Caching == > Thử nghiệm dễ và xem Tốc độ Xử lý 
-        Du_lieu_Ung_dung = new XL_DU_LIEU();
-        Du_lieu_Ung_dung.Cong_ty = Doc_Danh_sach_Cong_ty()[0];
-        Du_lieu_Ung_dung.Danh_sach_Phim = Doc_Danh_sach_Phim();
-         
-        return Du_lieu_Ung_dung;
+    static XL_DICH_VU Dich_vu = null;
+
+    XL_DU_LIEU Du_lieu_Dich_vu = new XL_DU_LIEU();
+    XL_CONG_TY Cong_ty = new XL_CONG_TY();
+    List<XL_PHIM> Danh_sach_Phim = new List<XL_PHIM>();
+    public static XL_DICH_VU Khoi_dong_Dich_vu()
+    {
+        Dich_vu = new XL_DICH_VU();// Tạm thời không CaChing 
+        Dich_vu.Khoi_dong_Du_lieu_Dich_vu();
+        return Dich_vu;
     }
-}
-//************************* Business-Layers BL **********************************
-public partial class XL_DU_LIEU
-{
+    void Khoi_dong_Du_lieu_Dich_vu()
+    {
+        var Du_lieu_Luu_tru = XL_DU_LIEU.Doc_Du_lieu_Luu_tru();
+        Du_lieu_Dich_vu = Du_lieu_Luu_tru;
+        // Tính toán == >Bổ sung Thông tin
+        //================== Phim =================
+        Danh_sach_Phim = Du_lieu_Dich_vu.Danh_sach_Phim;
+        Danh_sach_Phim.ForEach(Phim =>
+        {
+            Phim.Doanh_thu = Tinh_Doanh_thu_Phim(Phim, DateTime.Today);
+        });
+    }
+
     // Tạo Dữ liệu cho Phân hệ 
     public XL_DU_LIEU Tao_Du_lieu_Phan_he_Khach_Tham_quan()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
-        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Ung_dung.Cong_ty.Ten;
-        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Ung_dung.Cong_ty.Ma_so;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Rap = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Rap;
-        Du_lieu_Ung_dung.Danh_sach_Phim.ForEach(Phim =>
+        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Dich_vu.Cong_ty.Ten;
+        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Dich_vu.Cong_ty.Ma_so;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Rap = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Rap;
+        Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();
             Du_lieu_Phan_he.Danh_sach_Phim.Add(Phim_cua_Phan_he);
@@ -51,16 +62,16 @@ public partial class XL_DU_LIEU
         });
         return Du_lieu_Phan_he;
     }
-     
+
     public XL_DU_LIEU Tao_Du_lieu_Phan_he_Nhan_vien()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
-        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Ung_dung.Cong_ty.Ten;
-        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Ung_dung.Cong_ty.Ma_so;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Rap = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Rap;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Nhan_vien = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Nhan_vien;
-        
-        Du_lieu_Ung_dung.Danh_sach_Phim.ForEach(Phim =>
+        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Dich_vu.Cong_ty.Ten;
+        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Dich_vu.Cong_ty.Ma_so;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Rap = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Rap;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Nhan_vien = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Nhan_vien;
+
+        Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();
             Du_lieu_Phan_he.Danh_sach_Phim.Add(Phim_cua_Phan_he);
@@ -85,20 +96,20 @@ public partial class XL_DU_LIEU
     public XL_DU_LIEU Tao_Du_lieu_Phan_he_Quan_ly_Nhan_vien()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
-        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Ung_dung.Cong_ty.Ten;
-        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Ung_dung.Cong_ty.Ma_so;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Nhan_vien = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Nhan_vien;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Quan_ly_Nhan_vien = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Quan_ly_Nhan_vien;
+        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Dich_vu.Cong_ty.Ten;
+        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Dich_vu.Cong_ty.Ma_so;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Nhan_vien = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Nhan_vien;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Quan_ly_Nhan_vien = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Quan_ly_Nhan_vien;
         return Du_lieu_Phan_he;
     }
     public XL_DU_LIEU Tao_Du_lieu_Phan_he_Quan_ly_Phim()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
-        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Ung_dung.Cong_ty.Ten;
-        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Ung_dung.Cong_ty.Ma_so;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Quan_ly_Phim = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Quan_ly_Phim;
+        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Dich_vu.Cong_ty.Ten;
+        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Dich_vu.Cong_ty.Ma_so;
+        Du_lieu_Phan_he.Cong_ty.Danh_sach_Quan_ly_Phim = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Quan_ly_Phim;
 
-        Du_lieu_Ung_dung.Danh_sach_Phim.ForEach(Phim =>
+        Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();
             Du_lieu_Phan_he.Danh_sach_Phim.Add(Phim_cua_Phan_he);
@@ -117,12 +128,17 @@ public partial class XL_DU_LIEU
             Phim_cua_Phan_he.Trang_thai = Phim.Trang_thai;
             Phim_cua_Phan_he.Thoi_luong = Phim.Thoi_luong;
             Phim_cua_Phan_he.Danh_sach_Suat_chieu = Phim.Danh_sach_Suat_chieu;
-            Phim_cua_Phan_he.Doanh_thu = Tinh_Doanh_thu_Phim(Phim, DateTime.Today);
+            Phim_cua_Phan_he.Doanh_thu = Phim.Doanh_thu;
         });
         return Du_lieu_Phan_he;
     }
+}
+//************************* Business-Layers BL **********************************
+public partial class XL_DICH_VU
+{
+    
     // Tính toán
-
+    // Tính toán cơ sở : Trực tiếp trên  Đối tượng 
     public long Tinh_Doanh_thu_Phim(XL_PHIM Phim, DateTime Ngay)
     {
         var Danh_sach_Ban_ve_Ngay = Phim.Danh_sach_Ban_ve.FindAll(Ban_ve =>
@@ -138,6 +154,8 @@ public partial class XL_DU_LIEU
         return Doanh_thu;
     }
 
+    // Tính toán  Trên Danh sách  
+
 }
 //************************* Data-Layers DL **********************************
 public partial class XL_DU_LIEU
@@ -147,6 +165,13 @@ public partial class XL_DU_LIEU
     static DirectoryInfo Thu_muc_Cong_ty = Thu_muc_Du_lieu.GetDirectories("Cong_ty")[0];
     static DirectoryInfo Thu_muc_Phim = Thu_muc_Du_lieu.GetDirectories("Phim")[0];
     //******** Ghi *******
+    public static XL_DU_LIEU Doc_Du_lieu_Luu_tru()
+    {
+        var Du_lieu_Luu_tru = new XL_DU_LIEU();
+        Du_lieu_Luu_tru.Cong_ty = Doc_Danh_sach_Cong_ty()[0];
+        Du_lieu_Luu_tru.Danh_sach_Phim = Doc_Danh_sach_Phim();
+        return Du_lieu_Luu_tru;
+    }
     static List<XL_CONG_TY> Doc_Danh_sach_Cong_ty()
     {
         var Danh_sach_Cong_ty = new List<XL_CONG_TY>();
@@ -183,42 +208,42 @@ public partial class XL_DU_LIEU
   
     //******** Ghi *******
 
-    public string Ghi_Ban_ve_Moi(XL_PHIM Phim, XL_BAN_VE Ban_ve)
-    {
-        var Kq = "";
-        Phim.Danh_sach_Ban_ve.Add(Ban_ve);
-        Kq = Ghi_Phim(Phim);
-        if (Kq != "OK")
-            Phim.Danh_sach_Ban_ve.Remove(Ban_ve);
-        return Kq;
-    }
-    public string Ghi_Dat_ve_Moi(XL_PHIM Phim, XL_DAT_VE Dat_ve)
-    {
-        var Kq = "";
-        Phim.Danh_sach_Dat_ve.Add(Dat_ve);
-        Kq = Ghi_Phim(Phim);
-        if (Kq != "OK")
-            Phim.Danh_sach_Dat_ve.Remove(Dat_ve);
-        return Kq;
-    }
+    //public string Ghi_Ban_ve_Moi(XL_PHIM Phim, XL_BAN_VE Ban_ve)
+    //{
+    //    var Kq = "";
+    //    Phim.Danh_sach_Ban_ve.Add(Ban_ve);
+    //    Kq = Ghi_Phim(Phim);
+    //    if (Kq != "OK")
+    //        Phim.Danh_sach_Ban_ve.Remove(Ban_ve);
+    //    return Kq;
+    //}
+    //public string Ghi_Dat_ve_Moi(XL_PHIM Phim, XL_DAT_VE Dat_ve)
+    //{
+    //    var Kq = "";
+    //    Phim.Danh_sach_Dat_ve.Add(Dat_ve);
+    //    Kq = Ghi_Phim(Phim);
+    //    if (Kq != "OK")
+    //        Phim.Danh_sach_Dat_ve.Remove(Dat_ve);
+    //    return Kq;
+    //}
 
-    string Ghi_Phim(XL_PHIM Phim)
-    {
-        var Kq = "";
-        var Duong_dan = $"{Thu_muc_Phim.FullName}\\{Phim.Ma_so}.json";
-        var Chuoi_JSON = Json.Encode(Phim);
-        try
-        {
-            File.WriteAllText(Duong_dan, Chuoi_JSON);
-            Kq = "OK";
+    //string Ghi_Phim(XL_PHIM Phim)
+    //{
+    //    var Kq = "";
+    //    var Duong_dan = $"{Thu_muc_Phim.FullName}\\{Phim.Ma_so}.json";
+    //    var Chuoi_JSON = Json.Encode(Phim);
+    //    try
+    //    {
+    //        File.WriteAllText(Duong_dan, Chuoi_JSON);
+    //        Kq = "OK";
 
-        }
-        catch (Exception Loi)
-        {
-            Kq = Loi.Message;
-        }
-        return Kq;
+    //    }
+    //    catch (Exception Loi)
+    //    {
+    //        Kq = Loi.Message;
+    //    }
+    //    return Kq;
 
-    }
+    //}
 
 }

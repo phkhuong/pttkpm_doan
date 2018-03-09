@@ -1,6 +1,6 @@
 ﻿@{
     // *********Khởi động Dữ liệu nguồn/nội bộ ********
-    var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
+    var Dich_vu = XL_DICH_VU.Khoi_dong_Dich_vu();
 
     //*********Khai báo Biến/Đối tượng :Nhận & Kết quả *********
     var Ma_so_Xu_ly = ""; // Biến Nhận
@@ -14,16 +14,16 @@
         var Chuoi_Nhan = Bo_doc.ReadToEnd(); // Nhận Đối tượng
         if (Ma_so_Xu_ly == "KHOI_DONG_DU_LIEU_PHAN_HE_KHACH_THAM_QUAN")
         {
-            var Du_lieu_Kq = Du_lieu.Tao_Du_lieu_Phan_he_Khach_Tham_quan();
+            var Du_lieu_Kq = Dich_vu.Tao_Du_lieu_Phan_he_Khach_Tham_quan();
             Chuoi_Kq = Json.Encode(Du_lieu_Kq);
         }
-        else if (Ma_so_Xu_ly == "GHI_DAT_HANG_MOI")
-        {
-            var Ma_so_Tivi = Request["Ma_so_Tivi"];
-            var Tivi = Du_lieu.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Tivi);
-            var Dat_hang = Json.Decode<XL_DAT_VE>(Chuoi_Nhan);
-            Chuoi_Kq = Du_lieu.Ghi_Dat_ve_Moi(Tivi, Dat_hang);
-        }
+        //else if (Ma_so_Xu_ly == "GHI_DAT_HANG_MOI")
+        //{
+        //    var Ma_so_Tivi = Request["Ma_so_Tivi"];
+        //    var Tivi = Du_lieu.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Tivi);
+        //    var Dat_hang = Json.Decode<XL_DAT_VE>(Chuoi_Nhan);
+        //    Chuoi_Kq = Du_lieu.Ghi_Dat_ve_Moi(Tivi, Dat_hang);
+        //}
 
     }
 

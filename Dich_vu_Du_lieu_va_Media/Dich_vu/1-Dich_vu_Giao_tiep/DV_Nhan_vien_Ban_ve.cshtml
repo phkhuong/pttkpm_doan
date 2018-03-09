@@ -1,6 +1,6 @@
 ﻿@{
     // *********Khởi động Dữ liệu nguồn/nội bộ ********
-    var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
+    var Dich_vu = XL_DICH_VU.Khoi_dong_Dich_vu();
 
     //*********Khai báo Biến/Đối tượng :Nhận & Kết quả *********
     var Ma_so_Xu_ly = ""; // Biến Nhận
@@ -14,7 +14,7 @@
         var Chuoi_Nhan = Bo_doc.ReadToEnd(); // Nhận Đối tượng
         if (Ma_so_Xu_ly == "KHOI_DONG_DU_LIEU_PHAN_HE_NHAN_VIEN")
         {
-            var Du_lieu_Kq = Du_lieu.Tao_Du_lieu_Phan_he_Nhan_vien();
+            var Du_lieu_Kq = Dich_vu.Tao_Du_lieu_Phan_he_Nhan_vien();
             Chuoi_Kq = Json.Encode(Du_lieu_Kq);
         }
     }

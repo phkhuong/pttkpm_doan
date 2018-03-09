@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rap_phim_Dich_vu", "Rap_phim_Dich_vu\Rap_phim_Dich_vu.csproj", "{BE2C9344-33BB-4E84-BA63-D02F2044F5F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dich_vu", "Dich_vu\Dich_vu.csproj", "{C8010188-8CAB-43A6-9C5C-40FD3503C399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BE2C9344-33BB-4E84-BA63-D02F2044F5F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE2C9344-33BB-4E84-BA63-D02F2044F5F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE2C9344-33BB-4E84-BA63-D02F2044F5F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE2C9344-33BB-4E84-BA63-D02F2044F5F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8010188-8CAB-43A6-9C5C-40FD3503C399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8010188-8CAB-43A6-9C5C-40FD3503C399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8010188-8CAB-43A6-9C5C-40FD3503C399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8010188-8CAB-43A6-9C5C-40FD3503C399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5A9EE894-8CBE-4EE6-A0BB-255E15D03C4F}
+		SolutionGuid = {D1FB8FC3-BFED-45BA-96C8-16BD88062944}
 	EndGlobalSection
 EndGlobal
