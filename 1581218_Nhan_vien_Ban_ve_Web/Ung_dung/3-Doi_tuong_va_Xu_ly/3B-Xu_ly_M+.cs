@@ -82,6 +82,7 @@ public partial class XL_DU_LIEU
         var Dao_dien = Phim.Dao_dien;
         var Dien_vien = Phim.Dien_vien;
         var The_loai = Phim.The_loai;
+        var Nha_san_xuat = Phim.Nha_san_xuat;
         var Ngay_Khoi_chieu = Phim.Khoi_chieu;
         var Noi_dung = Phim.Noi_dung;
         var Chuoi_Hinh = $"<div class='col-md-4'><img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' /></div>";
@@ -92,14 +93,20 @@ public partial class XL_DU_LIEU
         {
             Chuoi_Thong_tin += $"<h2 style='color:#a0a3a7;'>{Ten_tieng_Anh}</h2>";
         }
+        var Chuoi_The_loai = "";
+        foreach (string Ten_The_loai in The_loai)
+        {
+            Chuoi_The_loai += $"<span>{Ten_The_loai}&sbquo;</span>";
+        }
         Chuoi_Thong_tin += $"<div class='RATING'><strong style='font-size:20px;line-height:24px;'>{Rating.ToString()}</strong><span>/10</span></div>" +
 
                             $"<div class='THONG_TIN'><label><i class='far fa-clock'></i></label><span>&nbsp;{Thoi_luong} Phút</span></div>" +
                             $"<div class='THONG_TIN'><label>Quốc gia:&nbsp;</label><span>{Quoc_gia}</span></div>" +
                             $"<div class='THONG_TIN'><label>Đạo diễn:&nbsp;</label><span>{Dao_dien}</span></div>" +
                             $"<div class='THONG_TIN'><label>Diễn viên:&nbsp;</label><span>{Dien_vien}</span></div>" +
-                            //                            $"<div class='THONG_TIN'><label>Thể loại:&nbsp;</label><p></p></div>" +
-                            $"<div class='THONG_TIN'><label>Ngày:&nbsp;</label><span>{Ngay_Khoi_chieu.ToShortDateString()}</span></div>";
+                            $"<div class='THONG_TIN'><label>Thể loại:&nbsp;</label>{Chuoi_The_loai}</div>" +
+                            $"<div class='THONG_TIN'><label>Nhà sản xuất:&nbsp;</label><span>{Nha_san_xuat}</span></div>" +
+                            $"<div class='THONG_TIN'><label>Ngày khởi chiếu:&nbsp;</label><span>{Ngay_Khoi_chieu.ToShortDateString()}</span></div>";
         Chuoi_Thong_tin += "</div>";
         var Chuoi_Noi_dung = $"<div class='col-md-12' style='margin-top:15px'><h3>NỘI DUNG PHIM</h3><div class='NOI_DUNG'>{Noi_dung}</div></div>";
         Chuoi_HTML += Chuoi_Hinh + Chuoi_Thong_tin + Chuoi_Noi_dung + "</div>";

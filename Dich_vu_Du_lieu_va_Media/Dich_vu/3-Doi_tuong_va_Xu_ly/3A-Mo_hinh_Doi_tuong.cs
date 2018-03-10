@@ -54,7 +54,7 @@ public class XL_KHACH_HANG
 //*************************** Đối tượng Xử lý Chính *********
 public class XL_PHIM
 {
-    public string Ten, Ten_tieng_Anh, Phan_loai, Quoc_gia, Dao_dien, Dien_vien, Noi_dung, Dich_thuat, Ma_so = "", Trang_thai = "DANG_CHIEU";
+    public string Ten, Ten_tieng_Anh, Phan_loai, Quoc_gia, Dao_dien, Nha_san_xuat, Dien_vien, Noi_dung, Dich_thuat, Ma_so = "", Trang_thai = "DANG_CHIEU";
     public List<string> The_loai = new List<string>();
     public DateTime Khoi_chieu = DateTime.Now;
     public long Don_gia, Thoi_luong;

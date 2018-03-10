@@ -85,6 +85,7 @@ public partial class XL_DICH_VU
             Phim_cua_Phan_he.Quoc_gia = Phim.Quoc_gia;
             Phim_cua_Phan_he.Dao_dien = Phim.Dao_dien;
             Phim_cua_Phan_he.Dien_vien = Phim.Dien_vien;
+            Phim_cua_Phan_he.Nha_san_xuat = Phim.Nha_san_xuat;
             Phim_cua_Phan_he.The_loai = Phim.The_loai;
             Phim_cua_Phan_he.Noi_dung = Phim.Noi_dung;
             Phim_cua_Phan_he.Dich_thuat = Phim.Dich_thuat;
