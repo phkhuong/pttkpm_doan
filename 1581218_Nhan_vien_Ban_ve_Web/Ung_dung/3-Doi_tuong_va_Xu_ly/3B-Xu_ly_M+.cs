@@ -94,12 +94,13 @@ public partial class XL_DU_LIEU
             Chuoi_Thong_tin += $"<h2 style='color:#a0a3a7;'>{Ten_tieng_Anh}</h2>";
         }
         var Chuoi_The_loai = "";
-        foreach (string Ten_The_loai in The_loai)
+        var j = The_loai.Count();
+        for (var i = 0; i < j - 1; i++)
         {
-            Chuoi_The_loai += $"<span>{Ten_The_loai}&sbquo;</span>";
+            Chuoi_The_loai += $"<span>{The_loai[i]}&sbquo;&nbsp;</span>";
         }
+        Chuoi_The_loai += $"<span>{The_loai[j-1]}</span>";         
         Chuoi_Thong_tin += $"<div class='RATING'><strong style='font-size:20px;line-height:24px;'>{Rating.ToString()}</strong><span>/10</span></div>" +
-
                             $"<div class='THONG_TIN'><label><i class='far fa-clock'></i></label><span>&nbsp;{Thoi_luong} Phút</span></div>" +
                             $"<div class='THONG_TIN'><label>Quốc gia:&nbsp;</label><span>{Quoc_gia}</span></div>" +
                             $"<div class='THONG_TIN'><label>Đạo diễn:&nbsp;</label><span>{Dao_dien}</span></div>" +
