@@ -6,16 +6,25 @@ using System.Web;
 public partial class XL_DU_LIEU
 {
     public XL_CONG_TY Cong_ty = new XL_CONG_TY();
+    public List<XL_NGUOI_DUNG> Danh_sach_Nguoi_dung = new List<XL_NGUOI_DUNG>();
     public  List<XL_PHIM> Danh_sach_Phim = new List<XL_PHIM>();
+}
+//=========== Đối tượng  Con người ===============
+public class XL_NGUOI_DUNG
+{
+    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
+    public XL_NHOM_NGUOI_DUNG Nhom_Nguoi_dung = new XL_NHOM_NGUOI_DUNG();
+    public XL_RAP Rap = new XL_RAP();
+    public long Doanh_thu;//Tính toán 
 }
 //*************************** Đối tượng Tổ chức  *********
 public class XL_CONG_TY
 {
     public string Ten, Ma_so = "",Dien_thoai,Dia_chi;
     public List<XL_RAP> Danh_sach_Rap = new List<XL_RAP>();
-    public List<XL_NHAN_VIEN_BAN_VE> Danh_sach_Nhan_vien = new  List<XL_NHAN_VIEN_BAN_VE>();
-    public List<XL_QUAN_LY_NHAN_VIEN> Danh_sach_Quan_ly_Nhan_vien = new List<XL_QUAN_LY_NHAN_VIEN>();
-    public List<XL_QUAN_LY_PHIM> Danh_sach_Quan_ly_Phim = new List<XL_QUAN_LY_PHIM>();
+    //public List<XL_NHAN_VIEN_BAN_VE> Danh_sach_Nhan_vien = new  List<XL_NHAN_VIEN_BAN_VE>();
+    //public List<XL_QUAN_LY_NHAN_VIEN> Danh_sach_Quan_ly_Nhan_vien = new List<XL_QUAN_LY_NHAN_VIEN>();
+    //public List<XL_QUAN_LY_PHIM> Danh_sach_Quan_ly_Phim = new List<XL_QUAN_LY_PHIM>();
 }
 public class XL_RAP
 {
@@ -32,20 +41,20 @@ public class XL_PHONG_CHIEU
 
 }
 
-public class XL_NHAN_VIEN_BAN_VE
-{
-    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-    public XL_RAP Rap = new XL_RAP();
-}
-public class XL_QUAN_LY_NHAN_VIEN
-{
-    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-    public XL_RAP Rap = new XL_RAP();
-}
-public class XL_QUAN_LY_PHIM
-{
-    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-}
+//public class XL_NHAN_VIEN_BAN_VE
+//{
+//    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
+//    public XL_RAP Rap = new XL_RAP();
+//}
+//public class XL_QUAN_LY_NHAN_VIEN
+//{
+//    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
+//    public XL_RAP Rap = new XL_RAP();
+//}
+//public class XL_QUAN_LY_PHIM
+//{
+//    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
+//}
 public class XL_KHACH_HANG
 {
     public string Ho_ten,Dien_thoai,Email, Ma_so = "";
@@ -97,4 +106,9 @@ public class XL_BAN_VE
 public class XL_GHE
 {
     public string Ma_so = "";
+}
+//=========== Danh mục Nhóm  ===============
+public class XL_NHOM_NGUOI_DUNG
+{
+    public string Ten, Ma_so = "";
 }

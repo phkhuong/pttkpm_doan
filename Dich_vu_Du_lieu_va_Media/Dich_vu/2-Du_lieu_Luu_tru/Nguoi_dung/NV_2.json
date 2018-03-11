@@ -1,0 +1,16 @@
+﻿{
+  "Ho_ten": "Nguyễn Thị B",
+  "Ma_so": "NV_2",
+  "Ten_Dang_nhap": "NV_2",
+  "Mat_khau": "NV_2",
+  "Nhom_Nguoi_dung": {
+    "Ten": "Nhân viên bán vé",
+    "Ma_so": "NHAN_VIEN_BAN_VE"
+  },
+  "Rap": {
+    "Ma_so": "RAP_1",
+    "Ten": "Galaxy Nguyễn Du",
+    "Danh_sach_Phong_chieu": [
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+﻿{
+  "Ho_ten": "Nguyễn Thị E",
+  "Ma_so": "QL_2",
+  "Ten_Dang_nhap": "QL_2",
+  "Mat_khau": "QL_2",
+  "Nhom_Nguoi_dung": {
+    "Ten": "Quản lý Nhân viên",
+    "Ma_so": "QUAN_LY_NHAN_VIEN"
+  },
+  "Rap": {
+    "Ma_so": "RAP_2",
+    "Ten": "Galaxy Tân Bình",
+    "Danh_sach_Phong_chieu": [
+    ]
+  }
+}

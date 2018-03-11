@@ -14,6 +14,7 @@ public partial class XL_DICH_VU
     XL_DU_LIEU Du_lieu_Dich_vu = new XL_DU_LIEU();
     XL_CONG_TY Cong_ty = new XL_CONG_TY();
     List<XL_PHIM> Danh_sach_Phim = new List<XL_PHIM>();
+    List<XL_NGUOI_DUNG> Danh_sach_Nguoi_dung = new List<XL_NGUOI_DUNG>();
     public static XL_DICH_VU Khoi_dong_Dich_vu()
     {
         Dich_vu = new XL_DICH_VU();// Tạm thời không CaChing 
@@ -31,15 +32,16 @@ public partial class XL_DICH_VU
         {
             Phim.Doanh_thu = Tinh_Doanh_thu_Phim(Phim, DateTime.Today);
         });
+        //================== Người dùng =================
+
+        //================== Rạp =================
     }
 
     // Tạo Dữ liệu cho Phân hệ 
     public XL_DU_LIEU Tao_Du_lieu_Phan_he_Khach_Tham_quan()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
-        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Dich_vu.Cong_ty.Ten;
-        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Dich_vu.Cong_ty.Ma_so;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Rap = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Rap;
+        Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
         Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();
@@ -67,11 +69,8 @@ public partial class XL_DICH_VU
     public XL_DU_LIEU Tao_Du_lieu_Phan_he_Nhan_vien()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
-        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Dich_vu.Cong_ty.Ten;
-        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Dich_vu.Cong_ty.Ma_so;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Rap = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Rap;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Nhan_vien = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Nhan_vien;
-
+        Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
+        Du_lieu_Phan_he.Danh_sach_Nguoi_dung = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung;
         Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();
@@ -99,18 +98,15 @@ public partial class XL_DICH_VU
     public XL_DU_LIEU Tao_Du_lieu_Phan_he_Quan_ly_Nhan_vien()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
-        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Dich_vu.Cong_ty.Ten;
-        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Dich_vu.Cong_ty.Ma_so;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Nhan_vien = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Nhan_vien;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Quan_ly_Nhan_vien = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Quan_ly_Nhan_vien;
+        Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
+        Du_lieu_Phan_he.Danh_sach_Nguoi_dung = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung;
         return Du_lieu_Phan_he;
     }
     public XL_DU_LIEU Tao_Du_lieu_Phan_he_Quan_ly_Phim()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
-        Du_lieu_Phan_he.Cong_ty.Ten = Du_lieu_Dich_vu.Cong_ty.Ten;
-        Du_lieu_Phan_he.Cong_ty.Ma_so = Du_lieu_Dich_vu.Cong_ty.Ma_so;
-        Du_lieu_Phan_he.Cong_ty.Danh_sach_Quan_ly_Phim = Du_lieu_Dich_vu.Cong_ty.Danh_sach_Quan_ly_Phim;
+        Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
+        Du_lieu_Phan_he.Danh_sach_Nguoi_dung = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung;
 
         Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
@@ -167,6 +163,7 @@ public partial class XL_DU_LIEU
     static DirectoryInfo Thu_muc_Project = new DirectoryInfo(HostingEnvironment.ApplicationPhysicalPath);
     static DirectoryInfo Thu_muc_Du_lieu = Thu_muc_Project.GetDirectories("2-Du_lieu_Luu_tru")[0];
     static DirectoryInfo Thu_muc_Cong_ty = Thu_muc_Du_lieu.GetDirectories("Cong_ty")[0];
+    static DirectoryInfo Thu_muc_Nguoi_dung = Thu_muc_Du_lieu.GetDirectories("Nguoi_dung")[0];
     static DirectoryInfo Thu_muc_Phim = Thu_muc_Du_lieu.GetDirectories("Phim")[0];
     //******** Ghi *******
     public static XL_DU_LIEU Doc_Du_lieu_Luu_tru()
@@ -188,6 +185,19 @@ public partial class XL_DU_LIEU
             Danh_sach_Cong_ty.Add(Cong_ty);
         });
         return Danh_sach_Cong_ty;
+    }
+    static List<XL_NGUOI_DUNG> Doc_Danh_sach_Nguoi_dung()
+    {
+        var Danh_sach_Nguoi_dung = new List<XL_NGUOI_DUNG>();
+        var Danh_sach_Tap_tin = Thu_muc_Nguoi_dung.GetFiles("*.json").ToList();
+        Danh_sach_Tap_tin.ForEach(Tap_tin =>
+        {
+            var Duong_dan = Tap_tin.FullName;
+            var Chuoi_JSON = File.ReadAllText(Duong_dan);
+            var Nguoi_dung = Json.Decode<XL_NGUOI_DUNG>(Chuoi_JSON);
+            Danh_sach_Nguoi_dung.Add(Nguoi_dung);
+        });
+        return Danh_sach_Nguoi_dung;
     }
     static List<XL_PHIM> Doc_Danh_sach_Phim()
     {

@@ -1,0 +1,16 @@
+﻿{
+  "Ho_ten": "Nguyễn Đức Hồng",
+  "Ma_so": "QL_1",
+  "Ten_Dang_nhap": "QL_1",
+  "Mat_khau": "QL_1",
+  "Nhom_Nguoi_dung": {
+    "Ten": "Quản lý Nhân viên",
+    "Ma_so": "QUAN_LY_NHAN_VIEN"
+  },
+  "Rap": {
+    "Ma_so": "RAP_1",
+    "Ten": "Galaxy Nguyễn Du",
+    "Danh_sach_Phong_chieu": [
+    ]
+  }
+}
