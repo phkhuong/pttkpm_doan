@@ -14,7 +14,8 @@ public partial class XL_DICH_VU
     XL_DU_LIEU Du_lieu_Dich_vu = new XL_DU_LIEU();
     XL_CONG_TY Cong_ty = new XL_CONG_TY();
     List<XL_PHIM> Danh_sach_Phim = new List<XL_PHIM>();
-    List<XL_NGUOI_DUNG> Danh_sach_Nguoi_dung = new List<XL_NGUOI_DUNG>();
+    List<XL_NGUOI_DUNG_NOI_BO> Danh_sach_Nguoi_dung_Noi_bo = new List<XL_NGUOI_DUNG_NOI_BO>();
+    List<XL_NGUOI_DUNG_KHACH_THAM_QUAN> Danh_sach_Nguoi_dung_Khach_tham_quan = new List<XL_NGUOI_DUNG_KHACH_THAM_QUAN>();
     public static XL_DICH_VU Khoi_dong_Dich_vu()
     {
         Dich_vu = new XL_DICH_VU();// Tạm thời không CaChing 
@@ -33,8 +34,11 @@ public partial class XL_DICH_VU
             Phim.Doanh_thu = Tinh_Doanh_thu_Phim(Phim, DateTime.Today);
         });
         //================== Người dùng =================
-
+        Danh_sach_Nguoi_dung_Noi_bo = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Noi_bo;
+        Danh_sach_Nguoi_dung_Khach_tham_quan = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Khach_tham_quan;
         //================== Rạp =================
+
+        //================== Công ty =================
     }
 
     // Tạo Dữ liệu cho Phân hệ 
@@ -42,6 +46,7 @@ public partial class XL_DICH_VU
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
         Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
+        Du_lieu_Phan_he.Danh_sach_Nguoi_dung_Khach_tham_quan = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Khach_tham_quan;
         Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();
@@ -70,7 +75,7 @@ public partial class XL_DICH_VU
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
         Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
-        Du_lieu_Phan_he.Danh_sach_Nguoi_dung = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung;
+        Du_lieu_Phan_he.Danh_sach_Nguoi_dung_Noi_bo = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Noi_bo;
         Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();
@@ -99,14 +104,14 @@ public partial class XL_DICH_VU
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
         Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
-        Du_lieu_Phan_he.Danh_sach_Nguoi_dung = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung;
+        Du_lieu_Phan_he.Danh_sach_Nguoi_dung_Noi_bo = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Noi_bo;
         return Du_lieu_Phan_he;
     }
     public XL_DU_LIEU Tao_Du_lieu_Phan_he_Quan_ly_Phim()
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
         Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
-        Du_lieu_Phan_he.Danh_sach_Nguoi_dung = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung;
+        Du_lieu_Phan_he.Danh_sach_Nguoi_dung_Noi_bo = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Noi_bo;
 
         Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
@@ -164,12 +169,16 @@ public partial class XL_DU_LIEU
     static DirectoryInfo Thu_muc_Du_lieu = Thu_muc_Project.GetDirectories("2-Du_lieu_Luu_tru")[0];
     static DirectoryInfo Thu_muc_Cong_ty = Thu_muc_Du_lieu.GetDirectories("Cong_ty")[0];
     static DirectoryInfo Thu_muc_Nguoi_dung = Thu_muc_Du_lieu.GetDirectories("Nguoi_dung")[0];
+    static DirectoryInfo Thu_muc_Nguoi_dung_Noi_bo = Thu_muc_Nguoi_dung.GetDirectories("Noi_bo")[0];
+    static DirectoryInfo Thu_muc_Nguoi_dung_Khach_tham_quan = Thu_muc_Nguoi_dung.GetDirectories("Khach_tham_quan")[0];
     static DirectoryInfo Thu_muc_Phim = Thu_muc_Du_lieu.GetDirectories("Phim")[0];
     //******** Ghi *******
     public static XL_DU_LIEU Doc_Du_lieu_Luu_tru()
     {
         var Du_lieu_Luu_tru = new XL_DU_LIEU();
         Du_lieu_Luu_tru.Cong_ty = Doc_Danh_sach_Cong_ty()[0];
+        Du_lieu_Luu_tru.Danh_sach_Nguoi_dung_Khach_tham_quan = Doc_Danh_sach_Nguoi_dung_Khach_tham_quan();
+        Du_lieu_Luu_tru.Danh_sach_Nguoi_dung_Noi_bo = Doc_Danh_sach_Nguoi_dung_Noi_bo();
         Du_lieu_Luu_tru.Danh_sach_Phim = Doc_Danh_sach_Phim();
         return Du_lieu_Luu_tru;
     }
@@ -186,15 +195,28 @@ public partial class XL_DU_LIEU
         });
         return Danh_sach_Cong_ty;
     }
-    static List<XL_NGUOI_DUNG> Doc_Danh_sach_Nguoi_dung()
+    static List<XL_NGUOI_DUNG_NOI_BO> Doc_Danh_sach_Nguoi_dung_Noi_bo()
     {
-        var Danh_sach_Nguoi_dung = new List<XL_NGUOI_DUNG>();
-        var Danh_sach_Tap_tin = Thu_muc_Nguoi_dung.GetFiles("*.json").ToList();
+        var Danh_sach_Nguoi_dung = new List<XL_NGUOI_DUNG_NOI_BO>();
+        var Danh_sach_Tap_tin = Thu_muc_Nguoi_dung_Noi_bo.GetFiles("*.json").ToList();
         Danh_sach_Tap_tin.ForEach(Tap_tin =>
         {
             var Duong_dan = Tap_tin.FullName;
             var Chuoi_JSON = File.ReadAllText(Duong_dan);
-            var Nguoi_dung = Json.Decode<XL_NGUOI_DUNG>(Chuoi_JSON);
+            var Nguoi_dung = Json.Decode<XL_NGUOI_DUNG_NOI_BO>(Chuoi_JSON);
+            Danh_sach_Nguoi_dung.Add(Nguoi_dung);
+        });
+        return Danh_sach_Nguoi_dung;
+    }
+    static List<XL_NGUOI_DUNG_KHACH_THAM_QUAN> Doc_Danh_sach_Nguoi_dung_Khach_tham_quan()
+    {
+        var Danh_sach_Nguoi_dung = new List<XL_NGUOI_DUNG_KHACH_THAM_QUAN>();
+        var Danh_sach_Tap_tin = Thu_muc_Nguoi_dung_Khach_tham_quan.GetFiles("*.json").ToList();
+        Danh_sach_Tap_tin.ForEach(Tap_tin =>
+        {
+            var Duong_dan = Tap_tin.FullName;
+            var Chuoi_JSON = File.ReadAllText(Duong_dan);
+            var Nguoi_dung = Json.Decode<XL_NGUOI_DUNG_KHACH_THAM_QUAN>(Chuoi_JSON);
             Danh_sach_Nguoi_dung.Add(Nguoi_dung);
         });
         return Danh_sach_Nguoi_dung;

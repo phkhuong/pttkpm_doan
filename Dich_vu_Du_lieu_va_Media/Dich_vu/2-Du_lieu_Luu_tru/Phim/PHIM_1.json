@@ -275,12 +275,15 @@
 			"Tien": 50000,
 			"Ngay_dat": "\/Date(1514707200000)\/",
 			"Trang_thai": "DAT_VE",
-			"Khach_hang": {
-				"Ma_so": "KH_1",
-				"Ho_ten": "Tran Thi C",
-				"Dien_thoai": "0123456789",
-				"Mail": "tranthic@gmail.com"
-			}
+      "Nguoi_dung_Khach_tham_quan": {
+        "Ma_so": "KH_1",
+        "Ho_ten": "Tran Thi C",
+        "Dien_thoai": "0123456789",
+        "Mail": "tranthic@gmail.com",
+        "Ten_dang_nhap": "",
+        "Mat_khau": "",
+        "Diem_tich_luy": 0
+      }
 		},
 		{
 			"Ma_so": "V_2",
@@ -319,12 +322,15 @@
 				"Ma_so": "NV_1",
 				"Ho_ten": "Nguyễn Thị A"
 			},
-			"Khach_hang": {
-				"Ma_so": "KH_2",
-				"Ho_ten": "Nguyen Thi D",
-				"Dien_thoai": "01234549584",
-				"Mail": "nguyenthid@gmail.com"
-			}
+      "Nguoi_dung_Khach_tham_quan": {
+        "Ma_so": "KH_2",
+        "Ho_ten": "Nguyen Thi D",
+        "Dien_thoai": "01234549584",
+        "Mail": "nguyenthid@gmail.com",
+        "Ten_dang_nhap": "NTC",
+        "Mat_khau": "123NTC",
+        "Diem_tich_luy": 200
+      }
 		},
 		{
 			"Ma_so": "V_3",
@@ -363,12 +369,15 @@
 				"Ma_so": "NV_1",
 				"Ho_ten": "Nguyễn Thị A"
 			},
-			"Khach_hang": {
-				"Ma_so": "KH_3",
-				"Ho_ten": "Nguyen Van E",
-				"Dien_thoai": "01234549583",
-				"Mail": "nguyenvane@gmail.com"
-			}
+      "Nguoi_dung_Khach_tham_quan": {
+        "Ma_so": "KH_3",
+        "Ho_ten": "Nguyen Van E",
+        "Dien_thoai": "01234549583",
+        "Mail": "nguyenvane@gmail.com",
+        "Ten_dang_nhap": "NVE",
+        "Mat_khau": "14jd3o",
+        "Diem_tich_luy": 90
+      }
 		}
 	],
 	"Danh_sach_Ban_ve": [
@@ -387,6 +396,7 @@
         "Ma_so": "NV_1",
         "Ho_ten": "Nguyễn Thị A"
       },
+
       "Suat_chieu": {
         "Ma_so": "S_1",
         "Bat_dau": "\/Date(1516690800000)\/",
