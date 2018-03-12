@@ -6,7 +6,17 @@ using System.Web;
 public partial class XL_DU_LIEU
 {
     public XL_CONG_TY Cong_ty = new XL_CONG_TY();
-    public  List<XL_PHIM> Danh_sach_Phim = new List<XL_PHIM>();
+    public List<XL_NGUOI_DUNG_KHACH_THAM_QUAN> Danh_sach_Nguoi_dung_Khach_tham_quan = new List<XL_NGUOI_DUNG_KHACH_THAM_QUAN>();
+    public List<XL_PHIM> Danh_sach_Phim = new List<XL_PHIM>();
+}
+//=========== Đối tượng  Con người ===============
+public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
+{
+    public string Ho_ten, Dien_thoai, Email, Ma_so = "", Ten_Dang_nhap, Mat_khau;
+    public long Diem_tich_luy;
+    public List<XL_PHIM> Danh_sach_Phim_Xem = new List<XL_PHIM>();
+    public XL_PHIM Phim_chon = new XL_PHIM();
+    public XL_SUAT_CHIEU Suat_chieu = new XL_SUAT_CHIEU();
 }
 //*************************** Đối tượng Tổ chức  *********
 public class XL_CONG_TY
@@ -44,9 +54,6 @@ public class XL_PHIM
     public long Don_gia, Thoi_luong;
     public double Rating;
     public List<XL_SUAT_CHIEU> Danh_sach_Suat_chieu = new List<XL_SUAT_CHIEU>();
-    public List<XL_DAT_VE> Danh_sach_Dat_ve = new List<XL_DAT_VE>();
-
-    public long Doanh_thu;
 }
 
 public class XL_SUAT_CHIEU

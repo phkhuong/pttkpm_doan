@@ -1,14 +1,15 @@
 ﻿@{
     //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
-    var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
-    var Cong_ty = Du_lieu.Cong_ty;
-    var Danh_sach_Rap = Du_lieu.Cong_ty.Danh_sach_Rap;
-    var Danh_sach_Phim = Du_lieu.Danh_sach_Phim;
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+    var Nguoi_dung = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)Session["Nguoi_dung_Dang_Nhap"];
     //******************* Khai báo Biến  ********************
-    var Ma_so = (string)Session["Ma_so_Phim"];
-    var Phim = Du_lieu.Tim_Phim(Ma_so, Danh_sach_Phim);
-   // var Chuoi_Html_Suat_chieu = Du_lieu.Tao_Chuoi_Suat_chieu(Phim, Danh_sach_Rap);
-    var Chuoi_Html_Phim = Du_lieu.Tao_Chuoi_Chi_tiet_Phim(Phim);
+    var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
+    if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
+    var Chuoi_HTML_Ket_qua = "";
+    if (Ma_so_Chuc_nang == "KHOI_DONG")
+    {
+        Chuoi_HTML_Ket_qua = Ung_dung.Khoi_dong_Man_hinh_Chi_tiet_Phim();
+    }
     //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
 
 }
@@ -33,13 +34,13 @@
         <form style="margin:30px 0px;">
             <label for="Ngay">Chọn ngày</label>
             <input id="Ngay" type="date" value="2018-02-09" onchange="chonNgay(this.value)" style="margin-left:20px"/>
-            <input id="Ma_so_Phim" type="hidden" value="@Phim.Ma_so" />
+            <input id="Ma_so_Phim" type="hidden" value="@Nguoi_dung.Phim_chon.Ma_so" />
         </form>
         <div id="Kq">
 
         </div>
       @*  @Html.Raw(Chuoi_Html_Suat_chieu)*@
-        @Html.Raw(Chuoi_Html_Phim)
+        @Html.Raw(Chuoi_HTML_Ket_qua)
     </div>
 </body>
 </html>

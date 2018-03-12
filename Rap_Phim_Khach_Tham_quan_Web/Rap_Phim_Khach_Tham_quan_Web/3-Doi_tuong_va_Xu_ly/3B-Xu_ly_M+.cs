@@ -9,59 +9,127 @@ using System.Globalization;
 using System.Net;
 
 //************************* M+ (Model for All ) **********************************
-public partial class XL_DU_LIEU
+public partial class XL_UNG_DUNG
 {
-    public static XL_DU_LIEU Khoi_dong_Du_lieu_Ung_dung()
-    {
-        var Du_lieu_Ung_dung = Doc_Du_lieu();
+    static XL_UNG_DUNG Ung_dung = null;
 
-        return Du_lieu_Ung_dung;
+    public XL_DU_LIEU Du_lieu_Ung_dung = null;
+    List<XL_NGUOI_DUNG_KHACH_THAM_QUAN> Danh_sach_Nguoi_dung_Khach_tham_quan = new List<XL_NGUOI_DUNG_KHACH_THAM_QUAN>();
+
+    public static XL_UNG_DUNG Khoi_dong_Ung_dung()
+    {
+        Ung_dung = new XL_UNG_DUNG(); // Không caching 
+        Ung_dung.Khoi_dong_Du_lieu_Ung_dung();
+        return Ung_dung;
+    }
+    void Khoi_dong_Du_lieu_Ung_dung()
+    {
+        var Du_lieu_tu_Dich_vu = XL_DU_LIEU.Doc_Du_lieu();
+        Du_lieu_Ung_dung = Du_lieu_tu_Dich_vu;
+        //Bổ sung Thông tin cần thiết cho Tất cả người dùng 
+        //===> khi xử lý Chức năng của Người dùng đăng nhập không cần đến Dữ liệu của Ứng dụng 
+        Danh_sach_Nguoi_dung_Khach_tham_quan = Du_lieu_Ung_dung.Danh_sach_Nguoi_dung_Khach_tham_quan;
+        if(HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] == null)
+        {
+            var Nguoi_dung = new XL_NGUOI_DUNG_KHACH_THAM_QUAN();
+            Nguoi_dung.Ten_Dang_nhap = "CHUA_DANG_NHAP";
+            Nguoi_dung.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
+            HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] = Nguoi_dung;
+        }
+        
+    }
+    //============= Xử lý Chức năng của Người dùng đăng nhập ==============
+    //Lưu ý Quan trọng : Tất cả thông tin xử lý phải dựa vào thông tin của chính Người dùng đăng nhập 
+    public XL_NGUOI_DUNG_KHACH_THAM_QUAN Dang_nhap(string Ten_Dang_nhap, string Mat_khau)
+    {
+        var Nguoi_dung = Danh_sach_Nguoi_dung_Khach_tham_quan.FirstOrDefault(
+                                x => x.Ten_Dang_nhap == Ten_Dang_nhap
+                                      && x.Mat_khau == Mat_khau
+                                      );
+
+        if (Nguoi_dung != null)
+        {   //Khởi động  Thông tin Online  
+            Nguoi_dung.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
+            HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] = Nguoi_dung;
+        }
+        return Nguoi_dung;
+    }
+    public string Khoi_dong_Man_hinh_chinh()
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        // Xử lý 
+
+        // Tạo chuỗi HTML kết quả xem 
+        var Chuoi_HTML = Tao_Chuoi_HTML_Xem(Nguoi_dung_Dang_nhap);
+        return Chuoi_HTML;
+    }
+    public string Khoi_dong_Man_hinh_Chi_tiet_Phim()
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        // Xử lý 
+
+        // Tạo chuỗi HTML kết quả xem 
+        var Chuoi_HTML = Tao_Chuoi_HTML_Chi_tiet_Phim(Nguoi_dung_Dang_nhap.Phim_chon,Nguoi_dung_Dang_nhap);
+        return Chuoi_HTML;
+    }
+    public string Tra_cuu(string Chuoi_Tra_cuu)
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        // Xử lý 
+        Nguoi_dung_Dang_nhap.Danh_sach_Phim_Xem = Tra_cuu_Phim(Chuoi_Tra_cuu, Du_lieu_Ung_dung.Danh_sach_Phim);
+        // Tạo chuỗi HTML kết quả xem 
+        var Chuoi_HTML = Tao_Chuoi_HTML_Xem(Nguoi_dung_Dang_nhap);
+        return Chuoi_HTML;
+    }
+    public string Chon_Phim(string Ma_so_Phim)
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        // Xử lý 
+        var Phim = Du_lieu_Ung_dung.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
+        Nguoi_dung_Dang_nhap.Phim_chon = Phim;
+        var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_CHi_tiet_Phim.cshtml'  ></iframe>";
+        return Chuoi_HTML;
+    }
+    public string Tao_Chuoi_HTML_Xem(XL_NGUOI_DUNG_KHACH_THAM_QUAN Nguoi_dung_Dang_nhap)
+    {
+        var Chuoi_HTML = $"<div>" +
+                $"{ Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(Nguoi_dung_Dang_nhap)}" +
+                $"{ Tao_Chuoi_HTML_Danh_sach_Phim_Xem(Nguoi_dung_Dang_nhap.Danh_sach_Phim_Xem)}" +
+            $"</div>";
+        return Chuoi_HTML;
+    }
+
+    public string Tao_Chuoi_HTML_Chi_tiet_Phim(XL_PHIM Phim, XL_NGUOI_DUNG_KHACH_THAM_QUAN Nguoi_dung_Dang_nhap)
+    {
+        var Chuoi_HTML = $"<div>" +
+            $"{Tao_Chuoi_Chi_tiet_Phim(Phim)}" +
+            $"</div>";
+        return Chuoi_HTML;
     }
 }
 
 //************************* View-Layers/Prsenetaition VL/PL **********************************
-public partial class XL_DU_LIEU
+public partial class XL_UNG_DUNG
 {
-    public string Dia_chi_Media = $"{Dia_chi_Dich_vu}/Media";
+    public string Dia_chi_Media = $"{XL_DU_LIEU.Dia_chi_Dich_vu}/Media";
     public CultureInfo Dinh_dang_VN = CultureInfo.GetCultureInfo("vi-VN");
 
-    //public string Tao_Chuoi_HTML_Danh_sach_Phim(List<XL_PHIM> Danh_sach)
-    //{
-    //    var Chuoi_HTML_Danh_sach = "<div class='row'>";
-
-    //    Danh_sach.ForEach(Phim =>
-    //    {
-    //        var Chuoi_Hinh = $"<div class='KHUNG_HINH mx-auto'>" +
-    //                            $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='img-thumbnail HINH'/>" +
-    //                         "</div>";
-
-    //        var Chuoi_Thong_tin = $"<div>" +
-    //                                  $"<strong>{Phim.Ten}</strong>" +
-    //                                  $"<br />Đơn giá: { Phim.Don_gia.ToString("c0", Dinh_dang_VN) }" +
-    //                              $"</div>";
-
-    //        var Chuoi_HTML = $"<div class='KHUNG col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
-    //                             $"<div class='THONG_TIN'>" +
-    //                                 $"{Chuoi_Hinh}" +
-    //                                 $"{Chuoi_Thong_tin}" +
-    //                             $"</div>" +
-    //                         "</div>";
-
-    //        Chuoi_HTML_Danh_sach += Chuoi_HTML;
-    //    });
-
-    //    Chuoi_HTML_Danh_sach += "</div>";
-
-    //    return Chuoi_HTML_Danh_sach;
-    //}
-
-    public string Tao_Chuoi_HTML_Danh_sach_Phim(List<XL_PHIM> Danh_sach)
+    public string Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(XL_NGUOI_DUNG_KHACH_THAM_QUAN Nguoi_dung)
     {
-        var Chuoi_HTML_Danh_sach = "<div class='row'>";
+        return "";
+    }
 
+    public string Tao_Chuoi_HTML_Danh_sach_Phim_Xem(List<XL_PHIM> Danh_sach)
+    {
+        var Chuoi_HTML_Danh_sach = "<div class='container'><form id='HE_THONG' name='HE_THONG' method='post'>";
+        var Chuoi_Input = "<input name='Th_Ma_so_Phim' id='Th_Ma_so_Phim' type='hidden' />"+
+            "<input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_PHIM'/>"
+            ;
+        Chuoi_HTML_Danh_sach += Chuoi_Input;
+        Chuoi_HTML_Danh_sach += "<div class='row'>";
         Danh_sach.ForEach(Phim =>
         {
-            var Chuoi_Xu_ly_Click = "Th_Ma_so.value='XXX';HE_THONG.submit() ";
+            var Chuoi_Xu_ly_Click = "Th_Ma_so_Phim.value='XXX';;HE_THONG.submit() ";
             Chuoi_Xu_ly_Click = Chuoi_Xu_ly_Click.Replace("XXX", Phim.Ma_so);
             var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='card-img-top HINH'/>";
 
@@ -82,7 +150,7 @@ public partial class XL_DU_LIEU
             Chuoi_HTML_Danh_sach += Chuoi_HTML;
         });
 
-        Chuoi_HTML_Danh_sach += "</div>";
+        Chuoi_HTML_Danh_sach += "</div></form></div>";
 
         return Chuoi_HTML_Danh_sach;
     }
@@ -144,7 +212,7 @@ public partial class XL_DU_LIEU
 
 
 //************************* Business-Layers BL **********************************
-public partial class XL_DU_LIEU
+public partial class XL_UNG_DUNG
 {
 
     public List<XL_PHIM> Tra_cuu_Phim(string Chuoi_Tra_cuu, List<XL_PHIM> Danh_sach)
@@ -167,10 +235,10 @@ public partial class XL_DU_LIEU
 //************************* Data-Layers DL **********************************
 public partial class XL_DU_LIEU
 {
-    static string Dia_chi_Dich_vu = "http://localhost:59900";
-    static string Dia_chi_Dich_vu_Quan_ly_Rap_Phim = $"{Dia_chi_Dich_vu}/1-Dich_vu_Giao_tiep/DV_Khach_tham_quan.cshtml";
+    public static string Dia_chi_Dich_vu = "http://localhost:59900";
+    public static string Dia_chi_Dich_vu_Quan_ly_Rap_Phim = $"{Dia_chi_Dich_vu}/1-Dich_vu_Giao_tiep/DV_Khach_tham_quan.cshtml";
 
-    static XL_DU_LIEU Doc_Du_lieu()
+    public static XL_DU_LIEU Doc_Du_lieu()
     {
         var Xu_ly = new WebClient();
         Xu_ly.Encoding = System.Text.Encoding.UTF8;

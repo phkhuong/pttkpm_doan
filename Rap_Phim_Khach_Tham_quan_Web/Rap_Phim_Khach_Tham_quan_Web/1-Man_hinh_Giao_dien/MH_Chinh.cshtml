@@ -1,14 +1,26 @@
 ﻿@{
-    var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
+    //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+    var Nguoi_dung = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)Session["Nguoi_dung_Dang_Nhap"];
+    //******************* Khai báo và Khởi động giá trị đầu cho Biến  ********************
+    var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
+    if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
 
-    Session["Chuoi_Tra_cuu"] = "";
-
-    if (IsPost)
+    var Chuoi_HTML_Ket_qua = "";
+    if (Ma_so_Chuc_nang == "KHOI_DONG")
     {
-        Session["Chuoi_Tra_cuu"] = Request["Th_Tra_cuu"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Khoi_dong_Man_hinh_chinh();
     }
-
-    var Chuoi_Tra_cuu = Session["Chuoi_Tra_cuu"];
+    else if (Ma_so_Chuc_nang == "TRA_CUU")
+    {
+        var Chuoi_Tra_cuu = Request["Th_Chuoi_Tra_cuu"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Tra_cuu(Chuoi_Tra_cuu);
+    }
+    else if (Ma_so_Chuc_nang == "CHON_PHIM")
+    {
+        var Ma_so_Phim = Request["Th_Ma_so_Phim"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Chon_Phim(Ma_so_Phim);
+    }
 }
 
 <!DOCTYPE html>
@@ -29,119 +41,44 @@
                 <div class="row align-items-center">
                     <div class="col-md-4 col-sm-4 col-4 text-center hidden-sm-down LOGO">
                         <a href="#">
-                            <img src="@Du_lieu.Dia_chi_Media/LOGO.png" />
+                            <img src="@Ung_dung.Dia_chi_Media/LOGO.png" />
                         </a>
                     </div>
                     <div class="col-md-4 col-sm-4 col-4 text-center hidden-md-up LOGO">
                         <a href="#">
-                            <img src="@Du_lieu.Dia_chi_Media/LOGO_MOBILE.png" style="width:70%" class="d-inline-block align-top" alt="">
+                            <img src="@Ung_dung.Dia_chi_Media/LOGO_MOBILE.png" style="width:70%" class="d-inline-block align-top" alt="">
                         </a>
                     </div>
                     <div class="TIM_KIEM col-md-8 col-sm-8 col-8">
-                        <form id="HE_THONG" name="HE_THONG" action="MH_Chinh.cshtml" method="post">
-                            <input type="text" id="Th_Tra_cuu" name="Th_Tra_cuu" value="@Chuoi_Tra_cuu" class="form-control" placeholder="Tìm tên phim..." />
+                        <form id="TRA_CUU" name="TRA_CUU" action="MH_Chinh.cshtml" method="post">
+                            <input name="Th_Ma_so_Chuc_nang" type="hidden" value="TRA_CUU" />
+                            <input type="text" id="Th_Chuoi_Tra_cuu" name="Th_Chuoi_Tra_cuu" class="form-control" placeholder="Tìm tên phim..." />
                         </form>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
 
-        
-                <div class="row DANH_SACH_CHUC_NANG">
-                    <div class="container">
-                        <table class="table-responsive">
-                            <thead>
-                                <tr id="Th_Danh_sach_Chuc_nang">
-                                    <td id="MH_Danh_sach_Phim_dang_chieu" class="CHUC_NANG">
-                                        PHIM ĐANG CHIẾU
-                                    </td>
-                                    <td id="MH_Mua_ve" class="CHUC_NANG">
-                                        MUA VÉ
-                                    </td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <iframe class="KHUNG_CHUC_NANG" id='Khung_Chuc_nang'></iframe>
-                </div>
+        <div class="row DANH_SACH_CHUC_NANG">
+            <div class="container">
+                <table class="table-responsive">
+                    <thead>
+                        <tr id="Th_Danh_sach_Chuc_nang">
+                            <td id="MH_Danh_sach_Phim_dang_chieu" class="CHUC_NANG">
+                                PHIM ĐANG CHIẾU
+                            </td>
+                            <td id="MH_Mua_ve" class="CHUC_NANG">
+                                MUA VÉ
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-
-            @*<div class="container-fluid hidden-sm-down">
-
-                    <div class="row TIEU_DE">
-                        <div class="col-md-4 col-sm-4 col-4 text-center LOGO"><img src="@Du_lieu.Dia_chi_Media/LOGO.png" /></div>
-                    </div>
-                </div>
-
-                <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <a class="navbar-brand hidden-md-up" href="#">
-                        <img src="@Du_lieu.Dia_chi_Media/LOGO_MOBILE.png" style="width:40%" class="d-inline-block align-top" alt="">
-                    </a>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto" id="Th_Danh_sach_Chuc_nang">
-                            <li class="nav-item" id="MH_Danh_sach_Phim_dang_chieu">
-                                <a class="nav-link" href="#">
-                                    PHIM ĐANG CHIẾU
-                                </a>
-                            </li>
-                        </ul>
-                        <form class="navbar-search form-inline my-2 my-lg-0" id="HE_THONG" name="HE_THONG" action="MH_Chinh.cshtml" method="post">
-                            <input class="form-control mr-sm-2" type="text" id="Th_Tra_cuu" name="Th_Tra_cuu" value="@Chuoi_Tra_cuu" placeholder="Tìm theo Mã số bàn, Tên bàn, Mã số món ăn, Tên món ăn" />
-                        </form>
-                    </div>
-
-                </nav>
-                <div class="container-fluid">
-                    <div class="row">
-                        <iframe class="KHUNG_CHUC_NANG" id='Khung_Chuc_nang'></iframe>
-                    </div>
-                </div>*@
-    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
-            <script>
-                MH_Danh_sach_Phim_dang_chieu.onclick = () => {
-                    Khung_Chuc_nang.src = "MH_Danh_sach_Phim_dang_chieu.cshtml";
-                    Danh_dau_Chon_Chuc_nang(MH_Danh_sach_Phim_dang_chieu);
-                }
-                MH_Mua_ve.onclick = () => {
-
-                    Danh_dau_Chon_Chuc_nang(MH_Mua_ve);
-                }
-                function Chon_Chuc_nang(Chuc_nang_Chon) {
-                    for (var i = 0; i < Th_Danh_sach_Chuc_nang.childNodes.length; i++) {
-                        if (Th_Danh_sach_Chuc_nang.childNodes[i].id == Chuc_nang_Chon) {
-                            Th_Danh_sach_Chuc_nang.childNodes[i].click();
-                            return;
-                        }
-                    }
-                }
-
-                function Danh_dau_Chon_Chuc_nang(Th_Chuc_nang_Chon) {
-                    for (var i = 0; i < Th_Danh_sach_Chuc_nang.childNodes.length; i++)
-                        Th_Danh_sach_Chuc_nang.childNodes[i].className = "CHUC_NANG";
-                    Th_Chuc_nang_Chon.className += " CHON";
-                }
-                //$('#Khung_Chuc_nang').on('load',function () {
-
-                //    var iframe = $('#Khung_Chuc_nang').contents();
-
-                //    iframe.find("#choose_pics").click(function () {
-                //        alert("test");
-                //    });
-                //});
-            </script>
-            @if (Session["Chuc_nang_Chon"] == null)
-            {
-                <script>MH_Danh_sach_Phim_dang_chieu.click();</script>
-            }
-            else
-            {
-                <script>Chon_Chuc_nang('@Session["Chuc_nang_Chon"]');</script>
-            }
+        </div>
+    </div>
+    <div class="CUA_SO_KET_QUA">
+        @Html.Raw(Chuoi_HTML_Ket_qua)
+    </div>
 </body>
 </html>
