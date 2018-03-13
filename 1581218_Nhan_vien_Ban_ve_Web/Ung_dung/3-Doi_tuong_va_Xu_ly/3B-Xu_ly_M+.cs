@@ -24,7 +24,7 @@ public partial class XL_DU_LIEU
 {
     public string Dia_chi_Media = $"{Dia_chi_Dich_vu}/Media";
     public CultureInfo Dinh_dang_VN = CultureInfo.GetCultureInfo("vi-VN");
-    public string Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(XL_NHAN_VIEN_BAN_VE Nguoi_dung)
+    public string Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(XL_NGUOI_DUNG_NOI_BO Nguoi_dung)
     {
         var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Nguoi_dung.Ma_so}.png' " +
                  "style='width:90px;height:90px;' />";

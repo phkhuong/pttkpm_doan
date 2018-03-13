@@ -2,12 +2,12 @@
     //****************** Khởi động Dữ liệu Nguồn-Nội bộ ****************
     var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
     var Cong_ty = Du_lieu.Cong_ty;
-    var Danh_sach_Nhan_vien = Cong_ty.Danh_sach_Nhan_vien;
+    var Danh_sach_Nhan_vien =  Du_lieu.Danh_sach_Nguoi_dung_Noi_bo;
 
     //******************* Khai báo Biến  ********************
     var Ten_Dang_nhap = "";
     var Mat_khau = "";// Biến Nhập liệu
-    var Nhan_vien = new XL_NHAN_VIEN_BAN_VE();  // Biến  Kết quả
+    var Nhan_vien = new XL_NGUOI_DUNG_NOI_BO();  // Biến  Kết quả
 
     //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
     if (Request["Th_Ten_Dang_nhap"] != null) // Xử lý Biến cố

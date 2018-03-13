@@ -1,6 +1,6 @@
 ﻿@{
     //****************** Xử lý Bảo mật và Phân quyền  **********
-    var Nhan_vien = (XL_NHAN_VIEN_BAN_VE)Session["Nhan_vien_Dang_nhap"];
+    var Nhan_vien = (XL_NGUOI_DUNG_NOI_BO)Session["Nhan_vien_Dang_nhap"];
     if (Nhan_vien == null)
     {
         Response.Write("Người dùng chưa Đăng nhập");
@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="DD_Chinh.css?v=@DateTime.Now.Ticks" type="text/css" />
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid">        
         <div class="row TIEU_DE justify-content-center">
             <div class="col-md-10 col-md-offset-1 content-section">
                 <div class="row align-items-center">
