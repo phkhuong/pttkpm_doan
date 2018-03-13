@@ -6,12 +6,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6F52DDC0-6661-4DCE-A726-91FEDE37CAB4}</ProjectGuid>
+    <ProjectGuid>{27F96E54-7B33-4339-B8B8-90BFFEC0C577}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rap_Phim_Khach_Tham_quan_Web</RootNamespace>
-    <AssemblyName>Rap_Phim_Khach_Tham_quan_Web</AssemblyName>
+    <RootNamespace>Ung_dung</RootNamespace>
+    <AssemblyName>Ung_dung</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -83,7 +83,6 @@
   <ItemGroup>
     <Content Include="1-Man_hinh_Giao_dien\DD_Chinh.css" />
     <Content Include="1-Man_hinh_Giao_dien\DD_Chi_tiet_Phim.css" />
-    <Content Include="1-Man_hinh_Giao_dien\DD_Xem_Danh_sach.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -93,10 +92,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1-Man_hinh_Giao_dien\MH_Chinh.cshtml" />
-    <Content Include="1-Man_hinh_Giao_dien\MH_Danh_sach_Phim_dang_chieu.cshtml" />
     <Content Include="1-Man_hinh_Giao_dien\MH_Chi_tiet_Phim.cshtml" />
     <Content Include="1-Man_hinh_Giao_dien\MH_Xu_ly_Ajax.cshtml" />
     <None Include="packages.config" />
+    <Content Include="ViewPage1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -118,9 +117,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55662</DevelopmentServerPort>
+          <DevelopmentServerPort>63414</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55662/</IISUrl>
+          <IISUrl>http://localhost:63414/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
