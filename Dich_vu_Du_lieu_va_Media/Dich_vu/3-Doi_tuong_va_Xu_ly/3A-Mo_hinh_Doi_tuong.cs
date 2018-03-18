@@ -86,6 +86,7 @@ public class XL_SUAT_CHIEU
     public DateTime Bat_dau = DateTime.Now;
     public List<XL_GHE> Danh_sach_Ghe_trong = new List<XL_GHE>();
     public XL_RAP Rap = new XL_RAP();
+    public XL_PHONG_CHIEU Phong_chieu = new XL_PHONG_CHIEU();
 }
 
 public class XL_DAT_VE

@@ -15,8 +15,9 @@ public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
     public string Ho_ten, Dien_thoai, Email, Ma_so = "", Ten_Dang_nhap, Mat_khau;
     public long Diem_tich_luy;
     public List<XL_PHIM> Danh_sach_Phim_Xem = new List<XL_PHIM>();
+    public List<XL_RAP> Danh_sach_Rap = new List<XL_RAP>();
     public XL_PHIM Phim_chon = new XL_PHIM();
-    public XL_SUAT_CHIEU Suat_chieu = new XL_SUAT_CHIEU();
+    public XL_DAT_VE Dat_ve = new XL_DAT_VE();
 }
 //*************************** Đối tượng Tổ chức  *********
 public class XL_CONG_TY
@@ -62,6 +63,7 @@ public class XL_SUAT_CHIEU
     public DateTime Bat_dau = DateTime.Now;
     public List<XL_GHE> Danh_sach_Ghe_trong = new List<XL_GHE>();
     public XL_RAP Rap = new XL_RAP();
+    public XL_PHONG_CHIEU Phong_chieu = new XL_PHONG_CHIEU();
 }
 
 public class XL_DAT_VE

@@ -10,39 +10,51 @@
     {
         Chuoi_HTML_Ket_qua = Ung_dung.Khoi_dong_Man_hinh_Chi_tiet_Phim();
     }
+    else if(Ma_so_Chuc_nang == "CHON_SUAT_CHIEU")
+    {
+        var Ma_so_Suat_chieu = Request["Th_Ma_so_Suat_chieu"];
+        var Chuoi_So_luong = Request["Th_So_luong"];
+        var Suat_chieu = Ung_dung.Tim_Suat_chieu(Ma_so_Suat_chieu, Nguoi_dung.Phim_chon);
+        Nguoi_dung.Dat_ve.Suat_chieu = Suat_chieu;
+        Nguoi_dung.Dat_ve.So_luong = int.Parse(Chuoi_So_luong);
+        Response.Redirect("MH_Chon_Ghe");
+    }
     //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
 
 }
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel="stylesheet" href="DD_Chi_tiet_Phim.css?v=@DateTime.Now.Ticks" type="text/css" />
-    <title></title>
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link rel="stylesheet" href="DD_Chi_tiet_Phim.css?v=@DateTime.Now.Ticks" type="text/css" />
+        <title></title>
+    </head>
 
-<body>
-    <div class="container" style="padding-top:20px;">
-        <h3>LỊCH CHIẾU</h3>
-        <form style="margin:30px 0px;">
-            <label for="Ngay">Chọn ngày</label>
-            <input id="Ngay" type="date" value="2018-02-09" onchange="chonNgay(this.value)" style="margin-left:20px"/>
-            <input id="Ma_so_Phim" type="hidden" value="@Nguoi_dung.Phim_chon.Ma_so" />
-        </form>
-        <div id="Kq">
-
+    <body>
+        <div class="container" style="padding-top:20px;">
+            <h3>LỊCH CHIẾU</h3>
+            <form  id='MH_CHI_TIET_PHIM' name='MH_CHI_TIET_PHIM' method='post' style="margin:30px 0px;">
+                <label for="Th_Ngay">Chọn ngày: </label>
+                <input id="Th_Ngay" name="Th_Ngay" type="date" value="2018-02-09" onchange="chonNgay(this.value)" style="margin-left:20px"/>
+                <label for="Th_So_luong">Số lượng vé: </label>
+                <input id="Th_So_luong" name="Th_So_luong" type="number" value="1"/>
+                <input id="Ma_so_Phim" type="hidden" value="@Nguoi_dung.Phim_chon.Ma_so" />
+                <input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_SUAT_CHIEU' />
+                <input name='Th_Ma_so_Suat_chieu' id='Th_Ma_so_Suat_chieu' type='hidden' />
+                <div id="Kq">
+                    @*  Chuỗi két quả danh sách suất chiếu từ Xử lý Ajax*@
+                </div>
+            </form>
+                @Html.Raw(Chuoi_HTML_Ket_qua)
         </div>
-      @*  @Html.Raw(Chuoi_Html_Suat_chieu)*@
-        @Html.Raw(Chuoi_HTML_Ket_qua)
-    </div>
-</body>
+    </body>
 </html>
 <script>
     function chonNgay(str) {
@@ -60,5 +72,5 @@
         xhttp.open("GET", "MH_Xu_ly_Ajax.cshtml?Ma_so_Xu_ly=CHON_NGAY&Ma_so_Phim=" + Ma_so_Phim.value + "&Ngay=" + str, true);
         xhttp.send();
     }
-    chonNgay(Ngay.value);
+    chonNgay(Th_Ngay.value);
 </script>

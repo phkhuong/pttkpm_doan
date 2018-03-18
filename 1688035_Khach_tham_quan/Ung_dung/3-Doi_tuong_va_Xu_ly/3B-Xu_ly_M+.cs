@@ -34,6 +34,7 @@ public partial class XL_UNG_DUNG
             var Nguoi_dung = new XL_NGUOI_DUNG_KHACH_THAM_QUAN();
             Nguoi_dung.Ten_Dang_nhap = "CHUA_DANG_NHAP";
             Nguoi_dung.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
+            Nguoi_dung.Danh_sach_Rap = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Rap;
             HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] = Nguoi_dung;
         }
         
@@ -60,7 +61,7 @@ public partial class XL_UNG_DUNG
         // Xử lý 
 
         // Tạo chuỗi HTML kết quả xem 
-        var Chuoi_HTML = Tao_Chuoi_HTML_Xem(Nguoi_dung_Dang_nhap);
+        var Chuoi_HTML = Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(Nguoi_dung_Dang_nhap);
         return Chuoi_HTML;
     }
     public string Khoi_dong_Man_hinh_Chi_tiet_Phim()
@@ -78,7 +79,7 @@ public partial class XL_UNG_DUNG
         // Xử lý 
         Nguoi_dung_Dang_nhap.Danh_sach_Phim_Xem = Tra_cuu_Phim(Chuoi_Tra_cuu, Du_lieu_Ung_dung.Danh_sach_Phim);
         // Tạo chuỗi HTML kết quả xem 
-        var Chuoi_HTML = Tao_Chuoi_HTML_Xem(Nguoi_dung_Dang_nhap);
+        var Chuoi_HTML = Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(Nguoi_dung_Dang_nhap);
         return Chuoi_HTML;
     }
     public string Chon_Phim(string Ma_so_Phim)
@@ -90,7 +91,7 @@ public partial class XL_UNG_DUNG
         var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_CHi_tiet_Phim.cshtml'  ></iframe>";
         return Chuoi_HTML;
     }
-    public string Tao_Chuoi_HTML_Xem(XL_NGUOI_DUNG_KHACH_THAM_QUAN Nguoi_dung_Dang_nhap)
+    public string Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(XL_NGUOI_DUNG_KHACH_THAM_QUAN Nguoi_dung_Dang_nhap)
     {
         var Chuoi_HTML = $"<div>" +
                 $"{ Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(Nguoi_dung_Dang_nhap)}" +
@@ -104,6 +105,70 @@ public partial class XL_UNG_DUNG
         var Chuoi_HTML = $"<div>" +
             $"{Tao_Chuoi_Chi_tiet_Phim(Phim)}" +
             $"</div>";
+        return Chuoi_HTML;
+    }
+
+    public string Khoi_dong_Man_hinh_Chon_Ghe()
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        var Danh_sach_Ghe_Chon = Nguoi_dung_Dang_nhap.Dat_ve.Danh_sach_Ghe_dat;
+        var Chuoi_HTML = Tao_Chuoi_Danh_sach_Ghe(Danh_sach_Ghe_Chon);
+        return Chuoi_HTML;
+    }
+
+    public string Chon_Ghe(XL_GHE Ghe_Chon)
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        var So_luong = Nguoi_dung_Dang_nhap.Dat_ve.So_luong;
+        var Danh_sach_Ghe_Chon = Nguoi_dung_Dang_nhap.Dat_ve.Danh_sach_Ghe_dat;
+        var Da_chon = Danh_sach_Ghe_Chon.Any(x => x.Ma_so == Ghe_Chon.Ma_so);
+        if (Da_chon)
+        {
+            Danh_sach_Ghe_Chon.Remove(Danh_sach_Ghe_Chon.FirstOrDefault(x => x.Ma_so == Ghe_Chon.Ma_so));
+        }
+        else if (Danh_sach_Ghe_Chon.Count == So_luong)
+        {
+            Danh_sach_Ghe_Chon.RemoveAt(0);
+            Danh_sach_Ghe_Chon.Add(Ghe_Chon);
+        }
+        else
+        {
+            Danh_sach_Ghe_Chon.Add(Ghe_Chon);
+        }
+        var Chuoi_HTML = Tao_Chuoi_Danh_sach_Ghe(Danh_sach_Ghe_Chon);
+        return Chuoi_HTML;
+
+    }
+
+    public string Tao_Chuoi_Danh_sach_Ghe(List<XL_GHE> Danh_sach_Ghe_Chon)
+    {
+        var Chuoi_HTML = "";
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        var Rap = Nguoi_dung_Dang_nhap.Danh_sach_Rap.FirstOrDefault(x => x.Ma_so == Nguoi_dung_Dang_nhap.Dat_ve.Suat_chieu.Rap.Ma_so);
+        var Phong_chieu = Rap.Danh_sach_Phong_chieu.Find(x => x.Ma_so == Nguoi_dung_Dang_nhap.Dat_ve.Suat_chieu.Phong_chieu.Ma_so);
+        var Danh_sach_Ghe = Phong_chieu.Danh_sach_Ghe;
+        var Danh_sach_Ghe_trong = Nguoi_dung_Dang_nhap.Dat_ve.Suat_chieu.Danh_sach_Ghe_trong;
+        var Count = 0;
+        Danh_sach_Ghe.ForEach(Ghe =>
+        {
+            Count++;
+            var Tinh_trang_Ghe = 0;
+            var Chuoi_Xu_ly_Click = "Th_Ma_so_Ghe.value='XXX';CHON_GHE.submit() ";
+            Chuoi_Xu_ly_Click = Chuoi_Xu_ly_Click.Replace("XXX", Ghe.Ma_so);
+            var Da_chon = Danh_sach_Ghe_Chon.Any(x => x.Ma_so == Ghe.Ma_so);
+            var Chua_dat = Danh_sach_Ghe_trong.Any(x => x.Ma_so == Ghe.Ma_so);
+            if (Da_chon)
+            {
+                Tinh_trang_Ghe = 1;
+            }
+            if (!Chua_dat)
+            {
+                Tinh_trang_Ghe = -1;
+            }
+            Chuoi_HTML += Tao_chuoi_HTML_Ghe(Ghe, Chuoi_Xu_ly_Click, Tinh_trang_Ghe, Count);
+
+        });
+
         return Chuoi_HTML;
     }
 }
@@ -121,7 +186,7 @@ public partial class XL_UNG_DUNG
 
     public string Tao_Chuoi_HTML_Danh_sach_Phim_Xem(List<XL_PHIM> Danh_sach)
     {
-        var Chuoi_HTML_Danh_sach = "<div class='container'><form id='HE_THONG' name='HE_THONG' method='post'>";
+        var Chuoi_HTML_Danh_sach = "<div class='container'><form id='MH_CHINH' name='MH_CHINH' method='post'>";
         var Chuoi_Input = "<input name='Th_Ma_so_Phim' id='Th_Ma_so_Phim' type='hidden' />"+
             "<input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_PHIM'/>"
             ;
@@ -129,8 +194,7 @@ public partial class XL_UNG_DUNG
         Chuoi_HTML_Danh_sach += "<div class='row'>";
         Danh_sach.ForEach(Phim =>
         {
-            var Chuoi_Xu_ly_Click = "Th_Ma_so_Phim.value='XXX';;HE_THONG.submit() ";
-            Chuoi_Xu_ly_Click = Chuoi_Xu_ly_Click.Replace("XXX", Phim.Ma_so);
+            var Chuoi_Xu_ly_Click = $"Th_Ma_so_Phim.value='{Phim.Ma_so}';MH_CHINH.submit() ";
             var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='card-img-top HINH'/>";
 
             var Chuoi_Thong_tin = $"<div class='card-block THONG_TIN'>" +
@@ -199,15 +263,50 @@ public partial class XL_UNG_DUNG
             foreach(XL_SUAT_CHIEU Suat_chieu in Phim.Danh_sach_Suat_chieu)
             {
                 if(Suat_chieu.Rap.Ma_so == Rap.Ma_so && Suat_chieu.Bat_dau.Date == Ngay_chon.Date)
-                    Chuoi_Danh_sach_Suat_chieu += $"<li>{Suat_chieu.Bat_dau.ToString("HH:mm")}</li>";
+                {
+                    var Chuoi_Xu_ly_Click = $"Th_Ma_so_Suat_chieu.value='{Suat_chieu.Ma_so}';MH_CHI_TIET_PHIM.submit() ";
+                    Chuoi_Danh_sach_Suat_chieu += $"<li onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" + $"{Suat_chieu.Bat_dau.ToString("HH:mm")}"+"</li>";
+                }  
             }
             Chuoi_Danh_sach_Suat_chieu += "</ul></div>";
             Chuoi_Html += Chuoi_Danh_sach_Suat_chieu;
         }
+        Chuoi_Html += "</form>";
         return Chuoi_Html;
     }
 
-    
+    public string Tao_chuoi_HTML_Ghe(XL_GHE Ghe, string Chuoi_Xu_ly_Click = "", int Tinh_trang_Ghe = 0, int Count = 0)
+    {
+        string Hang_ghe = Ghe.Ma_so[0].ToString();
+        string So_ghe = Ghe.Ma_so[1].ToString();
+        //var So_ghe = 0;
+        //if (Count % 9 == 0)
+        //    So_ghe = 9;
+        //else
+        //    So_ghe = Count % 9;
+        var Chuoi_HTML = "";
+        if (Count % 9 == 1)
+        {
+            Chuoi_HTML += "<ul style='list-style-type: none;margin:5px;cursor: pointer;'>";
+            Chuoi_HTML += $"<li style='display:inline-block;text-align:center;width: 20px;height: 20px;border: solid 1px;'>{Hang_ghe}</li><li style='display:inline-block;'><ul style='list-style-type: none;padding: 0px;'>";
+        }
+
+        if (Tinh_trang_Ghe == -1)
+        {
+            Chuoi_HTML += $"<li style='background-color:orange;display:inline-block;text-align:center;width: 20px;height: 20px;margin-left:2px;'>{So_ghe}</li>";
+        }
+        else if (Tinh_trang_Ghe == 1)
+        {
+            Chuoi_HTML += $"<li onclick=\"" + $"{Chuoi_Xu_ly_Click}" + $"\" style='display:inline-block;background-color: green;text-align:center;width: 20px;height: 20px;margin-left:2px;'>{So_ghe}</li>";
+        }
+        else
+        {
+            Chuoi_HTML += $"<li onclick=\"" + $"{Chuoi_Xu_ly_Click}" + $"\" style ='display:inline-block;background-color: #dbdee1;text-align:center;width: 20px;height: 20px;margin-left:2px;'>{So_ghe}</li>";
+        }
+        if (Count % 9 == 0)
+            Chuoi_HTML += $"</ul></li><li style='display:inline-block;text-align:center;width: 20px;height: 20px;border: solid 1px;margin-left:2px;'>{Hang_ghe}</li></ul>";
+        return Chuoi_HTML;
+    }
 }
 
 
@@ -225,9 +324,15 @@ public partial class XL_UNG_DUNG
 
     public XL_PHIM Tim_Phim(string Ma_so, List<XL_PHIM> Danh_sach)
     {
-        var Phim = Danh_sach.Find(P =>
+        var Phim = Danh_sach.FirstOrDefault(P =>
         P.Ma_so.Contains(Ma_so));
         return Phim;
+    }
+
+    public XL_SUAT_CHIEU Tim_Suat_chieu(string Ma_so, XL_PHIM Phim)
+    {
+        var Suat_chieu = Phim.Danh_sach_Suat_chieu.FirstOrDefault(S => String.Equals(Ma_so,S.Ma_so));
+        return Suat_chieu;
     }
 
 }
