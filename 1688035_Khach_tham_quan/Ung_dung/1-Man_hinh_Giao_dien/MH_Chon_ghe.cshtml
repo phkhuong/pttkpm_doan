@@ -17,6 +17,10 @@
         var Ghe_Chon = Danh_sach_Ghe_trong.FirstOrDefault(x => x.Ma_so == Ma_so);
         Chuoi_HTML_Ket_qua = Ung_dung.Chon_Ghe(Ghe_Chon);
     }
+    else if(Ma_so_Chuc_nang == "TIEP_TUC")
+    {
+        Response.Redirect("MH_Thong_tin_Ca_nhan.cshtml");
+    }
 }
 
 <!DOCTYPE html>
@@ -41,6 +45,7 @@
             </div>
         </form>
         <form id="TIEP_TUC" action="MH_Chon_Ghe.cshtml" method="post">
+            <input name='Th_Ma_so_Chuc_nang' type='hidden' value='TIEP_TUC' />
             <button id="myButton" type="submit" class="float-left submit-button">Tiếp tục</button>
         </form>
         

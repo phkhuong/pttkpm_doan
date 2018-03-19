@@ -171,6 +171,51 @@ public partial class XL_UNG_DUNG
 
         return Chuoi_HTML;
     }
+
+    public string Tao_chuoi_Nhap_Thong_tin_Ca_nhan()
+    {
+        var Chuoi_HTML = $"<form id='DAT_VE' method='post'>" +
+            $"<input name='Th_Ma_so_Chuc_nang' type='hidden' value='DAT_VE'/>" +
+            $"<div class='form-group row'>" +
+            $"<label for='Th_Ho_ten' class='col-2 col-form-label'>Họ Tên</label>" +
+            $"<div class='col-10'>" +
+            $"<input class='form-control' type='text' id='Th_Ho_ten' name='Th_Ho_ten'>" +
+            $"</div></div>"+
+            $"<div class='form-group row'>" +
+            $"<label for='Th_Email' class='col-2 col-form-label'>Email</label>" +
+            $"<div class='col-10'>" +
+            $"<input class='form-control' type='text' id='Th_Email' name='Th_Email'>" +
+            $"</div></div>"+
+            $"<div class='form-group row'>" +
+            $"<label for='Th_So_Dien_thoai' class='col-2 col-form-label'>Số điện thoại</label>" +
+            $"<div class='col-10'>" +
+            $"<input class='form-control' type='text' id='Th_So_Dien_thoai' name='Th_So_Dien_thoai'>" +
+            $"</div></div>"+
+            $"<div class='form-group row'>" +
+            $"<label for='Th_Ma_nhan_ve' class='col-2 col-form-label'>Mã Nhận Vé</label>" +
+            $"<div class='col-10'>" +
+            $"<input class='form-control' type='text' id='Th_Ma_nhan_ve' name='Th_Ma_nhan_ve'>" +
+            $"</div></div>"+
+            $"<button type='submit' class='btn btn-primary'>Đặt vé</button>"+
+            $"</form>";
+        return Chuoi_HTML;
+    }
+    public string Dat_ve()
+    {
+        var Chuoi_HTML = "";
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        string Kq = XL_DU_LIEU.Ghi_Dat_ve_Moi(Nguoi_dung_Dang_nhap.Phim_chon, Nguoi_dung_Dang_nhap.Dat_ve);
+        if(Kq == "OK")
+        {
+            Chuoi_HTML += $"<div class='alert alert-success'>Bạn đã đặt vé thành công</div>";
+        }
+        else
+        {
+            Chuoi_HTML += $"<div class='alert alert-warning'>Đã có lỗi xảy ra, vui lòng nhập lại thông tin</div>";
+        }
+        return Chuoi_HTML;
+
+    }
 }
 
 //************************* View-Layers/Prsenetaition VL/PL **********************************
@@ -354,5 +399,28 @@ public partial class XL_DU_LIEU
         var Du_lieu = Json.Decode<XL_DU_LIEU>(Chuoi_JSON);
 
         return Du_lieu;
+    }
+    public static string Ghi_Dat_ve_Moi(XL_PHIM Phim, XL_DAT_VE Dat_ve)
+    {
+        var Kq = "";
+        var Xu_ly = new WebClient();
+        Xu_ly.Encoding = System.Text.Encoding.UTF8;
+        var Tham_so = $"Ma_so_Xu_ly=GHI_DAT_VE_MOI&Ma_so_Phim={Phim.Ma_so}";
+        var Dia_chi_Xu_ly = $"{Dia_chi_Dich_vu_Quan_ly_Rap_Phim}?{Tham_so}";
+        var Chuoi_JSON = Json.Encode(Dat_ve);
+        try
+        {
+            Kq = Xu_ly.UploadString(Dia_chi_Xu_ly, Chuoi_JSON).Trim();
+        }
+        catch (Exception Loi)
+        {
+            Kq = Loi.Message;
+        }
+        if (Kq == "OK")
+        {
+
+        }
+        return Kq;
+
     }
 }

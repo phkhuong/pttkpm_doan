@@ -17,13 +17,12 @@
             var Du_lieu_Kq = Dich_vu.Tao_Du_lieu_Phan_he_Khach_Tham_quan();
             Chuoi_Kq = Json.Encode(Du_lieu_Kq);
         }
-        //else if (Ma_so_Xu_ly == "GHI_DAT_HANG_MOI")
-        //{
-        //    var Ma_so_Tivi = Request["Ma_so_Tivi"];
-        //    var Tivi = Du_lieu.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Tivi);
-        //    var Dat_hang = Json.Decode<XL_DAT_VE>(Chuoi_Nhan);
-        //    Chuoi_Kq = Du_lieu.Ghi_Dat_ve_Moi(Tivi, Dat_hang);
-        //}
+        else if (Ma_so_Xu_ly == "GHI_DAT_VE_MOI")
+        {
+            var Ma_so_Phim = Request["Ma_so_Phim"];
+            var Dat_ve = Json.Decode<XL_DAT_VE>(Chuoi_Nhan);
+            Chuoi_Kq = Dich_vu.Ghi_Dat_ve_Moi(Ma_so_Phim, Dat_ve);
+        }
 
     }
 

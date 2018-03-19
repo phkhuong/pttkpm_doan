@@ -137,6 +137,13 @@ public partial class XL_DICH_VU
         });
         return Du_lieu_Phan_he;
     }
+
+    public string Ghi_Dat_ve_Moi(string Ma_so_Phim, XL_DAT_VE Dat_ve)
+    {
+        var Phim = Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
+        var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Dat_ve_Moi(Phim,Dat_ve);
+        return Chuoi_Kq_Ghi;
+    }
 }
 //************************* Business-Layers BL **********************************
 public partial class XL_DICH_VU
@@ -241,7 +248,7 @@ public partial class XL_DU_LIEU
         });
         return Danh_sach_Phim;
     }
-  
+
     //******** Ghi *******
 
     //public string Ghi_Ban_ve_Moi(XL_PHIM Phim, XL_BAN_VE Ban_ve)
@@ -253,33 +260,39 @@ public partial class XL_DU_LIEU
     //        Phim.Danh_sach_Ban_ve.Remove(Ban_ve);
     //    return Kq;
     //}
-    //public string Ghi_Dat_ve_Moi(XL_PHIM Phim, XL_DAT_VE Dat_ve)
-    //{
-    //    var Kq = "";
-    //    Phim.Danh_sach_Dat_ve.Add(Dat_ve);
-    //    Kq = Ghi_Phim(Phim);
-    //    if (Kq != "OK")
-    //        Phim.Danh_sach_Dat_ve.Remove(Dat_ve);
-    //    return Kq;
-    //}
+    public static string Ghi_Dat_ve_Moi(XL_PHIM Phim, XL_DAT_VE Dat_ve)
+    {
+        var Kq = "";
+        Phim.Danh_sach_Dat_ve.Add(Dat_ve);
+        var Suat_chieu = Phim.Danh_sach_Suat_chieu.FirstOrDefault(x => x.Ma_so == Dat_ve.Suat_chieu.Ma_so);
+        Suat_chieu.Danh_sach_Ghe_trong.RemoveAll(Ghe_trong => Dat_ve.Danh_sach_Ghe_dat.Any(Ghe_dat => Ghe_dat.Ma_so == Ghe_trong.Ma_so));
+        Kq = Ghi_Phim(Phim);
+        if (Kq != "OK")
+        {
+            Phim.Danh_sach_Dat_ve.Remove(Dat_ve);
+            Dat_ve.Danh_sach_Ghe_dat.ForEach(Ghe_dat => Suat_chieu.Danh_sach_Ghe_trong.Add(Ghe_dat));
+        }
+            
+        return Kq;
+    }
 
-    //string Ghi_Phim(XL_PHIM Phim)
-    //{
-    //    var Kq = "";
-    //    var Duong_dan = $"{Thu_muc_Phim.FullName}\\{Phim.Ma_so}.json";
-    //    var Chuoi_JSON = Json.Encode(Phim);
-    //    try
-    //    {
-    //        File.WriteAllText(Duong_dan, Chuoi_JSON);
-    //        Kq = "OK";
+    static string Ghi_Phim(XL_PHIM Phim)
+    {
+        var Kq = "";
+        var Duong_dan = $"{Thu_muc_Phim.FullName}\\{Phim.Ma_so}.json";
+        var Chuoi_JSON = Json.Encode(Phim);
+        try
+        {
+            File.WriteAllText(Duong_dan, Chuoi_JSON);
+            Kq = "OK";
 
-    //    }
-    //    catch (Exception Loi)
-    //    {
-    //        Kq = Loi.Message;
-    //    }
-    //    return Kq;
+        }
+        catch (Exception Loi)
+        {
+            Kq = Loi.Message;
+        }
+        return Kq;
 
-    //}
+    }
 
 }

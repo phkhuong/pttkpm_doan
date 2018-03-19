@@ -95,6 +95,7 @@
     <Content Include="1-Man_hinh_Giao_dien\MH_Chi_tiet_Phim.cshtml" />
     <Content Include="1-Man_hinh_Giao_dien\MH_Xu_ly_Ajax.cshtml" />
     <Content Include="1-Man_hinh_Giao_dien\MH_Chon_Ghe.cshtml" />
+    <Content Include="1-Man_hinh_Giao_dien\MH_Thong_tin_Ca_nhan.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
