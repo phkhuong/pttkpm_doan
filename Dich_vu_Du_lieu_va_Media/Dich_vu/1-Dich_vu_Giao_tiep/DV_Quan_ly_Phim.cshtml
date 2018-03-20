@@ -1,6 +1,7 @@
 ﻿@{
     // *********Khởi động Dữ liệu nguồn/nội bộ ********
     var Dich_vu = XL_DICH_VU.Khoi_dong_Dich_vu();
+    var Du_lieu = Dich_vu.Tao_Du_lieu_Phan_he_Quan_ly_Phim();
 
     //*********Khai báo Biến/Đối tượng :Nhận & Kết quả *********
     var Ma_so_Xu_ly = ""; // Biến Nhận
@@ -14,13 +15,18 @@
         var Chuoi_Nhan = Bo_doc.ReadToEnd(); // Nhận Đối tượng
         if (Ma_so_Xu_ly == "KHOI_DONG_DU_LIEU_PHAN_HE_QUAN_LY_PHIM")
         {
-            var Du_lieu_Kq = Dich_vu.Tao_Du_lieu_Phan_he_Quan_ly_Phim();
+            var Du_lieu_Kq = Du_lieu;
+            Chuoi_Kq = Json.Encode(Du_lieu_Kq);
+        } else if(Ma_so_Xu_ly == "DANH_SACH_PHIM")
+        {
+            var Du_lieu_Kq = Du_lieu.Danh_sach_Phim;
             Chuoi_Kq = Json.Encode(Du_lieu_Kq);
         }
     }
 
     // Xử lý trả Kết quả
     Response.ContentType = "text/json";
+    Response.AddHeader("Access-Control-Allow-Origin", "*");
     Response.Write(Chuoi_Kq);
 }
 
