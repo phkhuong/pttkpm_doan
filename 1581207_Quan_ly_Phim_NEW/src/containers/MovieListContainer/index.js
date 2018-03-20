@@ -28,24 +28,26 @@ export class MovieListContainer extends React.Component {
 // console.log(this.props);
         const movie = this.props.selectedMovie;
         const getMovie = this.props.selectMovie;
-        // const MoviePage = (props) => {
-        //     return (
-        //         <MovieDetail selectMovie={getMovie} movie={movie} {...props} />
-        //     );
-        // };
+ 
         return (
             <div>
                 
                 {
+                    this.props.error !== '' ?
+                        <h1 style={{ color: 'red' }}>{this.props.error}</h1> :
+                        <MovieList select={this.props.selectMovie} movies={this.props.movies} />
+                        
+                }
+                {/* {
                     this.props.error !== '' &&
                         <h1 style={{ color: 'red' }}>{this.props.error}</h1> 
                         
-                }
+                } */}
                 
-                <Switch>
+                {/* <Switch>
                     <Route path="/movies" exact component={Movies} />
                     <Route path="/movies/:id" component={MovieDetailContainer} />
-                </Switch>
+                </Switch> */}
             </div>
         );
     }

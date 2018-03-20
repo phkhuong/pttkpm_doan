@@ -50,8 +50,8 @@ class App extends Component {
                 <Route path='/' exact component={Home} />
                 <Route path='/about' component={About} />
                 <Route path='/counter' component={CounterContainer} />
-                {/* <Route path='/movies/:id' component={MovieDetailContainer} /> */}
-                <Route path='/movies' component={MovieListContainer} />
+                <Route path='/movies' exact component={MovieListContainer} />
+                <Route path='/movies/:id' component={MovieDetailContainer} />
               </Switch>
             </div>
           </Content>

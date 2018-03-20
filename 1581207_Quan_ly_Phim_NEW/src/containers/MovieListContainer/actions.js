@@ -1,4 +1,10 @@
-import { REQUEST_MOVIES, REQUEST_MOVIES_SUCCESS, REQUEST_MOVIES_FAIL, SELECT_MOVIE} from './constants'
+import { 
+    REQUEST_MOVIES, 
+    REQUEST_MOVIES_SUCCESS, 
+    REQUEST_MOVIES_FAIL, 
+    SELECT_MOVIE,
+    SELECT_MOVIE_SUCCESS,
+} from './constants';
 import 'whatwg-fetch';
 import { Dia_chi_Get_Danh_sach_Phim } from "../../api";
 
@@ -31,8 +37,6 @@ function parseJSON(response) {
     return response.json()
 }
 
-
-
 export function requestMovies() {
     return function (dispatch) {
         return fetchMovies().then(
@@ -46,6 +50,9 @@ export function requestMovies() {
         )
     }
 }
+
+
+
 export function requestMoviesSuccess(movies) {
     return {
         type: REQUEST_MOVIES_SUCCESS,
@@ -60,9 +67,41 @@ export function requestMoviesFail(error) {
 }
 
 
-export function selectMovie(id) {
+export function selectMovieSuccess(selectedMovie) {
     return {
-        type: SELECT_MOVIE,
-        id,
+        type: SELECT_MOVIE_SUCCESS,
+        selectedMovie,
     }
+}
+export function selectMovie(id) {
+    return (dispatch, getState) => {
+        if (shouldFetchMovies(getState(), id)) {
+            // Dispatch a thunk from thunk!
+            return fetchMovies().then(
+                function (data) {
+                    dispatch(requestMoviesSuccess(data));
+                    const movie = getState().MovieListContainerState.movies.find(m => m.Ma_so === id);
+                    dispatch(selectMovieSuccess(movie));
+                },
+                function (err) {
+                    return dispatch(requestMoviesFail(err.message));
+                }
+            );
+        } else {
+            // Let the calling code know there's nothing to wait for.
+            const movie = getState().movies.find(m => m.Ma_so === id);
+            dispatch(selectMovieSuccess(movie));
+        }
+    }
+}
+function shouldFetchMovies(state, id) {
+    if (state.MovieListContainerState.movies){
+        return true;
+    }
+    console.log(state);
+    const movie = state.MovieListContainerState.movies.find(m => m.Ma_so == id);
+    if (!movie) {
+        return true
+    }
+    return false;
 }
