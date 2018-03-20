@@ -26,6 +26,7 @@ ul > li {
     margin: 0 10px 10px 0;
     border: 1px solid #ced0da;
     color: #43464b;
+    cursor:pointer;
 }
 ul > li:hover {
     border: 1px solid #f26b38;

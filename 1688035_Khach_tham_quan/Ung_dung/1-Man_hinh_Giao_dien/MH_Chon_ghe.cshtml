@@ -21,6 +21,10 @@
     {
         Response.Redirect("MH_Thong_tin_Ca_nhan.cshtml");
     }
+    else if(Ma_so_Chuc_nang == "QUAY_LAI")
+    {
+        Response.Redirect("MH_Chi_tiet_Phim.cshtml");
+    }
 }
 
 <!DOCTYPE html>
@@ -33,21 +37,69 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link rel="stylesheet" href="DD_Chon_Ghe.css?v=@DateTime.Now.Ticks" type="text/css" />
         <title></title>
     </head>
 
     <body>
-        <form id="CHON_GHE" action="MH_Chon_Ghe.cshtml" method="post">
-            <input name="Th_Ma_so_Ghe" id="Th_Ma_so_Ghe" type="hidden" />
-            <input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_GHE' />
-            <div>
-                @Html.Raw(Chuoi_HTML_Ket_qua)
+        <div class="container">
+            @*<form id='CHON_GHE' action='MH_Chon_Ghe.cshtml' method='post'>
+                <input name='Th_Ma_so_Ghe' id='Th_Ma_so_Ghe' type='hidden' />
+                <input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_GHE' />
+                <div class='row'>
+                    <div class='col-md-9'>
+                        <div class='ticket-wrapper'>
+                            <div class='booking-bg'>
+                                <div class='row'>
+                                    <div class='col-md-12'>
+                                        <section class='booking-ticket'>
+                                            <h2 class='booking-title'>Chọn Ghế: &nbsp;</h2>
+                                            <div class='seat-map-wrapper'>
+                                                <div class='col-md-12'>
+                                                    <div class='seat-map ng-scope'>
+                                                        @Html.Raw(Chuoi_HTML_Ket_qua)
+                                                    </div>
+                                                    <div class='screen'>
+                                                        Màn Hình
+                                                    </div>
+                                                    <div class='seat-cinema'>
+                                                        <span class='seat-cinema-selected'>Ghế đang chọn</span>
+                                                        <span class='seat-cinema-unavailable'>Ghế đã bán</span>
+                                                        <span class='seat-cinema-normal'>Có thể chọn</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class='col-md-3'>
+                        <div class='ticket-header'>
+                            <section class='ticket-feature'>
+                                <article class='row'>
+                                    <div class='col-md-12' style='text-align:center'></div>
+                                    <div class='col-md-12'>
+
+                                    </div>
+                                </article>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </form>*@
+            @Html.Raw(Chuoi_HTML_Ket_qua)
+            <div class="col-md-9 text-center">
+                <form id="DIEU_HUONG" action="MH_Chon_Ghe.cshtml" method="post">
+                    <input id='Th_Ma_so_Chuc_nang' name='Th_Ma_so_Chuc_nang' type='hidden' />
+                    <button class="btn btn-primary" type="button" style="border-radius:0;background-color:#f26b38;border:none;" onclick="Th_Ma_so_Chuc_nang.value = 'QUAY_LAI';DIEU_HUONG.submit()">Quay lại</button>
+                    <button class="btn btn-primary" type="button" style="border-radius:0;background-color:#f26b38;border:none;" onclick="Th_Ma_so_Chuc_nang.value = 'TIEP_TUC';DIEU_HUONG.submit()">Tiếp tục</button>
+                </form>
             </div>
-        </form>
-        <form id="TIEP_TUC" action="MH_Chon_Ghe.cshtml" method="post">
-            <input name='Th_Ma_so_Chuc_nang' type='hidden' value='TIEP_TUC' />
-            <button id="myButton" type="submit" class="float-left submit-button">Tiếp tục</button>
-        </form>
-        
+            
+        </div>
     </body>
 </html>

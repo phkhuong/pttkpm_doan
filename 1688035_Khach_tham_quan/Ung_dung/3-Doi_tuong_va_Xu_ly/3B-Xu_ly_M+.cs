@@ -64,15 +64,14 @@ public partial class XL_UNG_DUNG
         var Chuoi_HTML = Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(Nguoi_dung_Dang_nhap);
         return Chuoi_HTML;
     }
-    public string Khoi_dong_Man_hinh_Chi_tiet_Phim()
+    public string Xem_Danh_sach_Phim_dang_chieu()
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
-        // Xử lý 
-
-        // Tạo chuỗi HTML kết quả xem 
-        var Chuoi_HTML = Tao_Chuoi_HTML_Chi_tiet_Phim(Nguoi_dung_Dang_nhap.Phim_chon,Nguoi_dung_Dang_nhap);
+        Nguoi_dung_Dang_nhap.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
+        var Chuoi_HTML = Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(Nguoi_dung_Dang_nhap);
         return Chuoi_HTML;
     }
+    
     public string Tra_cuu(string Chuoi_Tra_cuu)
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
@@ -99,7 +98,15 @@ public partial class XL_UNG_DUNG
             $"</div>";
         return Chuoi_HTML;
     }
+    public string Khoi_dong_Man_hinh_Chi_tiet_Phim()
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        // Xử lý 
 
+        // Tạo chuỗi HTML kết quả xem 
+        var Chuoi_HTML = Tao_Chuoi_HTML_Chi_tiet_Phim(Nguoi_dung_Dang_nhap.Phim_chon, Nguoi_dung_Dang_nhap);
+        return Chuoi_HTML;
+    }
     public string Tao_Chuoi_HTML_Chi_tiet_Phim(XL_PHIM Phim, XL_NGUOI_DUNG_KHACH_THAM_QUAN Nguoi_dung_Dang_nhap)
     {
         var Chuoi_HTML = $"<div>" +
@@ -112,7 +119,8 @@ public partial class XL_UNG_DUNG
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
         var Danh_sach_Ghe_Chon = Nguoi_dung_Dang_nhap.Dat_ve.Danh_sach_Ghe_dat;
-        var Chuoi_HTML = Tao_Chuoi_Danh_sach_Ghe(Danh_sach_Ghe_Chon);
+        //var Chuoi_HTML = Tao_Chuoi_Danh_sach_Ghe(Danh_sach_Ghe_Chon);
+        var Chuoi_HTML = Tao_chuoi_HTML_Man_hinh_Chon_Ghe(Danh_sach_Ghe_Chon);
         return Chuoi_HTML;
     }
 
@@ -135,7 +143,8 @@ public partial class XL_UNG_DUNG
         {
             Danh_sach_Ghe_Chon.Add(Ghe_Chon);
         }
-        var Chuoi_HTML = Tao_Chuoi_Danh_sach_Ghe(Danh_sach_Ghe_Chon);
+        //var Chuoi_HTML = Tao_Chuoi_Danh_sach_Ghe(Danh_sach_Ghe_Chon);
+        var Chuoi_HTML = Tao_chuoi_HTML_Man_hinh_Chon_Ghe(Danh_sach_Ghe_Chon);
         return Chuoi_HTML;
 
     }
@@ -171,10 +180,53 @@ public partial class XL_UNG_DUNG
 
         return Chuoi_HTML;
     }
+    public string Tao_chuoi_HTML_Man_hinh_Chon_Ghe(List<XL_GHE> Danh_sach_Ghe_Chon)
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        var Chuoi_HTML =
+                $"<div class='row'><div class='col-md-9'>" +
+                $" <form id='CHON_GHE' action='MH_Chon_Ghe.cshtml' method='post'>" +
+                $"<input name='Th_Ma_so_Ghe' id='Th_Ma_so_Ghe' type='hidden' />" +
+                $"<input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_GHE' />" +
+                $"<div class='ticket-wrapper'>" +
+                            $"<div class='booking-bg'><div class='row'><div class='col-md-12'>" +
+                                        $"<section class='booking-ticket'><h2 class='booking-title'>Chọn Ghế: &nbsp;</h2>" +
+                                            $"<div class='seat-map-wrapper'><div class='col-md-12'><div class='seat-map ng-scope'>" +
+                                                        $"{Tao_Chuoi_Danh_sach_Ghe(Danh_sach_Ghe_Chon)}" +
+                                                    $"</div><div class='screen'>Màn Hình</div>" +
+                                                    $"<div class='seat-cinema'>" +
+                                                        $"<span class='seat-cinema-selected'>Ghế đang chọn</span>" +
+                                                        $"<span class='seat-cinema-unavailable'>Ghế đã bán</span>" +
+                                                        $"<span class='seat-cinema-normal'>Có thể chọn</span>" +
+                                                    $"</div></div></div></section></div></div></div>" +
+
+                        $"</div>" +
+                    $"</div></form>" +
+
+                    $"<div class='col-md-3'><div class='ticket-header'><section class='ticket-feature'>" +
+                                $"<article class='row'><div class='col-md-12' style='text-align:center'></div>" +
+                                    $"{Tao_Bang_Thong_tin_Ve(Nguoi_dung_Dang_nhap)}" +
+                                $"</article></section></div></div></div>";
+        return Chuoi_HTML;
+    }
+
+    public string Tao_chuoi_HTML_Man_hinh_Thong_tin_Ca_nhan()
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        var Chuoi_HTML = $"<div class='row'><div class='col-md-9'>" +
+            $"{Tao_chuoi_Nhap_Thong_tin_Ca_nhan()}" +
+            $"</div>"+
+            $"<div class='col-md-3'><div class='ticket-header'><section class='ticket-feature'>" +
+                                $"<article class='row'><div class='col-md-12' style='text-align:center'></div>" +
+                                    $"{Tao_Bang_Thong_tin_Ve(Nguoi_dung_Dang_nhap)}" +
+                                $"</article></section></div></div></div>";
+        return Chuoi_HTML;
+    }
 
     public string Tao_chuoi_Nhap_Thong_tin_Ca_nhan()
     {
-        var Chuoi_HTML = $"<form id='DAT_VE' method='post'>" +
+        var Chuoi_HTML = $"<h3>Thông Tin Cá Nhân</h3>" +
+            $"<form id='DAT_VE' method='post'>" +
             $"<input name='Th_Ma_so_Chuc_nang' type='hidden' value='DAT_VE'/>" +
             $"<div class='form-group row'>" +
             $"<label for='Th_Ho_ten' class='col-2 col-form-label'>Họ Tên</label>" +
@@ -196,7 +248,6 @@ public partial class XL_UNG_DUNG
             $"<div class='col-10'>" +
             $"<input class='form-control' type='text' id='Th_Ma_nhan_ve' name='Th_Ma_nhan_ve'>" +
             $"</div></div>"+
-            $"<button type='submit' class='btn btn-primary'>Đặt vé</button>"+
             $"</form>";
         return Chuoi_HTML;
     }
@@ -352,6 +403,41 @@ public partial class XL_UNG_DUNG
             Chuoi_HTML += $"</ul></li><li style='display:inline-block;text-align:center;width: 20px;height: 20px;border: solid 1px;margin-left:2px;'>{Hang_ghe}</li></ul>";
         return Chuoi_HTML;
     }
+
+    public string Tao_Bang_Thong_tin_Ve(XL_NGUOI_DUNG_KHACH_THAM_QUAN Nguoi_dung)
+    {
+        var Chuoi_HTML = $"<div class='col-md-12'><div class='ticket-detail'>";
+        var Ten_Phim = Nguoi_dung.Phim_chon.Ten;
+        var Ten_Phim_Tieng_Anh = Nguoi_dung.Phim_chon.Ten_tieng_Anh;
+        var Rap = Nguoi_dung.Dat_ve.Suat_chieu.Rap.Ten;
+        var Phong_chieu = Nguoi_dung.Dat_ve.Suat_chieu.Phong_chieu.Ten;
+        var Thoi_gian = Nguoi_dung.Dat_ve.Suat_chieu.Bat_dau.ToString("dddd, dd/MM/yyyy hh:mm", Dinh_dang_VN);
+        var Danh_sach_Ghe_dat = Nguoi_dung.Dat_ve.Danh_sach_Ghe_dat;
+        var So_ve_Da_dat = Nguoi_dung.Dat_ve.Danh_sach_Ghe_dat.Count();
+        var So_luong = Nguoi_dung.Dat_ve.So_luong.ToString();
+        var Tien = Nguoi_dung.Dat_ve.Tien.ToString("n0", Dinh_dang_VN);
+
+        var Chuoi_Thong_tin = $"<h2 class='ticket-title'>{Ten_Phim}</h2>" +
+            $"<h2 class='ticket-title en'>{Ten_Phim_Tieng_Anh}</h2>" +
+            $"<div class='ticket-info'>" +
+            $"<p><b>Rạp: &nbsp;</b>{Rap} | {Phong_chieu}</p>" +
+            $"<p><b>Suất chiếu: &nbsp;</b>{Thoi_gian}</p>" +
+            $"<p><b>Số lượng vé đặt: &nbsp;</b>{So_luong}</p>" +
+            $"<p><b>Ghế: &nbsp;</b>";
+        for(int i = 0; i< So_ve_Da_dat; i++)
+        {
+            if (i == So_ve_Da_dat - 1)
+                Chuoi_Thong_tin += Danh_sach_Ghe_dat[i].Ma_so;
+            else
+                Chuoi_Thong_tin += Danh_sach_Ghe_dat[i].Ma_so + ", ";
+        }
+        Chuoi_Thong_tin+= $"</p>" +
+            $"</div>" +
+            $"<div class='ticket-price-total'>" +
+            $"<p><b>Tổng tiền: &nbsp;</b><span>{Tien}</span></p>" + $"</div>";
+        Chuoi_HTML += Chuoi_Thong_tin + $"</div></div>";
+        return Chuoi_HTML;
+    }
 }
 
 
@@ -418,7 +504,8 @@ public partial class XL_DU_LIEU
         }
         if (Kq == "OK")
         {
-
+            var Suat_chieu = Phim.Danh_sach_Suat_chieu.FirstOrDefault(x => x.Ma_so == Dat_ve.Suat_chieu.Ma_so);
+            Suat_chieu.Danh_sach_Ghe_trong.RemoveAll(Ghe_trong => Dat_ve.Danh_sach_Ghe_dat.Any(Ghe_dat => Ghe_dat.Ma_so == Ghe_trong.Ma_so));
         }
         return Kq;
 
