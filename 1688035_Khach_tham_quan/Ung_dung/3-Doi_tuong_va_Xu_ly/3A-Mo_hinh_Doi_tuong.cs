@@ -6,11 +6,11 @@ using System.Web;
 public partial class XL_DU_LIEU
 {
     public XL_CONG_TY Cong_ty = new XL_CONG_TY();
-    public List<XL_NGUOI_DUNG_KHACH_THAM_QUAN> Danh_sach_Nguoi_dung_Khach_tham_quan = new List<XL_NGUOI_DUNG_KHACH_THAM_QUAN>();
+    public List<XL_NGUOI_DUNG> Danh_sach_Nguoi_dung_Khach_tham_quan = new List<XL_NGUOI_DUNG>();
     public List<XL_PHIM> Danh_sach_Phim = new List<XL_PHIM>();
 }
 //=========== Đối tượng  Con người ===============
-public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
+public class XL_NGUOI_DUNG
 {
     public string Ho_ten, Dien_thoai, Email, Ma_so = "", Ten_Dang_nhap, Mat_khau;
     public long Diem_tich_luy;
@@ -19,6 +19,12 @@ public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
     public XL_PHIM Phim_chon = new XL_PHIM();
     public XL_DAT_VE Dat_ve = new XL_DAT_VE();
 }
+public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
+{
+    public string Ho_ten, Dien_thoai, Email, Ma_so = "", Ten_Dang_nhap, Mat_khau;
+    public long Diem_tich_luy;
+}
+
 //*************************** Đối tượng Tổ chức  *********
 public class XL_CONG_TY
 {
@@ -73,7 +79,7 @@ public class XL_DAT_VE
     public XL_SUAT_CHIEU Suat_chieu = new XL_SUAT_CHIEU();
     public DateTime Ngay_dat = DateTime.Now, Ngay_thanh_toan = DateTime.Now, Ngay_huy = DateTime.Now;
     public long Don_gia,So_luong,Tien;
-    public XL_KHACH_HANG Khach_hang = new XL_KHACH_HANG();
+    public XL_NGUOI_DUNG_KHACH_THAM_QUAN Nguoi_dung_Khach_tham_quan = new XL_NGUOI_DUNG_KHACH_THAM_QUAN();
     public string Trang_thai= "DAT_VE";
 
 }

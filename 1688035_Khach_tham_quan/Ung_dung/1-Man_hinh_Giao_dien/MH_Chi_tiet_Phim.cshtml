@@ -1,7 +1,7 @@
 ﻿@{
     //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
     var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
-    var Nguoi_dung = (XL_NGUOI_DUNG_KHACH_THAM_QUAN)Session["Nguoi_dung_Dang_Nhap"];
+    var Nguoi_dung = (XL_NGUOI_DUNG)Session["Nguoi_dung_Dang_Nhap"];
     Nguoi_dung.Dat_ve.Danh_sach_Ghe_dat.Clear();
     //******************* Khai báo Biến  ********************
     var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
