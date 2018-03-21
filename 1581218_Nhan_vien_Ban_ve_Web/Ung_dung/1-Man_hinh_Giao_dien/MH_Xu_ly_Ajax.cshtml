@@ -1,21 +1,21 @@
 ﻿@{
-    XL_DU_LIEU Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
-    var Cong_ty = Du_lieu.Cong_ty;
-    var Danh_sach_Phim = Du_lieu.Danh_sach_Phim;
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+    var Cong_ty = Ung_dung.Du_lieu_Ung_dung.Cong_ty;
+    var Danh_sach_Phim = Ung_dung.Du_lieu_Ung_dung.Danh_sach_Phim;
     var Ma_so_Xu_ly = ""; // Biến Nhận
     var Chuoi_Kq = ""; // Biến Kêt quả
 
     //*********Xử lý Nhập liệu Nếu có + Tạo Kết quả Nếu Hợp lệ  *********
     if (Request["Ma_so_Xu_ly"] != null)
     {
-        Ma_so_Xu_ly = Request["Ma_so_Xu_ly"];// Nhận Tham số 
-        if(Ma_so_Xu_ly == "CHON_NGAY")
+        Ma_so_Xu_ly = Request["Ma_so_Xu_ly"];// Nhận Tham số
+        if (Ma_so_Xu_ly == "CHON_NGAY")
         {
             var Ma_so_Phim = Request["Ma_so_Phim"];
             var Chuoi_Ngay = Request["Ngay"];
-            var Phim = Du_lieu.Tim_Phim(Ma_so_Phim, Danh_sach_Phim);
+            var Phim = Ung_dung.Tim_Phim(Ma_so_Phim, Danh_sach_Phim);
             var Ngay = DateTime.Parse(Chuoi_Ngay);
-            var Chuoi_Danh_sach_Suat_chieu = Du_lieu.Tao_Chuoi_Suat_chieu(Phim, Cong_ty.Danh_sach_Rap, Ngay);
+            var Chuoi_Danh_sach_Suat_chieu = Ung_dung.Tao_Chuoi_Suat_chieu(Phim, Cong_ty.Danh_sach_Rap, Ngay);
             Chuoi_Kq += Chuoi_Danh_sach_Suat_chieu;
         }
     }

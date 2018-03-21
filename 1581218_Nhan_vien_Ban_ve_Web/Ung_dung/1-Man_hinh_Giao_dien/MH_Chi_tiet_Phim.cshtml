@@ -1,14 +1,27 @@
 ﻿@{
     //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
-    var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
-    var Cong_ty = Du_lieu.Cong_ty;
-    var Danh_sach_Rap = Du_lieu.Cong_ty.Danh_sach_Rap;
-    var Danh_sach_Phim = Du_lieu.Danh_sach_Phim;
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+    var Nguoi_dung = (XL_NGUOI_DUNG)Session["Nguoi_dung_Dang_Nhap"];
+    Nguoi_dung.Dat_ve.Danh_sach_Ghe_dat.Clear();
     //******************* Khai báo Biến  ********************
-    var Ma_so = (string)Session["Ma_so_Phim"];
-    var Phim = Du_lieu.Tim_Phim(Ma_so, Danh_sach_Phim);
-   // var Chuoi_Html_Suat_chieu = Du_lieu.Tao_Chuoi_Suat_chieu(Phim, Danh_sach_Rap);
-    var Chuoi_Html_Phim = Du_lieu.Tao_Chuoi_Chi_tiet_Phim(Phim);
+    var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
+    if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
+    var Chuoi_HTML_Ket_qua = "";
+    if (Ma_so_Chuc_nang == "KHOI_DONG")
+    {
+        Chuoi_HTML_Ket_qua = Ung_dung.Khoi_dong_Man_hinh_Chi_tiet_Phim();
+    }
+    else if (Ma_so_Chuc_nang == "CHON_SUAT_CHIEU")
+    {
+        var Ma_so_Suat_chieu = Request["Th_Ma_so_Suat_chieu"];
+        var Chuoi_So_luong = Request["Th_So_luong"];
+        var Suat_chieu = Ung_dung.Tim_Suat_chieu(Ma_so_Suat_chieu, Nguoi_dung.Phim_chon);
+        var So_luong = int.Parse(Chuoi_So_luong);
+        Nguoi_dung.Dat_ve.Suat_chieu = Suat_chieu;
+        Nguoi_dung.Dat_ve.So_luong = So_luong;
+        Nguoi_dung.Dat_ve.Tien = So_luong * Nguoi_dung.Phim_chon.Don_gia;
+        Response.Redirect("MH_Chon_Ghe");
+    }
     //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
 
 }
@@ -30,16 +43,19 @@
 <body>
     <div class="container" style="padding-top:20px;">
         <h3>LỊCH CHIẾU</h3>
-        <form style="margin:30px 0px;">
-            <label for="Ngay">Chọn ngày</label>
-            <input id="Ngay" type="date" value="2018-02-09" onchange="chonNgay(this.value)" style="margin-left:20px"/>
-            <input id="Ma_so_Phim" type="hidden" value="@Phim.Ma_so" />
+        <form id='MH_CHI_TIET_PHIM' name='MH_CHI_TIET_PHIM' method='post' style="margin:30px 0px;">
+            <label for="Th_Ngay">Chọn ngày: </label>
+            <input id="Th_Ngay" name="Th_Ngay" type="date" value="2018-02-09" onchange="chonNgay(this.value)" style="margin-left:20px" />
+            <label for="Th_So_luong">Số lượng vé: </label>
+            <input id="Th_So_luong" name="Th_So_luong" type="number" value="1" />
+            <input id="Ma_so_Phim" type="hidden" value="@Nguoi_dung.Phim_chon.Ma_so" />
+            <input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_SUAT_CHIEU' />
+            <input name='Th_Ma_so_Suat_chieu' id='Th_Ma_so_Suat_chieu' type='hidden' />
+            <div id="Kq">
+                @*  Chuỗi két quả danh sách suất chiếu từ Xử lý Ajax*@
+            </div>
         </form>
-        <div id="Kq">
-
-        </div>
-      @*  @Html.Raw(Chuoi_Html_Suat_chieu)*@
-        @Html.Raw(Chuoi_Html_Phim)
+        @Html.Raw(Chuoi_HTML_Ket_qua)
     </div>
 </body>
 </html>
@@ -59,5 +75,5 @@
         xhttp.open("GET", "MH_Xu_ly_Ajax.cshtml?Ma_so_Xu_ly=CHON_NGAY&Ma_so_Phim=" + Ma_so_Phim.value + "&Ngay=" + str, true);
         xhttp.send();
     }
-    chonNgay(Ngay.value);
+    chonNgay(Th_Ngay.value);
 </script>

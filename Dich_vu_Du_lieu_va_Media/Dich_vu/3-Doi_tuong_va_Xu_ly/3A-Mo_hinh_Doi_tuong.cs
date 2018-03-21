@@ -105,7 +105,7 @@ public class XL_BAN_VE
 {
     public string Ma_so = "";
     public DateTime Ngay = DateTime.Now;
-    public List<XL_GHE> Danh_sach_Ghe_dat = new List<XL_GHE>();
+    public List<XL_GHE> Danh_sach_Ghe_ban = new List<XL_GHE>();
     public XL_SUAT_CHIEU Suat_chieu = new XL_SUAT_CHIEU();
     public long Don_gia, So_luong, Tien;
     public XL_NGUOI_DUNG_NOI_BO Nhan_vien_Ban_ve = new XL_NGUOI_DUNG_NOI_BO();
