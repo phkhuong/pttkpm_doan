@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import ScrollToTop from "./components/ScrollToTop";
 import registerServiceWorker from './registerServiceWorker';
 
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
@@ -16,7 +17,9 @@ const store = configureStore(initialState);
 const Root = () => (
     <Provider store={store}>
         <Router>
-            <App />
+            <ScrollToTop>
+                <App />
+            </ScrollToTop>
         </Router>
     </Provider>
 )

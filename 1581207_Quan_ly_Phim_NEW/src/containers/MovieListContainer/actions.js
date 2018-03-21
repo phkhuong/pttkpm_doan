@@ -4,9 +4,12 @@ import {
     REQUEST_MOVIES_FAIL, 
     SELECT_MOVIE,
     SELECT_MOVIE_SUCCESS,
+    USER_LOGIN_REQUEST,
+    USER_LOGIN_SUCCESS,
+    USER_LOGIN_FAIL,
 } from './constants';
 import 'whatwg-fetch';
-import { Dia_chi_Get_Danh_sach_Phim } from "../../api";
+import { Dia_chi_Get_Danh_sach_Phim, Dia_chi_Dang_nhap } from "../../api";
 
 function fetchMovies() {
     return fetch(Dia_chi_Get_Danh_sach_Phim)
@@ -37,6 +40,7 @@ function parseJSON(response) {
     return response.json()
 }
 
+// async action, redux-thunk
 export function requestMovies() {
     return function (dispatch) {
         return fetchMovies().then(
@@ -104,4 +108,44 @@ function shouldFetchMovies(state, id) {
         return true
     }
     return false;
+}
+
+// send post request with username, password in body
+function sendLoginRequest(user) {
+    return fetch(Dia_chi_Dang_nhap,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+        .then(checkStatus)
+        .then(parseJSON);
+}
+export function requestLogin(user) {
+    return function (dispatch) {
+        return sendLoginRequest(user)
+            .then(
+                function (data) {
+                    // console.log(data);
+                    return dispatch(requestLoginSuccess(data));
+                },
+                function (err) {
+                    return dispatch(requestLoginFail(err.message));
+                }
+            )
+    }
+}
+
+export function requestLoginSuccess(user) {
+    return {
+        type: USER_LOGIN_SUCCESS,
+        user,
+    };
+}
+export function requestLoginFail(error) {
+    return {
+        type: USER_LOGIN_FAIL,
+        error,
+    };
 }
