@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link, NavLink, withRouter } from 'react-router-dom';
-
-// import { ConnectedRouter } from 'react-router-redux';
+import { connect } from "react-redux";
 
 
 import CounterContainer from './containers/CounterContainer';
 import MovieListContainer from './containers/MovieListContainer';
 import MovieDetailContainer from './containers/MovieDetailContainer';
+import LoginContainer from "./containers/LoginContainer";
 import Home from './components/home';
-import About from './components/about';
 import NavMenu from "./components/NavMenu";
+import PrivateRoute from "./components/PrivateRoute";
 
 import { Layout, Menu, Breadcrumb } from 'antd';
 import 'antd/dist/antd.css';
-import Counter from './components/Counter';
 
 const { Header, Content, Footer } = Layout;
 
@@ -36,7 +35,7 @@ class App extends Component {
         <Layout className="layout">
           <Header>
             <div className="logo" />
-            <NavMenu path={this.state.path} />
+            <NavMenu path={this.state.path} user={this.props.user} />
           </Header>
           <Content style={{ padding: '0 20px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
@@ -48,10 +47,10 @@ class App extends Component {
 
               <Switch>
                 <Route path='/' exact component={Home} />
-                <Route path='/about' component={About} />
-                <Route path='/counter' component={CounterContainer} />
-                {/* <Route path='/movies/:id' component={MovieDetailContainer} /> */}
-                <Route path='/movies' component={MovieListContainer} />
+                <Route path='/login' component={LoginContainer} />
+                <PrivateRoute path='/add' isLoggedIn={this.props.isLoggedIn} component={Home} />
+                <PrivateRoute path='/movies' exact isLoggedIn={this.props.isLoggedIn} component={MovieListContainer} />
+                <PrivateRoute path='/movies/:id' isLoggedIn={this.props.isLoggedIn} component={MovieDetailContainer} />
               </Switch>
             </div>
           </Content>
@@ -64,4 +63,11 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+function mapStateToProps(state) {
+  return {
+    user: state.MovieListContainerState.user,
+    isLoggedIn: state.MovieListContainerState.isLoggedIn,
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(App));

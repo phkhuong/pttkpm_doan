@@ -2,8 +2,6 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// import { withRouter } from 'react-router-dom';
-
 import { selectMovie } from '../MovieListContainer/actions';
 import MovieDetail from "../../components/MovieDetail";
 
@@ -18,9 +16,7 @@ export class MovieDetailContainer extends React.Component {
         // console.log(this.props);
         return (
             <div>
-                
                 <MovieDetail movie={this.props.movie} />
-
             </div>
         );
     }

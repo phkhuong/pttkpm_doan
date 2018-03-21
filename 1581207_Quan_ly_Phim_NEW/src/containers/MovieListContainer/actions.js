@@ -1,6 +1,15 @@
-import { REQUEST_MOVIES, REQUEST_MOVIES_SUCCESS, REQUEST_MOVIES_FAIL, SELECT_MOVIE} from './constants'
+import { 
+    REQUEST_MOVIES, 
+    REQUEST_MOVIES_SUCCESS, 
+    REQUEST_MOVIES_FAIL, 
+    SELECT_MOVIE,
+    SELECT_MOVIE_SUCCESS,
+    USER_LOGIN_REQUEST,
+    USER_LOGIN_SUCCESS,
+    USER_LOGIN_FAIL,
+} from './constants';
 import 'whatwg-fetch';
-import { Dia_chi_Get_Danh_sach_Phim } from "../../api";
+import { Dia_chi_Get_Danh_sach_Phim, Dia_chi_Dang_nhap } from "../../api";
 
 function fetchMovies() {
     return fetch(Dia_chi_Get_Danh_sach_Phim)
@@ -31,8 +40,7 @@ function parseJSON(response) {
     return response.json()
 }
 
-
-
+// async action, redux-thunk
 export function requestMovies() {
     return function (dispatch) {
         return fetchMovies().then(
@@ -46,6 +54,9 @@ export function requestMovies() {
         )
     }
 }
+
+
+
 export function requestMoviesSuccess(movies) {
     return {
         type: REQUEST_MOVIES_SUCCESS,
@@ -60,9 +71,81 @@ export function requestMoviesFail(error) {
 }
 
 
-export function selectMovie(id) {
+export function selectMovieSuccess(selectedMovie) {
     return {
-        type: SELECT_MOVIE,
-        id,
+        type: SELECT_MOVIE_SUCCESS,
+        selectedMovie,
     }
+}
+export function selectMovie(id) {
+    return (dispatch, getState) => {
+        if (shouldFetchMovies(getState(), id)) {
+            // Dispatch a thunk from thunk!
+            return fetchMovies().then(
+                function (data) {
+                    dispatch(requestMoviesSuccess(data));
+                    const movie = getState().MovieListContainerState.movies.find(m => m.Ma_so === id);
+                    dispatch(selectMovieSuccess(movie));
+                },
+                function (err) {
+                    return dispatch(requestMoviesFail(err.message));
+                }
+            );
+        } else {
+            // Let the calling code know there's nothing to wait for.
+            const movie = getState().movies.find(m => m.Ma_so === id);
+            dispatch(selectMovieSuccess(movie));
+        }
+    }
+}
+function shouldFetchMovies(state, id) {
+    if (state.MovieListContainerState.movies){
+        return true;
+    }
+    console.log(state);
+    const movie = state.MovieListContainerState.movies.find(m => m.Ma_so == id);
+    if (!movie) {
+        return true
+    }
+    return false;
+}
+
+// send post request with username, password in body
+function sendLoginRequest(user) {
+    return fetch(Dia_chi_Dang_nhap,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+        .then(checkStatus)
+        .then(parseJSON);
+}
+export function requestLogin(user) {
+    return function (dispatch) {
+        return sendLoginRequest(user)
+            .then(
+                function (data) {
+                    // console.log(data);
+                    return dispatch(requestLoginSuccess(data));
+                },
+                function (err) {
+                    return dispatch(requestLoginFail(err.message));
+                }
+            )
+    }
+}
+
+export function requestLoginSuccess(user) {
+    return {
+        type: USER_LOGIN_SUCCESS,
+        user,
+    };
+}
+export function requestLoginFail(error) {
+    return {
+        type: USER_LOGIN_FAIL,
+        error,
+    };
 }
