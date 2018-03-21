@@ -1,0 +1,105 @@
+﻿@{
+    //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+    var Nguoi_dung = (XL_NGUOI_DUNG)Session["Nguoi_dung_Dang_Nhap"];
+    var Danh_sach_Ghe_trong = Nguoi_dung.Ban_ve.Suat_chieu.Danh_sach_Ghe_trong;
+    //******************* Khai báo Biến  ********************
+    var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
+    if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
+    var Chuoi_HTML_Ket_qua = "";
+    if (Ma_so_Chuc_nang == "KHOI_DONG")
+    {
+        Chuoi_HTML_Ket_qua = Ung_dung.Khoi_dong_Man_hinh_Chon_Ghe();
+    }
+    else if (Ma_so_Chuc_nang == "CHON_GHE")
+    {
+        var Ma_so = Request["Th_Ma_so_Ghe"];
+        var Ghe_Chon = Danh_sach_Ghe_trong.FirstOrDefault(x => x.Ma_so == Ma_so);
+        Chuoi_HTML_Ket_qua = Ung_dung.Chon_Ghe(Ghe_Chon);
+    }
+    else if (Ma_so_Chuc_nang == "TIEP_TUC")
+    {
+        Response.Redirect("MH_Thong_tin_Ca_nhan.cshtml");
+    }
+    else if (Ma_so_Chuc_nang == "QUAY_LAI")
+    {
+        Response.Redirect("MH_Chi_tiet_Phim.cshtml");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="DD_Chon_Ghe.css?v=@DateTime.Now.Ticks" type="text/css" />
+    <title></title>
+</head>
+
+<body>
+    <div class="container">
+        @*<form id='CHON_GHE' action='MH_Chon_Ghe.cshtml' method='post'>
+                <input name='Th_Ma_so_Ghe' id='Th_Ma_so_Ghe' type='hidden' />
+                <input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_GHE' />
+                <div class='row'>
+                    <div class='col-md-9'>
+                        <div class='ticket-wrapper'>
+                            <div class='booking-bg'>
+                                <div class='row'>
+                                    <div class='col-md-12'>
+                                        <section class='booking-ticket'>
+                                            <h2 class='booking-title'>Chọn Ghế: &nbsp;</h2>
+                                            <div class='seat-map-wrapper'>
+                                                <div class='col-md-12'>
+                                                    <div class='seat-map ng-scope'>
+                                                        @Html.Raw(Chuoi_HTML_Ket_qua)
+                                                    </div>
+                                                    <div class='screen'>
+                                                        Màn Hình
+                                                    </div>
+                                                    <div class='seat-cinema'>
+                                                        <span class='seat-cinema-selected'>Ghế đang chọn</span>
+                                                        <span class='seat-cinema-unavailable'>Ghế đã bán</span>
+                                                        <span class='seat-cinema-normal'>Có thể chọn</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class='col-md-3'>
+                        <div class='ticket-header'>
+                            <section class='ticket-feature'>
+                                <article class='row'>
+                                    <div class='col-md-12' style='text-align:center'></div>
+                                    <div class='col-md-12'>
+
+                                    </div>
+                                </article>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </form>*@
+        @Html.Raw(Chuoi_HTML_Ket_qua)
+        <div class="col-md-9 text-center">
+            <form id="DIEU_HUONG" action="MH_Chon_Ghe.cshtml" method="post">
+                <input id='Th_Ma_so_Chuc_nang' name='Th_Ma_so_Chuc_nang' type='hidden' />
+                <button class="btn btn-primary" type="button" style="border-radius:0;background-color:#f26b38;border:none;" onclick="Th_Ma_so_Chuc_nang.value = 'QUAY_LAI';DIEU_HUONG.submit()">Quay lại</button>
+                <button class="btn btn-primary" type="button" style="border-radius:0;background-color:#f26b38;border:none;" onclick="Th_Ma_so_Chuc_nang.value = 'TIEP_TUC';DIEU_HUONG.submit()">Tiếp tục</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

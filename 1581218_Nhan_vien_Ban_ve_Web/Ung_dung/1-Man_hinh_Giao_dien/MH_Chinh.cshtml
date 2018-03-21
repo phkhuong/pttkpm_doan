@@ -1,24 +1,30 @@
 ﻿@{
-    //****************** Xử lý Bảo mật và Phân quyền  **********
-    var Nhan_vien = (XL_NGUOI_DUNG_NOI_BO)Session["Nhan_vien_Dang_nhap"];
-    if (Nhan_vien == null)
-    {
-        Response.Write("Người dùng chưa Đăng nhập");
-        Response.End();
-    }
     //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
-    var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
-    var Cong_ty = Du_lieu.Cong_ty;
-    var Chuoi_HTML_Nguoi_dung_Dang_nhap = Du_lieu.Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(Nhan_vien);
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+    var Nguoi_dung = (XL_NGUOI_DUNG)Session["Nguoi_dung_Dang_Nhap"];
+    //******************* Khai báo và Khởi động giá trị đầu cho Biến  ********************
+    var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
+    if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
 
-    Session["Chuoi_Tra_cuu"] = "";
-
-    if (IsPost)
+    var Chuoi_HTML_Ket_qua = "";
+    if (Ma_so_Chuc_nang == "KHOI_DONG")
     {
-        Session["Chuoi_Tra_cuu"] = Request["Th_Tra_cuu"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Khoi_dong_Man_hinh_chinh();
     }
-
-    var Chuoi_Tra_cuu = Session["Chuoi_Tra_cuu"];
+    else if (Ma_so_Chuc_nang == "TRA_CUU")
+    {
+        var Chuoi_Tra_cuu = Request["Th_Chuoi_Tra_cuu"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Tra_cuu(Chuoi_Tra_cuu);
+    }
+    else if (Ma_so_Chuc_nang == "CHON_PHIM")
+    {
+        var Ma_so_Phim = Request["Th_Ma_so_Phim"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Chon_Phim(Ma_so_Phim);
+    }
+    else if (Ma_so_Chuc_nang == "XEM_DANH_SACH_PHIM_DANG_CHIEU")
+    {
+        Chuoi_HTML_Ket_qua = Ung_dung.Xem_Danh_sach_Phim_dang_chieu();
+    }
 }
 
 <!DOCTYPE html>
@@ -33,84 +39,50 @@
     <link rel="stylesheet" href="DD_Chinh.css?v=@DateTime.Now.Ticks" type="text/css" />
 </head>
 <body>
-    <div class="container-fluid">        
+    <div class="container-fluid">
         <div class="row TIEU_DE justify-content-center">
             <div class="col-md-10 col-md-offset-1 content-section">
                 <div class="row align-items-center">
                     <div class="col-md-4 col-sm-4 col-4 text-center hidden-sm-down LOGO">
                         <a href="#">
-                            <img src="@Du_lieu.Dia_chi_Media/LOGO.png" />
+                            <img src="@Ung_dung.Dia_chi_Media/LOGO.png" />
                         </a>
                     </div>
                     <div class="col-md-4 col-sm-4 col-4 text-center hidden-md-up LOGO">
                         <a href="#">
-                            <img src="@Du_lieu.Dia_chi_Media/LOGO_MOBILE.png" style="width:70%" class="d-inline-block align-top" alt="">
+                            <img src="@Ung_dung.Dia_chi_Media/LOGO_MOBILE.png" style="width:70%" class="d-inline-block align-top" alt="">
                         </a>
                     </div>
                     <div class="TIM_KIEM col-md-8 col-sm-8 col-8">
-                        <form id="HE_THONG" name="HE_THONG" action="MH_Chinh.cshtml" method="post">
-                            <input type="text" id="Th_Tra_cuu" name="Th_Tra_cuu" value="@Chuoi_Tra_cuu" class="form-control" placeholder="Tìm tên phim..." />
+                        <form id="TRA_CUU" name="TRA_CUU" action="MH_Chinh.cshtml" method="post">
+                            <input name="Th_Ma_so_Chuc_nang" type="hidden" value="TRA_CUU" />
+                            <input type="text" id="Th_Chuoi_Tra_cuu" name="Th_Chuoi_Tra_cuu" class="form-control" placeholder="Tìm tên phim..." />
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div>
-            @Html.Raw(Chuoi_HTML_Nguoi_dung_Dang_nhap)
-        </div>
+
+
         <div class="row DANH_SACH_CHUC_NANG">
             <div class="container">
                 <table class="table-responsive">
                     <thead>
                         <tr id="Th_Danh_sach_Chuc_nang">
-                            <td id="MH_Danh_sach_Phim_dang_chieu" class="CHUC_NANG">
+                            <td id="MH_Danh_sach_Phim_dang_chieu" class="CHUC_NANG" onclick="XEM_DANH_SACH_PHIM_DANG_CHIEU.submit();">
                                 PHIM ĐANG CHIẾU
-                            </td>
-                            <td id="MH_Ban_ve" class="CHUC_NANG">
-                                BÁN VÉ
                             </td>
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
-
-        <div class="row">
-            <iframe class="KHUNG_CHUC_NANG" id='Khung_Chuc_nang'></iframe>
-        </div>
     </div>
-    
-    <script>
-        MH_Danh_sach_Phim_dang_chieu.onclick = () => {
-            Khung_Chuc_nang.src = "MH_Danh_sach_Phim_dang_chieu.cshtml";
-            Danh_dau_Chon_Chuc_nang(MH_Danh_sach_Phim_dang_chieu);
-        }
-        MH_Ban_ve.onclick = () => {
-
-            Danh_dau_Chon_Chuc_nang(MH_Ban_ve);
-        }
-        function Chon_Chuc_nang(Chuc_nang_Chon) {
-            for (var i = 0; i < Th_Danh_sach_Chuc_nang.childNodes.length; i++) {
-                if (Th_Danh_sach_Chuc_nang.childNodes[i].id == Chuc_nang_Chon) {
-                    Th_Danh_sach_Chuc_nang.childNodes[i].click();
-                    return;
-                }
-            }
-        }
-
-        function Danh_dau_Chon_Chuc_nang(Th_Chuc_nang_Chon) {
-            for (var i = 0; i < Th_Danh_sach_Chuc_nang.childNodes.length; i++)
-                Th_Danh_sach_Chuc_nang.childNodes[i].className = "CHUC_NANG";
-            Th_Chuc_nang_Chon.className += " CHON";
-        }
-    </script>
-    @if (Session["Chuc_nang_Chon"] == null)
-    {
-        <script>MH_Danh_sach_Phim_dang_chieu.click();</script>
-    }
-    else
-    {
-        <script>Chon_Chuc_nang('@Session["Chuc_nang_Chon"]');</script>
-    }
+    <div class="CUA_SO_KET_QUA">
+        @Html.Raw(Chuoi_HTML_Ket_qua)
+    </div>
+    <form id="XEM_DANH_SACH_PHIM_DANG_CHIEU" method="post">
+        <input name="Th_Ma_so_Chuc_nang" type="hidden" value="XEM_DANH_SACH_PHIM_DANG_CHIEU" />
+    </form>
 </body>
 </html>

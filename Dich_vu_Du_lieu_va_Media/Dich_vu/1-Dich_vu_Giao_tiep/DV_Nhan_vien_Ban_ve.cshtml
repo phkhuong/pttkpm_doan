@@ -17,6 +17,18 @@
             var Du_lieu_Kq = Dich_vu.Tao_Du_lieu_Phan_he_Nhan_vien();
             Chuoi_Kq = Json.Encode(Du_lieu_Kq);
         }
+        else if (Ma_so_Xu_ly == "GHI_DAT_VE_MOI")
+        {
+            var Ma_so_Phim = Request["Ma_so_Phim"];
+            var Dat_ve = Json.Decode<XL_DAT_VE>(Chuoi_Nhan);
+            Chuoi_Kq = Dich_vu.Ghi_Dat_ve_Moi(Ma_so_Phim, Dat_ve);
+        }
+        else if (Ma_so_Xu_ly == "GHI_BAN_VE_MOI")
+        {
+            var Ma_so_Phim = Request["Ma_so_Phim"];
+            var Ban_ve = Json.Decode<XL_BAN_VE>(Chuoi_Nhan);
+            Chuoi_Kq = Dich_vu.Ghi_Ban_ve_Moi(Ma_so_Phim, Ban_ve);
+        }
     }
 
     // Xử lý trả Kết quả

@@ -1,0 +1,138 @@
+﻿body {
+}
+
+.ticket-wrapper {
+    width: 100%;
+}
+
+    .ticket-wrapper .booking-bg {
+        background-color: #f26b38;
+        margin-bottom: 10px;
+    }
+
+    .ticket-wrapper .booking-ticket .booking-title {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+.seat-map-wrapper {
+    display: inline-block;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 30px 10px;
+}
+
+    .seat-map-wrapper .seat-map {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+.ticket-wrapper .booking-ticket {
+    clear: both;
+    min-height: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    display: inline-block;
+}
+
+.seat-map-wrapper .screen {
+    border-bottom: 3px solid #969b9f;
+    width: 35%;
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 6px;
+    margin: 30px auto;
+}
+
+.seat-map-wrapper .seat-cinema span {
+    margin: 1px 20px 0 0;
+    font-size: 14px;
+}
+
+.seat-map-wrapper .seat-cinema {
+    text-align: center;
+}
+
+    .seat-map-wrapper .seat-cinema span.seat-cinema-selected:before {
+        background-color: #7dc71d;
+    }
+
+    .seat-map-wrapper .seat-cinema span.seat-cinema-unavailable:before {
+        background-color: #e11c01;
+    }
+
+    .seat-map-wrapper .seat-cinema span.seat-cinema-normal:before {
+        background-color: #dbdee1;
+    }
+
+    .seat-map-wrapper .seat-cinema span:before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+    }
+
+
+.ticket-header {
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.ticket-feature {
+    clear: both;
+    min-height: 0;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    display: inline-block;
+}
+
+.ticket-detail .ticket-title {
+    font-size: 14px;
+    line-height: 20px;
+    color: #43464b;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+    .ticket-detail .ticket-title.en:empty {
+        height: 20px;
+    }
+
+    .ticket-detail .ticket-title.en {
+        color: #a0a3a7;
+    }
+
+.ticket-detail .ticket-info {
+    font-size: 13px;
+    color: #43464b;
+}
+
+    .ticket-detail .ticket-info p {
+        border-bottom: 1px dotted #ced0da;
+        padding: 10px 0;
+    }
+
+.ticket-detail .ticket-price-total p {
+    padding: 10px 0;
+}
+
+.ticket-detail .ticket-price-total span {
+    color: #f26b38;
+    font-size: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #e26435 !important;
+    cursor: pointer;
+}

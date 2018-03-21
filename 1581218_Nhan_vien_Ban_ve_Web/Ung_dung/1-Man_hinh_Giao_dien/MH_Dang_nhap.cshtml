@@ -1,51 +1,30 @@
 ﻿@{
-    //****************** Khởi động Dữ liệu Nguồn-Nội bộ ****************
-    var Du_lieu = XL_DU_LIEU.Khoi_dong_Du_lieu_Ung_dung();
-    var Cong_ty = Du_lieu.Cong_ty;
-    var Danh_sach_Nhan_vien =  Du_lieu.Danh_sach_Nguoi_dung_Noi_bo;
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+    //******************* Khai báo và Khởi động giá trị đầu cho Biến  ********************
+    var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
+    if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
 
-    //******************* Khai báo Biến  ********************
-    var Ten_Dang_nhap = "";
-    var Mat_khau = "";// Biến Nhập liệu
-    var Nhan_vien = new XL_NGUOI_DUNG_NOI_BO();  // Biến  Kết quả
-
-    //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
-    if (Request["Th_Ten_Dang_nhap"] != null) // Xử lý Biến cố
-    {
-        Ten_Dang_nhap = Request["Th_Ten_Dang_nhap"];
-        Mat_khau = Request["Th_Mat_khau"];
-
-        var Hop_le = Danh_sach_Nhan_vien.Any(
-                 x => x.Ten_Dang_nhap == Ten_Dang_nhap
-                  && x.Mat_khau == Mat_khau);
-        if (Hop_le)
-        {
-            Nhan_vien = Danh_sach_Nhan_vien.FirstOrDefault(
-                                x => x.Ten_Dang_nhap == Ten_Dang_nhap
-                                      && x.Mat_khau == Mat_khau);
-        }
-
-    }
-
-    //******************* Kết xuất  **********
     var Chuoi_HTML_Thong_bao = "";
-    if (Ten_Dang_nhap == "") // Người dùng chưa nhập liệu
+    if (Ma_so_Chuc_nang == "KHOI_DONG")
     {
-        Chuoi_HTML_Thong_bao = "<div class='alert alert-info' >Xin vui lòng Nhập Tên Đăng nhập và Mật khẩu"
-            + "<br />Click Đồng ý </div>";
+        Chuoi_HTML_Thong_bao = "<div class='alert alert-info' >Xin vui lòng Nhập Tên đăng nhập và Mật khẩu"
+            + "<br />Click Đồng ý " + "</div>";
     }
-    else if (Nhan_vien.Ma_so == "") // Người dùng đã nhập liệu - Không Hợp lệ
+    else if (Ma_so_Chuc_nang == "DANG_NHAP")
     {
-        Chuoi_HTML_Thong_bao = "<div class='alert alert-warning' >Đăng nhập không hợp lệ"
-              + "<br />Xin vui lòng Nhập <b>lại</b> Tên Đăng nhập và Mật khẩu" + "</div>";
-    }
-    else if (Nhan_vien.Ma_so != "") // Người dùng đã nhập liệu - Hợp lệ
-    {
-        Session["Nhan_vien_Dang_nhap"] = Nhan_vien;// Bảo mật
-        Response.Redirect("MH_Chinh.cshtml");
+        var Ten_Dang_nhap = Request["Th_Ten_Dang_nhap"];
+        var Mat_khau = Request["Th_Mat_khau"];
+        var Nguoi_dung = Ung_dung.Dang_nhap(Ten_Dang_nhap, Mat_khau);
+        if (Nguoi_dung != null) { Response.Redirect("MH_Chinh.cshtml"); }
+        else
+        {
+            Chuoi_HTML_Thong_bao = "<div  class='alert alert-danger' >Đăng nhập không hợp lệ"
+           + "<br />Xin vui lòng Nhập <b>lại</b> Tên đăng nhập và Mật khẩu" + "</div>";
+        }
     }
 
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,20 +36,22 @@
 </head>
 <body>
     <form method="post">
+
         <div class="container-fluid">
             <div>
                 <div class="alert" style="height:10px">
                     Đăng nhập
                 </div>
                 <div class="alert" style="height:30px">
-                    <input name="Th_Ten_Dang_nhap"
-                           spellcheck="false" autocomplete="off" value="@Ten_Dang_nhap" />
+                    <input name="Th_Ten_dang_nhap" required="required"
+                           spellcheck="false" autocomplete="off" />
                 </div>
                 <div class="alert" style="height:30px">
-                    <input name="Th_Mat_khau" type="password"
-                           spellcheck="false" autocomplete="off" value="@Mat_khau" />
+                    <input name="Th_Mat_khau" type="password" required="required"
+                           spellcheck="false" autocomplete="off" />
                 </div>
                 <div class="alert" style="height:40px">
+                    <input name="Th_Ma_so_Chuc_nang" type="hidden" value="DANG_NHAP" />
                     <button class="btn btn-danger" type="submit">Đồng ý</button>
                 </div>
             </div>
