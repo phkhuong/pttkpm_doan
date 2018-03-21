@@ -18,7 +18,9 @@ public class XL_NGUOI_DUNG
     public List<XL_PHIM> Danh_sach_Phim_Xem = new List<XL_PHIM>();
     public List<XL_RAP> Danh_sach_Rap = new List<XL_RAP>();
     public XL_PHIM Phim_chon = new XL_PHIM();
-    public XL_DAT_VE Dat_ve = new XL_DAT_VE();
+    //public XL_DAT_VE Dat_ve = new XL_DAT_VE();
+    public XL_BAN_VE Ban_ve = new XL_BAN_VE();
+
 }
 public class XL_NGUOI_DUNG_NOI_BO
 {
@@ -92,7 +94,16 @@ public class XL_DAT_VE
     public string Trang_thai = "DAT_VE";
 
 }
-
+public class XL_BAN_VE
+{
+    public string Ma_so = "";
+    public DateTime Ngay = DateTime.Now;
+    public List<XL_GHE> Danh_sach_Ghe_ban = new List<XL_GHE>();
+    public XL_SUAT_CHIEU Suat_chieu = new XL_SUAT_CHIEU();
+    public long Don_gia, So_luong, Tien;
+    public XL_NGUOI_DUNG_NOI_BO Nhan_vien_Ban_ve = new XL_NGUOI_DUNG_NOI_BO();
+    public XL_NGUOI_DUNG_KHACH_THAM_QUAN Nguoi_dung_Khach_tham_quan = new XL_NGUOI_DUNG_KHACH_THAM_QUAN();
+}
 public class XL_GHE
 {
     public string Ma_so = "";

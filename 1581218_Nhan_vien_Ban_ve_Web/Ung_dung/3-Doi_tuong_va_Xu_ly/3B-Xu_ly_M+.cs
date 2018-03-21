@@ -29,7 +29,6 @@ public partial class XL_UNG_DUNG
         Du_lieu_Ung_dung = Du_lieu_tu_Dich_vu;
         //Bổ sung Thông tin cần thiết cho Tất cả người dùng 
         //===> khi xử lý Chức năng của Người dùng đăng nhập không cần đến Dữ liệu của Ứng dụng 
-        //Danh_sach_Nguoi_dung_Khach_tham_quan = Du_lieu_Ung_dung.Danh_sach_Nguoi_dung_Khach_tham_quan;
         Danh_sach_Nguoi_dung_Noi_bo = Du_lieu_Ung_dung.Danh_sach_Nguoi_dung_Noi_bo;
         if (HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] == null)
         {
@@ -54,6 +53,7 @@ public partial class XL_UNG_DUNG
         {   //Khởi động  Thông tin Online  
             Nguoi_dung.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
             Nguoi_dung.Danh_sach_Rap = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Rap;
+            
             HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] = Nguoi_dung;
         }
         return Nguoi_dung;
@@ -122,7 +122,8 @@ public partial class XL_UNG_DUNG
     public string Khoi_dong_Man_hinh_Chon_Ghe()
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
-        var Danh_sach_Ghe_Chon = Nguoi_dung_Dang_nhap.Dat_ve.Danh_sach_Ghe_dat;
+        //var Danh_sach_Ghe_Chon = Nguoi_dung_Dang_nhap.Dat_ve.Danh_sach_Ghe_dat;
+        var Danh_sach_Ghe_Chon = Nguoi_dung_Dang_nhap.Ban_ve.Danh_sach_Ghe_ban;
         //var Chuoi_HTML = Tao_Chuoi_Danh_sach_Ghe(Danh_sach_Ghe_Chon);
         var Chuoi_HTML = Tao_chuoi_HTML_Man_hinh_Chon_Ghe(Danh_sach_Ghe_Chon);
         return Chuoi_HTML;
@@ -131,8 +132,8 @@ public partial class XL_UNG_DUNG
     public string Chon_Ghe(XL_GHE Ghe_Chon)
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
-        var So_luong = Nguoi_dung_Dang_nhap.Dat_ve.So_luong;
-        var Danh_sach_Ghe_Chon = Nguoi_dung_Dang_nhap.Dat_ve.Danh_sach_Ghe_dat;
+        var So_luong = Nguoi_dung_Dang_nhap.Ban_ve.So_luong;
+        var Danh_sach_Ghe_Chon = Nguoi_dung_Dang_nhap.Ban_ve.Danh_sach_Ghe_ban;
         var Da_chon = Danh_sach_Ghe_Chon.Any(x => x.Ma_so == Ghe_Chon.Ma_so);
         if (Da_chon)
         {
@@ -157,10 +158,10 @@ public partial class XL_UNG_DUNG
     {
         var Chuoi_HTML = "";
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
-        var Rap = Nguoi_dung_Dang_nhap.Danh_sach_Rap.FirstOrDefault(x => x.Ma_so == Nguoi_dung_Dang_nhap.Dat_ve.Suat_chieu.Rap.Ma_so);
-        var Phong_chieu = Rap.Danh_sach_Phong_chieu.Find(x => x.Ma_so == Nguoi_dung_Dang_nhap.Dat_ve.Suat_chieu.Phong_chieu.Ma_so);
+        var Rap = Nguoi_dung_Dang_nhap.Danh_sach_Rap.FirstOrDefault(x => x.Ma_so == Nguoi_dung_Dang_nhap.Ban_ve.Suat_chieu.Rap.Ma_so);
+        var Phong_chieu = Rap.Danh_sach_Phong_chieu.Find(x => x.Ma_so == Nguoi_dung_Dang_nhap.Ban_ve.Suat_chieu.Phong_chieu.Ma_so);
         var Danh_sach_Ghe = Phong_chieu.Danh_sach_Ghe;
-        var Danh_sach_Ghe_trong = Nguoi_dung_Dang_nhap.Dat_ve.Suat_chieu.Danh_sach_Ghe_trong;
+        var Danh_sach_Ghe_trong = Nguoi_dung_Dang_nhap.Ban_ve.Suat_chieu.Danh_sach_Ghe_trong;
         var Count = 0;
         Danh_sach_Ghe.ForEach(Ghe =>
         {
@@ -169,12 +170,12 @@ public partial class XL_UNG_DUNG
             var Chuoi_Xu_ly_Click = "Th_Ma_so_Ghe.value='XXX';CHON_GHE.submit() ";
             Chuoi_Xu_ly_Click = Chuoi_Xu_ly_Click.Replace("XXX", Ghe.Ma_so);
             var Da_chon = Danh_sach_Ghe_Chon.Any(x => x.Ma_so == Ghe.Ma_so);
-            var Chua_dat = Danh_sach_Ghe_trong.Any(x => x.Ma_so == Ghe.Ma_so);
+            var Chua_ban = Danh_sach_Ghe_trong.Any(x => x.Ma_so == Ghe.Ma_so);
             if (Da_chon)
             {
                 Tinh_trang_Ghe = 1;
             }
-            if (!Chua_dat)
+            if (!Chua_ban)
             {
                 Tinh_trang_Ghe = -1;
             }
@@ -229,7 +230,7 @@ public partial class XL_UNG_DUNG
                 $"<input id='Th_Ma_so_Chuc_nang' name='Th_Ma_so_Chuc_nang' value='QUAY_LAI' type='hidden' />" +
             $"</form>" +
             $"<button class='btn btn-primary' type='button' style='border-radius:0;background-color:#f26b38;border:none;' onclick='QUAY_LAI.submit()'>Quay lại</button>" +
-            $"\r<button class='btn btn-primary' type='button' style='border-radius:0;background-color:#f26b38;border:none;' onclick='DAT_VE.submit()'>Đặt Vé</button>" +
+            $"\r<button class='btn btn-primary' type='button' style='border-radius:0;background-color:#f26b38;border:none;' onclick='BAN_VE.submit()'>Bán Vé</button>" +
             $"</div>";
         return Chuoi_HTML;
     }
@@ -237,8 +238,8 @@ public partial class XL_UNG_DUNG
     public string Tao_chuoi_Nhap_Thong_tin_Ca_nhan()
     {
         var Chuoi_HTML = $"<h3>Thông Tin Cá Nhân</h3>" +
-            $"<form id='DAT_VE' method='post'>" +
-            $"<input name='Th_Ma_so_Chuc_nang' type='hidden' value='DAT_VE'/>" +
+            $"<form id='BAN_VE' method='post'>" +
+            $"<input name='Th_Ma_so_Chuc_nang' type='hidden' value='BAN_VE'/>" +
             $"<div class='form-group row'>" +
             $"<label for='Th_Ho_ten' class='col-2 col-form-label'>Họ Tên</label>" +
             $"<div class='col-10'>" +
@@ -262,14 +263,14 @@ public partial class XL_UNG_DUNG
             $"</form>";
         return Chuoi_HTML;
     }
-    public string Dat_ve()
+    public string Ban_ve()
     {
         var Chuoi_HTML = "";
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
-        string Kq = XL_DU_LIEU.Ghi_Dat_ve_Moi(Nguoi_dung_Dang_nhap.Phim_chon, Nguoi_dung_Dang_nhap.Dat_ve);
+        string Kq = XL_DU_LIEU.Ghi_Ban_ve_Moi(Nguoi_dung_Dang_nhap.Phim_chon, Nguoi_dung_Dang_nhap.Ban_ve);
         if (Kq == "OK")
         {
-            Chuoi_HTML += $"<div class='alert alert-success'>Bạn đã đặt vé thành công</div>";
+            Chuoi_HTML += $"<div class='alert alert-success'>Bạn đã bán vé thành công</div>";
         }
         else
         {
@@ -311,7 +312,7 @@ public partial class XL_UNG_DUNG
             var Chuoi_HTML = $"<div class='KHUNG col-6 col-sm-6 col-md-4 col-lg-3' onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" +
                                  $"<div class='card'>" +
                                      $"{Chuoi_Hinh}" +
-                                     $"<div class='OVERLAY'><div class='OVERLAY_TEXT'>Mua vé</div></div>" +
+                                     $"<div class='OVERLAY'><div class='OVERLAY_TEXT'>Bán vé</div></div>" +
 
 
                                      $"{Chuoi_Thong_tin}" +
@@ -420,13 +421,13 @@ public partial class XL_UNG_DUNG
         var Chuoi_HTML = $"<div class='col-md-12'><div class='ticket-detail'>";
         var Ten_Phim = Nguoi_dung.Phim_chon.Ten;
         var Ten_Phim_Tieng_Anh = Nguoi_dung.Phim_chon.Ten_tieng_Anh;
-        var Rap = Nguoi_dung.Dat_ve.Suat_chieu.Rap.Ten;
-        var Phong_chieu = Nguoi_dung.Dat_ve.Suat_chieu.Phong_chieu.Ten;
-        var Thoi_gian = Nguoi_dung.Dat_ve.Suat_chieu.Bat_dau.ToString("dddd, dd/MM/yyyy hh:mm", Dinh_dang_VN);
-        var Danh_sach_Ghe_dat = Nguoi_dung.Dat_ve.Danh_sach_Ghe_dat;
-        var So_ve_Da_dat = Nguoi_dung.Dat_ve.Danh_sach_Ghe_dat.Count();
-        var So_luong = Nguoi_dung.Dat_ve.So_luong.ToString();
-        var Tien = Nguoi_dung.Dat_ve.Tien.ToString("n0", Dinh_dang_VN);
+        var Rap = Nguoi_dung.Ban_ve.Suat_chieu.Rap.Ten;
+        var Phong_chieu = Nguoi_dung.Ban_ve.Suat_chieu.Phong_chieu.Ten;
+        var Thoi_gian = Nguoi_dung.Ban_ve.Suat_chieu.Bat_dau.ToString("dddd, dd/MM/yyyy hh:mm", Dinh_dang_VN);
+        var Danh_sach_Ghe_dat = Nguoi_dung.Ban_ve.Danh_sach_Ghe_ban;
+        var So_ve_Da_ban = Nguoi_dung.Ban_ve.Danh_sach_Ghe_ban.Count();
+        var So_luong = Nguoi_dung.Ban_ve.So_luong.ToString();
+        var Tien = Nguoi_dung.Ban_ve.Tien.ToString("n0", Dinh_dang_VN);
 
         var Chuoi_Thong_tin = $"<h2 class='ticket-title'>{Ten_Phim}</h2>" +
             $"<h2 class='ticket-title en'>{Ten_Phim_Tieng_Anh}</h2>" +
@@ -435,9 +436,9 @@ public partial class XL_UNG_DUNG
             $"<p><b>Suất chiếu: &nbsp;</b>{Thoi_gian}</p>" +
             $"<p><b>Số lượng vé đặt: &nbsp;</b>{So_luong}</p>" +
             $"<p><b>Ghế: &nbsp;</b>";
-        for (int i = 0; i < So_ve_Da_dat; i++)
+        for (int i = 0; i < So_ve_Da_ban; i++)
         {
-            if (i == So_ve_Da_dat - 1)
+            if (i == So_ve_Da_ban - 1)
                 Chuoi_Thong_tin += Danh_sach_Ghe_dat[i].Ma_so;
             else
                 Chuoi_Thong_tin += Danh_sach_Ghe_dat[i].Ma_so + ", ";
@@ -497,14 +498,14 @@ public partial class XL_DU_LIEU
 
         return Du_lieu;
     }
-    public static string Ghi_Dat_ve_Moi(XL_PHIM Phim, XL_DAT_VE Dat_ve)
+    public static string Ghi_Ban_ve_Moi(XL_PHIM Phim, XL_BAN_VE Ban_ve)
     {
         var Kq = "";
         var Xu_ly = new WebClient();
         Xu_ly.Encoding = System.Text.Encoding.UTF8;
-        var Tham_so = $"Ma_so_Xu_ly=GHI_DAT_VE_MOI&Ma_so_Phim={Phim.Ma_so}";
+        var Tham_so = $"Ma_so_Xu_ly=GHI_BAN_VE_MOI&Ma_so_Phim={Phim.Ma_so}";
         var Dia_chi_Xu_ly = $"{Dia_chi_Dich_vu_Quan_ly_Rap_Phim}?{Tham_so}";
-        var Chuoi_JSON = Json.Encode(Dat_ve);
+        var Chuoi_JSON = Json.Encode(Ban_ve);
         try
         {
             Kq = Xu_ly.UploadString(Dia_chi_Xu_ly, Chuoi_JSON).Trim();
@@ -515,8 +516,8 @@ public partial class XL_DU_LIEU
         }
         if (Kq == "OK")
         {
-            var Suat_chieu = Phim.Danh_sach_Suat_chieu.FirstOrDefault(x => x.Ma_so == Dat_ve.Suat_chieu.Ma_so);
-            Suat_chieu.Danh_sach_Ghe_trong.RemoveAll(Ghe_trong => Dat_ve.Danh_sach_Ghe_dat.Any(Ghe_dat => Ghe_dat.Ma_so == Ghe_trong.Ma_so));
+            var Suat_chieu = Phim.Danh_sach_Suat_chieu.FirstOrDefault(x => x.Ma_so == Ban_ve.Suat_chieu.Ma_so);
+            Suat_chieu.Danh_sach_Ghe_trong.RemoveAll(Ghe_trong => Ban_ve.Danh_sach_Ghe_ban.Any(Ghe_ban => Ghe_ban.Ma_so == Ghe_trong.Ma_so));
         }
         return Kq;
 
