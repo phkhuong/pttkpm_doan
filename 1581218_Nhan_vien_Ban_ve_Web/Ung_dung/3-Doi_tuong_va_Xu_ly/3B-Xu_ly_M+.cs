@@ -66,11 +66,20 @@ public partial class XL_UNG_DUNG
         var Chuoi_HTML = Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(Nguoi_dung_Dang_nhap);
         return Chuoi_HTML;
     }
+
     public string Xem_Danh_sach_Phim_dang_chieu()
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
         Nguoi_dung_Dang_nhap.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
         var Chuoi_HTML = Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(Nguoi_dung_Dang_nhap);
+        return Chuoi_HTML;
+    }
+
+    public string Thanh_toan_Ve_dat()
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        Nguoi_dung_Dang_nhap.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
+        var Chuoi_HTML = Tao_Chuoi_HTML_Thanh_toan_Ve_dat(Nguoi_dung_Dang_nhap.Danh_sach_Phim_Xem,Nguoi_dung_Dang_nhap);
         return Chuoi_HTML;
     }
 
@@ -83,6 +92,7 @@ public partial class XL_UNG_DUNG
         var Chuoi_HTML = Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(Nguoi_dung_Dang_nhap);
         return Chuoi_HTML;
     }
+
     public string Chon_Phim(string Ma_so_Phim)
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
@@ -92,6 +102,16 @@ public partial class XL_UNG_DUNG
         var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_CHi_tiet_Phim.cshtml'  ></iframe>";
         return Chuoi_HTML;
     }
+    public string Chon_Phim_Ve_dat(string Ma_so_Phim)
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        // Xử lý 
+        var Phim = Du_lieu_Ung_dung.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
+        Nguoi_dung_Dang_nhap.Phim_chon = Phim;
+        var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_Thanh_toan_Ve_dat.cshtml'  ></iframe>";
+        return Chuoi_HTML;
+    }
+
     public string Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(XL_NGUOI_DUNG Nguoi_dung_Dang_nhap)
     {
         var Chuoi_HTML = $"<div>" +
@@ -100,6 +120,7 @@ public partial class XL_UNG_DUNG
             $"</div>";
         return Chuoi_HTML;
     }
+
     public string Khoi_dong_Man_hinh_Chi_tiet_Phim()
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
@@ -107,6 +128,22 @@ public partial class XL_UNG_DUNG
 
         // Tạo chuỗi HTML kết quả xem 
         var Chuoi_HTML = Tao_Chuoi_HTML_Chi_tiet_Phim(Nguoi_dung_Dang_nhap.Phim_chon, Nguoi_dung_Dang_nhap);
+        return Chuoi_HTML;
+    }
+    public string Khoi_dong_Man_hinh_Lich_chieu_Phim()
+    {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        // Xử lý 
+
+        // Tạo chuỗi HTML kết quả xem 
+        var Chuoi_HTML = Tao_Chuoi_HTML_Lich_chieu_Phim(Nguoi_dung_Dang_nhap.Phim_chon, Nguoi_dung_Dang_nhap);
+        return Chuoi_HTML;
+    }
+    public string Tao_Chuoi_HTML_Lich_chieu_Phim(XL_PHIM Phim, XL_NGUOI_DUNG Nguoi_dung_Dang_nhap)
+    {
+        var Chuoi_HTML = $"<div>" +
+            $"{Tao_Chuoi_Lich_chieu_phim(Phim)}" +
+            $"</div>";
         return Chuoi_HTML;
     }
     public string Tao_Chuoi_HTML_Chi_tiet_Phim(XL_PHIM Phim, XL_NGUOI_DUNG Nguoi_dung_Dang_nhap)
@@ -194,6 +231,7 @@ public partial class XL_UNG_DUNG
 
         return Chuoi_HTML;
     }
+
     public string Tao_chuoi_HTML_Man_hinh_Chon_Ghe(List<XL_GHE> Danh_sach_Ghe_Chon)
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
@@ -343,6 +381,35 @@ public partial class XL_UNG_DUNG
         return Chuoi_HTML_Danh_sach;
     }
 
+    public string Tao_Chuoi_HTML_Thanh_toan_Ve_dat(List<XL_PHIM> Danh_sach, XL_NGUOI_DUNG Nguoi_dung)
+    {
+        var Chuoi_HTML_Danh_sach = "<div class='container'><form id='MH_CHINH' name='MH_CHINH' method='post'>";
+        var Chuoi_Input = "<input name='Th_Ma_so_Phim' id='Th_Ma_so_Phim' type='hidden' />" +
+            "<input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_PHIM_VE_DAT'/>"
+            ;
+        Chuoi_HTML_Danh_sach += Chuoi_Input;
+        Chuoi_HTML_Danh_sach += "<div class='row'>";
+        Danh_sach.ForEach(Phim =>
+        {
+            var Chuoi_Xu_ly_Click = $"Th_Ma_so_Phim.value='{Phim.Ma_so}';MH_CHINH.submit() ";
+            var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' style='width: 50px; height:80px'/>";
+            var Chuoi_Thong_tin = $"<div>" +
+                                      $"{Phim.Ten}" +
+                                  $"</div>";
+            var Chuoi_HTML = $"<div class='KHUNG col-6 col-sm-6 col-md-4 col-lg-3' onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" +
+                                 $"<div class='card'>" +
+                                 $"{ Chuoi_Hinh}"+
+                                     $"{Chuoi_Thong_tin}" +
+                                 $"</div>" +
+                             "</div>";
+            Chuoi_HTML_Danh_sach += Chuoi_HTML;            
+        });
+
+        Chuoi_HTML_Danh_sach += "</div></form></div>";
+
+        return Chuoi_HTML_Danh_sach;
+    }
+
     public string Tao_Chuoi_Chi_tiet_Phim(XL_PHIM Phim)
     {
         var Chuoi_HTML = "<div class='row'>";
@@ -377,6 +444,13 @@ public partial class XL_UNG_DUNG
         Chuoi_HTML += Chuoi_Hinh + Chuoi_Thong_tin + Chuoi_Noi_dung + "</div>";
         return Chuoi_HTML;
     }
+    public string Tao_Chuoi_Lich_chieu_phim(XL_PHIM Phim)
+    {
+        var Chuoi_HTML = "";
+
+        return Chuoi_HTML;
+    }
+
 
     public string Tao_Chuoi_Suat_chieu(XL_PHIM Phim, List<XL_RAP> Danh_sach_Rap, DateTime Ngay_chon)
     {
@@ -400,42 +474,6 @@ public partial class XL_UNG_DUNG
         return Chuoi_Html;
     }
 
-    //public string Tao_chuoi_HTML_Ghe(XL_GHE Ghe, string Chuoi_Xu_ly_Click = "", int Tinh_trang_Ghe = 0, int Count = 0)
-    //{
-    //    string Hang_ghe = Ghe.Ma_so[0].ToString();
-    //    string So_ghe = Ghe.Ma_so[1].ToString();
-    //    //var So_ghe = 0;
-    //    //if (Count % 9 == 0)
-    //    //    So_ghe = 9;
-    //    //else
-    //    //    So_ghe = Count % 9;
-    //    var Chuoi_HTML = "";
-    //    if (Count % 9 == 1)
-    //    {
-    //        Chuoi_HTML += "<ul style='list-style-type: none;margin:5px;cursor: pointer;'>";
-    //        Chuoi_HTML += $"<li style='display:inline-block;text-align:center;width: 20px;height: 20px;border: solid 1px;'>{Hang_ghe}</li><li style='display:inline-block;'><ul style='list-style-type: none;padding: 0px;'>";
-    //    }
-
-    //    if (Tinh_trang_Ghe == -1)
-    //    {
-    //        Chuoi_HTML += $"<li style='background-color:orange;display:inline-block;text-align:center;width: 20px;height: 20px;margin-left:2px;'>{So_ghe}</li>";
-    //    }
-    //    //else if (Tinh_trang_Ghe == 2)
-    //    //{
-    //    //    Chuoi_HTML += $"<li style='background-color:red;display:inline-block;text-align:center;width: 20px;height: 20px;margin-left:2px;'>{So_ghe}</li>";
-    //    //}
-    //    else if (Tinh_trang_Ghe == 1)
-    //    {
-    //        Chuoi_HTML += $"<li onclick=\"" + $"{Chuoi_Xu_ly_Click}" + $"\" style='display:inline-block;background-color: green;text-align:center;width: 20px;height: 20px;margin-left:2px;'>{So_ghe}</li>";
-    //    }
-    //    else
-    //    {
-    //        Chuoi_HTML += $"<li onclick=\"" + $"{Chuoi_Xu_ly_Click}" + $"\" style ='display:inline-block;background-color: #dbdee1;text-align:center;width: 20px;height: 20px;margin-left:2px;'>{So_ghe}</li>";
-    //    }
-    //    if (Count % 9 == 0)
-    //        Chuoi_HTML += $"</ul></li><li style='display:inline-block;text-align:center;width: 20px;height: 20px;border: solid 1px;margin-left:2px;'>{Hang_ghe}</li></ul>";
-    //    return Chuoi_HTML;
-    //}
     public string Tao_chuoi_HTML_Ghe(XL_GHE Ghe, string Chuoi_Xu_ly_Click = "", int Tinh_trang_Ghe = 0, int Count = 0)
     {
         string Hang_ghe = Ghe.Ma_so[0].ToString();
@@ -506,8 +544,7 @@ public partial class XL_UNG_DUNG
             $"<p><b>Tổng tiền: &nbsp;</b><span>{Tien}</span></p>" + $"</div>";
         Chuoi_HTML += Chuoi_Thong_tin + $"</div></div>";
         return Chuoi_HTML;
-    }
-}
+    }}
 
 
 //************************* Business-Layers BL **********************************
@@ -541,6 +578,7 @@ public partial class XL_UNG_DUNG
 public partial class XL_DU_LIEU
 {
     public static string Dia_chi_Dich_vu = "http://localhost:59900";
+
     public static string Dia_chi_Dich_vu_Quan_ly_Rap_Phim = $"{Dia_chi_Dich_vu}/1-Dich_vu_Giao_tiep/DV_Nhan_vien_Ban_ve.cshtml";
 
     public static XL_DU_LIEU Doc_Du_lieu()
@@ -555,6 +593,7 @@ public partial class XL_DU_LIEU
 
         return Du_lieu;
     }
+
     public static string Ghi_Ban_ve_Moi(XL_PHIM Phim, XL_BAN_VE Ban_ve)
     {
         var Kq = "";
