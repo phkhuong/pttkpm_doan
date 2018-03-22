@@ -16,7 +16,8 @@ public class XL_NGUOI_DUNG_NOI_BO
     public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
     public XL_NHOM_NGUOI_DUNG Nhom_Nguoi_dung = new XL_NHOM_NGUOI_DUNG();
     public XL_RAP Rap = new XL_RAP();
-    public long Doanh_thu;//Tính toán 
+    public long Doanh_thu;//Tính toán
+    public List<XL_NGUOI_DUNG_NOI_BO> Danh_sach_Nguoi_dung_Noi_bo = new List<XL_NGUOI_DUNG_NOI_BO>();
 }
 public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
 {
@@ -27,10 +28,7 @@ public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
 public class XL_CONG_TY
 {
     public string Ten, Ma_so = "",Dien_thoai,Dia_chi;
-    public List<XL_RAP> Danh_sach_Rap = new List<XL_RAP>();
-    //public List<XL_NHAN_VIEN_BAN_VE> Danh_sach_Nhan_vien = new  List<XL_NHAN_VIEN_BAN_VE>();
-    //public List<XL_QUAN_LY_NHAN_VIEN> Danh_sach_Quan_ly_Nhan_vien = new List<XL_QUAN_LY_NHAN_VIEN>();
-    //public List<XL_QUAN_LY_PHIM> Danh_sach_Quan_ly_Phim = new List<XL_QUAN_LY_PHIM>();
+    public List<XL_RAP> Danh_sach_Rap = new List<XL_RAP>();    
 }
 public class XL_RAP
 {
