@@ -357,7 +357,7 @@ public partial class XL_UNG_DUNG
         Danh_sach.ForEach(Phim =>
         {
             var Chuoi_Xu_ly_Click = $"Th_Ma_so_Phim.value='{Phim.Ma_so}';MH_CHINH.submit() ";
-            var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' class='card-img-top HINH'/>";
+            var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' style='width: 50px; height:80px'/>";
 
             var Chuoi_Thong_tin = $"<div class='card-block THONG_TIN'>" +
                                       $"<h6 class='text-center'>{Phim.Ten}</h6>" +
@@ -393,12 +393,15 @@ public partial class XL_UNG_DUNG
         {
             var Chuoi_Xu_ly_Click = $"Th_Ma_so_Phim.value='{Phim.Ma_so}';MH_CHINH.submit() ";
             var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' style='width: 50px; height:80px'/>";
-            var Chuoi_Thong_tin = $"<div>" +
-                                      $"{Phim.Ten}" +
+            var Chuoi_Thong_tin = $"<div class='card-block THONG_TIN'>" +
+                                      $"<h6 class='text-center'>{Phim.Ten}</h6>" +
                                   $"</div>";
             var Chuoi_HTML = $"<div class='KHUNG col-6 col-sm-6 col-md-4 col-lg-3' onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" +
                                  $"<div class='card'>" +
-                                 $"{ Chuoi_Hinh}"+
+                                     $"{Chuoi_Hinh}" +
+                                     $"<div class='OVERLAY'><div class='OVERLAY_TEXT'>Thanh toán</div></div>" +
+
+
                                      $"{Chuoi_Thong_tin}" +
                                  $"</div>" +
                              "</div>";
