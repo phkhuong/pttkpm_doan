@@ -17,8 +17,8 @@ public class XL_NGUOI_DUNG
     public long Diem_tich_luy;
     public List<XL_PHIM> Danh_sach_Phim_Xem = new List<XL_PHIM>();
     public List<XL_RAP> Danh_sach_Rap = new List<XL_RAP>();
-    public XL_PHIM Phim_chon = new XL_PHIM();
-    //public XL_DAT_VE Dat_ve = new XL_DAT_VE();
+    public XL_PHIM Phim_chon = new XL_PHIM();    
+    public XL_DAT_VE Dat_ve = new XL_DAT_VE();
     public XL_BAN_VE Ban_ve = new XL_BAN_VE();
 
 }
@@ -70,6 +70,8 @@ public class XL_PHIM
     public DateTime Khoi_chieu = DateTime.Now;
     public long Don_gia, Thoi_luong;
     public double Rating;
+    public List<XL_DAT_VE> Danh_sach_Dat_ve = new List<XL_DAT_VE>();
+    public List<XL_BAN_VE> Danh_sach_Ban_ve = new List<XL_BAN_VE>();
     public List<XL_SUAT_CHIEU> Danh_sach_Suat_chieu = new List<XL_SUAT_CHIEU>();
 }
 

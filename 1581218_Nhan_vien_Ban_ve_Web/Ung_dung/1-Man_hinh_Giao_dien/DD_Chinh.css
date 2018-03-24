@@ -163,7 +163,7 @@ a {
     opacity: 0.7;
 }
 
-.KHUNG:hover .OVERLAY {
+.KHUNG .OVERLAY {
     opacity: 1;
 }
 
@@ -175,6 +175,6 @@ a {
     margin-bottom: 5px;
 }
 
-    .OVERLAY_TEXT:hover {
+    .OVERLAY_TEXT {
         background-color: #f26b38;
     }

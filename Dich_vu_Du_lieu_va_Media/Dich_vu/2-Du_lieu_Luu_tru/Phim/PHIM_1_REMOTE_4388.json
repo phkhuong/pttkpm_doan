@@ -142,8 +142,8 @@
       "Rap": {
         "Ma_so": "RAP_1",
         "Ten": "Galaxy Nguyễn Du",
-        "So_ghe": 0,
-        "Danh_sach_Phong_chieu": []
+        "Danh_sach_Phong_chieu": [],
+        "So_ghe": 0
       },
       "Phong_chieu": {
         "Ma_so": "RAP_1_PC_1",
@@ -241,8 +241,8 @@
       "Rap": {
         "Ma_so": "RAP_1",
         "Ten": "Galaxy Nguyễn Du",
-        "So_ghe": 0,
-        "Danh_sach_Phong_chieu": []
+        "Danh_sach_Phong_chieu": [],
+        "So_ghe": 0
       },
       "Phong_chieu": {
         "Ma_so": "RAP_1_PC_1",

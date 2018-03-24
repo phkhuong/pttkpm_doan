@@ -2,7 +2,8 @@
     //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
     var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
     var Nguoi_dung = (XL_NGUOI_DUNG)Session["Nguoi_dung_Dang_Nhap"];
-    var Danh_sach_Ghe_trong = Nguoi_dung.Ban_ve.Suat_chieu.Danh_sach_Ghe_trong;
+    var Danh_sach_Ghe_trong = Nguoi_dung.Ban_ve.Suat_chieu.Danh_sach_Ghe_trong;    
+    
     //******************* Khai báo Biến  ********************
     var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
     if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
@@ -42,55 +43,7 @@
 </head>
 
 <body>
-    <div class="container">
-        @*<form id='CHON_GHE' action='MH_Chon_Ghe.cshtml' method='post'>
-                <input name='Th_Ma_so_Ghe' id='Th_Ma_so_Ghe' type='hidden' />
-                <input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_GHE' />
-                <div class='row'>
-                    <div class='col-md-9'>
-                        <div class='ticket-wrapper'>
-                            <div class='booking-bg'>
-                                <div class='row'>
-                                    <div class='col-md-12'>
-                                        <section class='booking-ticket'>
-                                            <h2 class='booking-title'>Chọn Ghế: &nbsp;</h2>
-                                            <div class='seat-map-wrapper'>
-                                                <div class='col-md-12'>
-                                                    <div class='seat-map ng-scope'>
-                                                        @Html.Raw(Chuoi_HTML_Ket_qua)
-                                                    </div>
-                                                    <div class='screen'>
-                                                        Màn Hình
-                                                    </div>
-                                                    <div class='seat-cinema'>
-                                                        <span class='seat-cinema-selected'>Ghế đang chọn</span>
-                                                        <span class='seat-cinema-unavailable'>Ghế đã bán</span>
-                                                        <span class='seat-cinema-normal'>Có thể chọn</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class='col-md-3'>
-                        <div class='ticket-header'>
-                            <section class='ticket-feature'>
-                                <article class='row'>
-                                    <div class='col-md-12' style='text-align:center'></div>
-                                    <div class='col-md-12'>
-
-                                    </div>
-                                </article>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </form>*@
+    <div class="container">        
         @Html.Raw(Chuoi_HTML_Ket_qua)
         <div class="col-md-9 text-center">
             <form id="DIEU_HUONG" action="MH_Chon_Ghe.cshtml" method="post">

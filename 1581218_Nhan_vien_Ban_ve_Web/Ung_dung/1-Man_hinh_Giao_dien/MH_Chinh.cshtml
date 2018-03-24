@@ -21,9 +21,18 @@
         var Ma_so_Phim = Request["Th_Ma_so_Phim"];
         Chuoi_HTML_Ket_qua = Ung_dung.Chon_Phim(Ma_so_Phim);
     }
+    else if (Ma_so_Chuc_nang == "CHON_PHIM_VE_DAT")
+    {
+        var Ma_so_Phim = Request["Th_Ma_so_Phim"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Chon_Phim_Ve_dat(Ma_so_Phim);
+    }
     else if (Ma_so_Chuc_nang == "XEM_DANH_SACH_PHIM_DANG_CHIEU")
     {
         Chuoi_HTML_Ket_qua = Ung_dung.Xem_Danh_sach_Phim_dang_chieu();
+    }
+    else if (Ma_so_Chuc_nang == "THANH_TOAN_VE_DAT")
+    {
+        Chuoi_HTML_Ket_qua = Ung_dung.Thanh_toan_Ve_dat();
     }
 }
 
@@ -70,7 +79,10 @@
                     <thead>
                         <tr id="Th_Danh_sach_Chuc_nang">
                             <td id="MH_Danh_sach_Phim_dang_chieu" class="CHUC_NANG" onclick="XEM_DANH_SACH_PHIM_DANG_CHIEU.submit();">
-                                PHIM ĐANG CHIẾU
+                                BÁN VÉ TRỰC TIẾP
+                            </td>
+                            <td id="MH_Thanh_toan_Ve_dat" class="CHUC_NANG" onclick="THANH_TOAN_VE_DAT.submit();">
+                                THANH TOÁN VÉ ĐẶT
                             </td>
                         </tr>
                     </thead>
@@ -83,6 +95,9 @@
     </div>
     <form id="XEM_DANH_SACH_PHIM_DANG_CHIEU" method="post">
         <input name="Th_Ma_so_Chuc_nang" type="hidden" value="XEM_DANH_SACH_PHIM_DANG_CHIEU" />
+    </form>
+    <form id="THANH_TOAN_VE_DAT" method="post">
+        <input name="Th_Ma_so_Chuc_nang" type="hidden" value="THANH_TOAN_VE_DAT" />
     </form>
 </body>
 </html>
