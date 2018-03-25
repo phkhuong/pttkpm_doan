@@ -34,7 +34,9 @@ class MovieDetail extends React.Component {
                     type="info-circle-o"
                 />
             </Link>,
-            <Icon type="form" style={{ fontSize: 20 }} />,
+            <Link to={`/movies/${Ma_so}/edit`} >
+                <Icon type="form" style={{ fontSize: 20 }} />,
+            </Link>,
             <Icon type="delete" style={{ fontSize: 20 }} />
         ];
         return (
@@ -76,7 +78,7 @@ class MovieDetail extends React.Component {
                 <Row>
                     <Col>
                         <h2>Suất chiếu</h2>
-                        {Danh_sach_Suat_chieu != undefined && <SessionList sessions={Danh_sach_Suat_chieu} />}
+                        {Danh_sach_Suat_chieu && <SessionList sessions={Danh_sach_Suat_chieu} />}
                     </Col>
                 </Row>
             </div>

@@ -10,5 +10,8 @@ export const getDateTimeStringFromJson = (str) => {
         weekday: 'long', year: 'numeric', month: '2-digit', day: 'numeric', hour: "2-digit", minute:"2-digit" };
     if(!str)
         return "";
+    if (Date.parse(str)){
+        return new Date(str).toLocaleString('vi-VN', options);
+    }
     return new Date(parseInt(str.substr(6))).toLocaleString('vi-VN', options);
 }

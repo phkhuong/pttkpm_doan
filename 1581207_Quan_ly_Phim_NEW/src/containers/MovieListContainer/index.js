@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Switch, BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 import reducer from './reducer';
 
-import { requestMovies, selectMovie } from './actions';
+import { requestMovies, selectMovie, requestCinemas } from './actions';
 // import { selectMovie } from "../MovieDetailContainer/actions";
 import MovieList from "../../components/MovieList";
 import MovieDetailContainer from "../MovieDetailContainer";
@@ -17,6 +17,10 @@ export class MovieListContainer extends React.Component {
     componentWillMount(){
         // request mv
         this.props.requestMovies();
+        
+    }
+    componentDidMount(){
+        this.props.requestCinemas();
     }
     render() {
         // console.log(this.props);
@@ -57,6 +61,7 @@ function mapStateToProps(state) {
     // console.log(state);
     return {
         movies: state.MovieListContainerState.movies,
+        cinemas: state.MovieListContainerState.cinemas,
         error: state.MovieListContainerState.error,
         selectedMovie: state.MovieListContainerState.movie,
     };
@@ -65,6 +70,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         requestMovies: () => dispatch(requestMovies()),
+        requestCinemas: () => dispatch(requestCinemas()),
         selectMovie: (id) => dispatch(selectMovie(id)),
     };
 }

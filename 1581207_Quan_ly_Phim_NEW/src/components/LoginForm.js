@@ -8,7 +8,7 @@ class NormalLoginForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err && values.hasOwnProperty('Ma_so') && values.hasOwnProperty('Mat_khau')) {
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
                 this.props.requestLogin(values);
             }
         });

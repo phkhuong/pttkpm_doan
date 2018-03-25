@@ -24,10 +24,14 @@ class Movie extends React.Component {
                 <Icon 
                     style={{ fontSize: 20 }} 
                     type="info-circle-o" 
-                    // onClick={this.selectMovie}    
                 />
             </Link>, 
-            <Icon type="form" style={{ fontSize: 20 }} />, 
+            <Link to={`/movies/${Ma_so}/edit`} >
+                <Icon 
+                    style={{ fontSize: 20 }} 
+                    type="form" 
+                />
+            </Link>, 
             <Icon type="delete" style={{ fontSize: 20 }} />
         ];
         return (
