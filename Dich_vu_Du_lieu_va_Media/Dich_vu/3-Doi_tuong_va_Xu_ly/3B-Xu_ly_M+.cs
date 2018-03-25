@@ -129,6 +129,7 @@ public partial class XL_DICH_VU
             Phim_cua_Phan_he.Khoi_chieu = Phim.Khoi_chieu;
             Phim_cua_Phan_he.Quoc_gia = Phim.Quoc_gia;
             Phim_cua_Phan_he.Dao_dien = Phim.Dao_dien;
+            Phim_cua_Phan_he.Nha_san_xuat = Phim.Nha_san_xuat;
             Phim_cua_Phan_he.Dien_vien = Phim.Dien_vien;
             Phim_cua_Phan_he.Noi_dung = Phim.Noi_dung;
             Phim_cua_Phan_he.The_loai = Phim.The_loai;
@@ -152,6 +153,11 @@ public partial class XL_DICH_VU
     {
         var Phim = Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
         var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Ban_ve_Moi(Phim, Ban_ve);
+        return Chuoi_Kq_Ghi;
+    }
+    public string Ghi_Phim(XL_PHIM phim)
+    {
+        var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Phim(phim);
         return Chuoi_Kq_Ghi;
     }
 }
@@ -291,7 +297,7 @@ public partial class XL_DU_LIEU
 
         return Kq;
     }
-    static string Ghi_Phim(XL_PHIM Phim)
+    public static string Ghi_Phim(XL_PHIM Phim)
     {
         var Kq = "";
         var Duong_dan = $"{Thu_muc_Phim.FullName}\\{Phim.Ma_so}.json";
