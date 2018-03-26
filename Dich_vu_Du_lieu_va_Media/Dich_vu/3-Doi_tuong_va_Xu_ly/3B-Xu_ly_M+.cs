@@ -141,6 +141,9 @@ public partial class XL_DICH_VU
     public string Ghi_Dat_ve_Moi(string Ma_so_Phim, XL_DAT_VE Dat_ve)
     {
         var Phim = Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
+        var So_luot_Dat_ve = Phim.Danh_sach_Dat_ve.Count;
+        So_luot_Dat_ve++;
+        Dat_ve.Ma_so = Phim.Ma_so + "_DV_" + So_luot_Dat_ve.ToString();
         var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Dat_ve_Moi(Phim,Dat_ve);
         return Chuoi_Kq_Ghi;
     }

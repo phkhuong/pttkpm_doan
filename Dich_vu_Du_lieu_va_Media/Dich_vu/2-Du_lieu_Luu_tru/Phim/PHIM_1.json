@@ -244,7 +244,7 @@
 	],
 	"Danh_sach_Dat_ve": [
 		{
-			"Ma_so": "V_1",
+			"Ma_so": "PHIM_1_DV_1",
       "Ma_nhan_ve": "12345",
       "Danh_sach_Ghe_dat": [
         {
@@ -286,7 +286,7 @@
       }
 		},
 		{
-			"Ma_so": "V_2",
+			"Ma_so": "PHIM_1_DV_2",
       "Ma_nhan_ve": "abcdf",
       "Danh_sach_Ghe_dat": [
         {
@@ -333,7 +333,7 @@
       }
 		},
 		{
-			"Ma_so": "V_3",
+			"Ma_so": "PHIM_1_DV_3",
       "Ma_nhan_ve": "223512",
       "Danh_sach_Ghe_dat": [
         {
