@@ -20,6 +20,7 @@ public class XL_NGUOI_DUNG
     public XL_PHIM Phim_chon = new XL_PHIM();    
     public XL_DAT_VE Dat_ve = new XL_DAT_VE();
     public XL_BAN_VE Ban_ve = new XL_BAN_VE();
+    public XL_GHE Ghe_dat_Thanh_toan = new XL_GHE();
 
 }
 public class XL_NGUOI_DUNG_NOI_BO
