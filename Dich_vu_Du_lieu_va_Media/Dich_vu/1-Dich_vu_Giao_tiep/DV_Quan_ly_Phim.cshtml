@@ -1,11 +1,13 @@
 ﻿@{
     // *********Khởi động Dữ liệu nguồn/nội bộ ********
     var Dich_vu = XL_DICH_VU.Khoi_dong_Dich_vu();
+    var Du_lieu = Dich_vu.Tao_Du_lieu_Phan_he_Quan_ly_Phim();
 
     //*********Khai báo Biến/Đối tượng :Nhận & Kết quả *********
     var Ma_so_Xu_ly = ""; // Biến Nhận
     var Chuoi_Kq = ""; // Biến Kêt quả
 
+    
     //*********Xử lý Nhập liệu Nếu có + Tạo Kết quả Nếu Hợp lệ  *********
     if (Request["Ma_so_Xu_ly"] != null)
     {
@@ -14,13 +16,34 @@
         var Chuoi_Nhan = Bo_doc.ReadToEnd(); // Nhận Đối tượng
         if (Ma_so_Xu_ly == "KHOI_DONG_DU_LIEU_PHAN_HE_QUAN_LY_PHIM")
         {
-            var Du_lieu_Kq = Dich_vu.Tao_Du_lieu_Phan_he_Quan_ly_Phim();
+            var Du_lieu_Kq = Du_lieu;
             Chuoi_Kq = Json.Encode(Du_lieu_Kq);
+        } else if(Ma_so_Xu_ly == "DANH_SACH_PHIM")
+        {
+            var Du_lieu_Kq = Du_lieu.Danh_sach_Phim;
+            Chuoi_Kq = Json.Encode(Du_lieu_Kq);
+        } else if(Ma_so_Xu_ly == "DANG_NHAP")
+        {
+            var Danh_sach_Quan_ly_Phim = Du_lieu.Danh_sach_Nguoi_dung_Noi_bo.FindAll(m => m.Nhom_Nguoi_dung.Ma_so == "QUAN_LY_PHIM");
+            var Nguoi_dung_Nhan = Json.Decode<XL_NGUOI_DUNG_NOI_BO>(Chuoi_Nhan);
+            var Nguoi_dung = Danh_sach_Quan_ly_Phim.FirstOrDefault(x => x.Ma_so == Nguoi_dung_Nhan.Ma_so && x.Mat_khau == Nguoi_dung_Nhan.Mat_khau);
+            if(Nguoi_dung != null)
+            {
+                Chuoi_Kq = Json.Encode(Nguoi_dung);
+                
+            } else
+            {
+                
+                Response.SetStatus(HttpStatusCode.NotFound);
+
+                Response.End();
+            }
         }
     }
 
     // Xử lý trả Kết quả
     Response.ContentType = "text/json";
+    
     Response.Write(Chuoi_Kq);
 }
 

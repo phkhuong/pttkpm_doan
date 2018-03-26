@@ -73,7 +73,108 @@ a {
 }
 
 .KHUNG_CHUC_NANG {
-    height: 83vh;
+    height: 77.5vh;
     width: 100vw;
     border: none;
 }
+
+.QUAN_TRONG {
+    color: red;
+}
+
+.TIEU_DE_DANH_SACH {
+    background: #4CAF50;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.CUA_SO_KET_QUA {
+    color: black;
+    margin-top: 5px;
+    padding-top: 20px;
+}
+
+    .CUA_SO_KET_QUA .KHUNG {
+        margin-bottom: 30px;
+    }
+
+.KHUNG {
+    cursor: pointer;
+}
+
+    .KHUNG h6 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: bold;
+        color: #3e3e3e;
+    }
+
+.THONG_TIN {
+    cursor: pointer;
+    padding: 0.7rem;
+}
+
+    .THONG_TIN div {
+        text-align: center;
+    }
+
+    .THONG_TIN span {
+        font-weight: bold;
+    }
+
+    .THONG_TIN:hover {
+        background: #f1f1f1;
+    }
+
+.MOT_DONG {
+    white-space: nowrap;
+}
+
+.KHUNG_HINH {
+    text-align: center;
+}
+
+.HINH {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+
+.OVERLAY {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.KHUNG:hover .HINH {
+    opacity: 0.7;
+}
+
+.KHUNG .OVERLAY {
+    opacity: 1;
+}
+
+.OVERLAY_TEXT {
+    border: 1px solid #ffffff;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-bottom: 5px;
+}
+
+    .OVERLAY_TEXT {
+        background-color: #f26b38;
+    }
