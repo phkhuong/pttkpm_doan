@@ -1,3 +1,4 @@
+import { findMaxSessionID, defaultSeats } from "../../utils";
 import { REQUEST_MOVIES, 
     REQUEST_MOVIES_SUCCESS, 
     REQUEST_MOVIES_FAIL, 
@@ -10,20 +11,17 @@ import { REQUEST_MOVIES,
     REQUEST_CINEMAS_SUCCESS,
     REQUEST_CINEMAS_FAIL,
     DELETE_SESSION,
-    CREATE_SESSION
+    CREATE_SESSION,
+    ADD_MOVIE_SUCCESS,
+    UPDATE_MOVIE_SUCCESS,
+    UPDATE_MOVIE_FAIL,
+    ADD_MOVIE_FAIL,
+    DELETE_MOVIE_SUCCESS,
+    DELETE_MOVIE_FAIL,
+    RESET_API_RESULT,
 } from "./constants";
 
-const defaultSeats = [
-    {"Ma_so":'A1'}, {"Ma_so":'A2'}, {"Ma_so":'A3'}, {"Ma_so":'A4'}, {"Ma_so":'A5'}, {"Ma_so":'A6'}, {"Ma_so":'A7'}, {"Ma_so":'A8'}, {"Ma_so":'A9'},
-    {"Ma_so":'B1'}, {"Ma_so":'B2'}, {"Ma_so":'B3'}, {"Ma_so":'B4'}, {"Ma_so":'B5'}, {"Ma_so":'B6'}, {"Ma_so":'B7'}, {"Ma_so":'B8'}, {"Ma_so":'B9'},
-    {"Ma_so":'C1'}, {"Ma_so":'C2'}, {"Ma_so":'C3'}, {"Ma_so":'C4'}, {"Ma_so":'C5'}, {"Ma_so":'C6'}, {"Ma_so":'C7'}, {"Ma_so":'C8'}, {"Ma_so":'C9'},
-    {"Ma_so":'D1'}, {"Ma_so":'D2'}, {"Ma_so":'D3'}, {"Ma_so":'D4'}, {"Ma_so":'D5'}, {"Ma_so":'D6'}, {"Ma_so":'D7'}, {"Ma_so":'D8'}, {"Ma_so":'D9'},
-    {"Ma_so":'E1'}, {"Ma_so":'E2'}, {"Ma_so":'E3'}, {"Ma_so":'E4'}, {"Ma_so":'E5'}, {"Ma_so":'E6'}, {"Ma_so":'E7'}, {"Ma_so":'E8'}, {"Ma_so":'E9'},
-    {"Ma_so":'F1'}, {"Ma_so":'F2'}, {"Ma_so":'F3'}, {"Ma_so":'F4'}, {"Ma_so":'F5'}, {"Ma_so":'F6'}, {"Ma_so":'F7'}, {"Ma_so":'F8'}, {"Ma_so":'F9'},
-    {"Ma_so":'G1'}, {"Ma_so":'G2'}, {"Ma_so":'G3'}, {"Ma_so":'G4'}, {"Ma_so":'G5'}, {"Ma_so":'G6'}, {"Ma_so":'G7'}, {"Ma_so":'G8'}, {"Ma_so":'G9'},
-    {"Ma_so":'H1'}, {"Ma_so":'H2'}, {"Ma_so":'H3'}, {"Ma_so":'H4'}, {"Ma_so":'H5'}, {"Ma_so":'H6'}, {"Ma_so":'H7'}, {"Ma_so":'H8'}, {"Ma_so":'H9'},
-    {"Ma_so":'I1'}, {"Ma_so":'I2'}, {"Ma_so":'I3'}, {"Ma_so":'I4'}, {"Ma_so":'I5'}, {"Ma_so":'I6'}, {"Ma_so":'I7'}, {"Ma_so":'I8'}, {"Ma_so":'I9'},
-]; 
+
 
 const initialState = {
     movies: [],
@@ -32,6 +30,7 @@ const initialState = {
     error: '',
     user: {},
     isLoggedIn: false,
+    success: '',
 };
 
 function movieListContainerReducer(state = initialState, action) {
@@ -75,8 +74,6 @@ function movieListContainerReducer(state = initialState, action) {
 
             mv1.Danh_sach_Suat_chieu = mv1["Danh_sach_Suat_chieu"].concat(newSession);
 
-            
-
             return {
                 ...state,
                 movies: [
@@ -84,19 +81,64 @@ function movieListContainerReducer(state = initialState, action) {
                     mv1,
                 ],
             }
+        case UPDATE_MOVIE_SUCCESS:  // update store movies ?
+            return {
+                ...state,
+                error: '',
+                success: action.message,
+                movies: [
+                    ...state.movies.filter(m => m.Ma_so != action.movie.Ma_so),
+                    action.movie
+                ]
+            }
+        case UPDATE_MOVIE_FAIL:
+            return {
+                ...state,
+                error: action.error,
+                success: '',
+            }
+        case ADD_MOVIE_SUCCESS:
+            return {
+                ...state,
+                error: '',
+                success: action.message,
+                movies: [
+                    ...state.movies.filter(m => m.Ma_so != action.movie.Ma_so),
+                    action.movie
+                ]
+            }
+        case ADD_MOVIE_FAIL:
+            return {
+                ...state,
+                error: action.error,
+                success: '',
+            }
+        case DELETE_MOVIE_SUCCESS:
+            return {
+                ...state,
+                error: '',
+                success: action.message,
+                movies: [
+                    ...state.movies.filter(m => m.Ma_so != action.movieID)
+                ]
+            }
+        case DELETE_MOVIE_FAIL:
+            return {
+                ...state,
+                error: action.error,
+                success: '',
+            }
+        case RESET_API_RESULT:
+            return {
+                ...state,
+                error: '',
+                success: '',
+            }
         default:
             return state;
     }
 }
 
-function findMaxSessionID(sessions) {
-    if(sessions.length == 0)
-        return 0;
-    let max = sessions.reduce((pre, cur) =>{
-        if (cur.Ma_so.localeCompare(pre.Ma_so))
-            return cur;
-    }).Ma_so.substr(2);
-    return Number(max);
-}
+
 
 export default movieListContainerReducer;

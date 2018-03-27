@@ -11,9 +11,6 @@ class Movie extends React.Component {
     constructor(props) {
         super(props);
     }
-    // selectMovie = () => {
-    //     this.props.select(this.props.movie);
-    // };
     
     render() {
         // console.log(this.props.movie);
@@ -32,7 +29,11 @@ class Movie extends React.Component {
                     type="form" 
                 />
             </Link>, 
-            <Icon type="delete" style={{ fontSize: 20 }} />
+            <Icon 
+                type="delete" 
+                style={{ fontSize: 20 }} 
+                onClick={() => this.props.requestDeleteMovie(Ma_so)}
+            />
         ];
         return (
             <Col sm={24} md={12} lg={8}>

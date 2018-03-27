@@ -8,3 +8,5 @@ export const Dia_chi_Get_Danh_sach_Rap = `${Dia_chi_Dich_vu}?Ma_so_Xu_ly=DANH_SA
 export const Dia_chi_Dang_nhap = `${Dia_chi_Dich_vu}?Ma_so_Xu_ly=DANG_NHAP`;
 
 export const Dia_chi_Cap_nhat_Phim = `${Dia_chi_Dich_vu}?Ma_so_Xu_ly=CAP_NHAT_PHIM`;
+export const Dia_chi_Them_Phim_Moi = `${Dia_chi_Dich_vu}?Ma_so_Xu_ly=THEM_PHIM_MOI`;
+export const Dia_chi_Xoa_Phim = `${Dia_chi_Dich_vu}?Ma_so_Xu_ly=XOA_PHIM`;

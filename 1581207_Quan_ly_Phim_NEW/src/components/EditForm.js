@@ -2,7 +2,7 @@ import React from "react";
 import * as moment from 'moment';
 import SessionForm from "./SessionForm";
 import CollectionCreateForm from "./CreateSessionForm";
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, DatePicker } from 'antd';
+import { message, Alert, InputNumber, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, DatePicker } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
@@ -15,6 +15,14 @@ class MyForm extends React.Component {
         confirmDirty: false,
         visible: false,
     };
+    onSuccess(mess){
+        message.success(mess);
+        this.props.resetApiResult();
+    }
+    onFail(mess){
+        message.error(mess);
+        this.props.resetApiResult();
+    }
     handleCreateSession(session) {
         this.props.deleteSession(this.props.movieID, session);
     }
@@ -151,14 +159,18 @@ class MyForm extends React.Component {
         const dateFormat = 'DD/MM/YYYY';
         
         // movie detail
-        let { Ma_so, Ten, Noi_dung, Rating, Thoi_luong, Quoc_gia, The_loai, Dien_vien, Dao_dien, Nha_san_xuat, Khoi_chieu, Don_gia, Phan_loai, Doanh_thu, Danh_sach_Suat_chieu } = this.props.movie;
-        // if (Khoi_chieu != undefined) {
-        //     Khoi_chieu = new Date(parseInt(Khoi_chieu.substr(6))).toLocaleDateString('vi-VN');
-        // }
-        if (The_loai != undefined) {
-            The_loai = The_loai.join(', ');
+        if(this.props.movie)
+        {
+            var { Ma_so, Ten, Noi_dung, Rating, Thoi_luong, Quoc_gia, The_loai, Dien_vien, Dao_dien, Nha_san_xuat, Khoi_chieu, Don_gia, Phan_loai, Doanh_thu, Danh_sach_Suat_chieu } = this.props.movie;
+            // if (Khoi_chieu != undefined) {
+            //     Khoi_chieu = new Date(parseInt(Khoi_chieu.substr(6))).toLocaleDateString('vi-VN');
+            // }
+            if (The_loai != undefined) {
+                The_loai = The_loai.join(', ');
+            }
+        } else {
+            var Ma_so, Ten, Noi_dung, Rating, Thoi_luong, Quoc_gia, The_loai, Dien_vien, Dao_dien, Nha_san_xuat, Khoi_chieu, Don_gia, Phan_loai, Doanh_thu, Danh_sach_Suat_chieu;
         }
-
         return (
             <div>
             <Form onSubmit={this.handleSubmit}>
@@ -197,7 +209,7 @@ class MyForm extends React.Component {
                         }],
                         initialValue: Rating
                     })(
-                        <Input />
+                        <InputNumber min={0} max={10} />
                     )}
                 </FormItem>
                 <FormItem
@@ -226,7 +238,7 @@ class MyForm extends React.Component {
                         }],
                         initialValue: Thoi_luong
                     })(
-                        <Input />
+                        <InputNumber />
                     )}
                 </FormItem>
                 <FormItem
@@ -346,7 +358,7 @@ class MyForm extends React.Component {
                         }],
                         initialValue: Don_gia
                     })(
-                        <Input />
+                        <InputNumber />
                     )}
                 </FormItem>
                 <FormItem
@@ -362,7 +374,7 @@ class MyForm extends React.Component {
                         }],
                         initialValue: Doanh_thu
                     })(
-                        <Input />
+                        <InputNumber />
                     )}
                 </FormItem>
                 <FormItem
@@ -384,7 +396,7 @@ class MyForm extends React.Component {
                 {Danh_sach_Suat_chieu && 
                     <SessionForm 
                         movieID = {Ma_so}
-                        createSession={this.props.createSession}
+                        // createSession={this.props.createSession}
                         deleteSession={this.props.deleteSession}
                         cinemas={this.props.cinemas} 
                         getFieldDecorator={getFieldDecorator} 
@@ -409,6 +421,13 @@ class MyForm extends React.Component {
                     onCreate={this.handleCreate}
                     cinemas={this.props.cinemas}
                 />
+
+                {
+                    this.props.error && this.onFail(this.props.error)
+                }
+                {
+                    this.props.success && this.onSuccess(this.props.success)
+                }
             </div>
         );
     }

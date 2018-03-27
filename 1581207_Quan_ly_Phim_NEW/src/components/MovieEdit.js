@@ -13,6 +13,9 @@ const MovieEdit = (props) => {
                 deleteSession={props.deleteSession} 
                 movie={props.movie} 
                 cinemas={props.cinemas}
+                error={props.error}
+                success={props.success}
+                resetApiResult={props.resetApiResult}
             />
         </div>
     );

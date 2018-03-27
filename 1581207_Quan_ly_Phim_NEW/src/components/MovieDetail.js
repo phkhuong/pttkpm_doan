@@ -4,17 +4,22 @@ import { Link } from "react-router-dom";
 import { Dia_chi_Media } from "../api";
 
 import SessionList from "../components/SessionList";
-import { Card, Icon, Avatar, Col, Row, Rate, Badge } from 'antd';
+import { Card, Icon, Avatar, Col, Row, Rate, Badge, message } from 'antd';
 import 'antd/lib/rate/style/css';
 
 class MovieDetail extends React.Component {
     constructor(props) {
         super(props);
     }
-
-
+    onSuccess(mess) {
+        message.success(mess);
+        this.props.resetApiResult();
+    }
+    onFail(mess) {
+        message.error(mess);
+        this.props.resetApiResult();
+    }
     render() {
-        // console.log(this.props.movie);
         let { Ma_so, Ten, Noi_dung, Rating, Thoi_luong, Quoc_gia, The_loai, Dien_vien, Dao_dien, Nha_san_xuat, Khoi_chieu, Don_gia, Phan_loai, Doanh_thu, Danh_sach_Suat_chieu } = this.props.movie;
         if (Khoi_chieu != undefined) {
             Khoi_chieu = new Date(parseInt(Khoi_chieu.substr(6))).toLocaleDateString('vi-VN');
@@ -37,7 +42,11 @@ class MovieDetail extends React.Component {
             <Link to={`/movies/${Ma_so}/edit`} >
                 <Icon type="form" style={{ fontSize: 20 }} />,
             </Link>,
-            <Icon type="delete" style={{ fontSize: 20 }} />
+            <Icon 
+                type="delete" 
+                style={{ fontSize: 20 }} 
+                onClick={() => this.props.requestDeleteMovie(Ma_so)}    
+            />
         ];
         return (
             <div>
@@ -81,6 +90,15 @@ class MovieDetail extends React.Component {
                         {Danh_sach_Suat_chieu && <SessionList sessions={Danh_sach_Suat_chieu} />}
                     </Col>
                 </Row>
+
+                {
+                    this.props.error && this.onFail(this.props.error)
+                }
+                {
+                    this.props.success && this.onSuccess(this.props.success)
+                }
+
+               
             </div>
         );
     }

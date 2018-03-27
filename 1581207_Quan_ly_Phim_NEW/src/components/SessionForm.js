@@ -16,10 +16,24 @@ const TreeNode = Tree.TreeNode;
 
 class SessionForm extends React.Component {
     
-    
+    handleDeleteSessionFromState(sessionID) {
+        // this.props.deleteSession(this.props.movieID, session);
+        this.props.onChange({
+            "Danh_sach_Suat_chieu": {
+                value: [
+                    ...this.props.sessions.filter(
+                        s => s.Ma_so != sessionID
+                    )
+                ]
+            }
+        });
+    }
 
     handleDeleteSession(sessionID){
-        this.props.deleteSession(this.props.movieID, sessionID);
+        if(this.props.addmode)
+            this.handleDeleteSessionFromState(sessionID);
+        else
+            this.props.deleteSession(this.props.movieID, sessionID);
     }
     
     render() {
