@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import CounterContainer from './containers/CounterContainer';
 import MovieListContainer from './containers/MovieListContainer';
 import MovieDetailContainer from './containers/MovieDetailContainer';
+import AddMovieContainer from "./containers/AddMovieContainer";
 import LoginContainer from "./containers/LoginContainer";
 import Home from './components/home';
 import NavMenu from "./components/NavMenu";
@@ -48,7 +49,7 @@ class App extends Component {
               <Switch>
                 <Route path='/' exact component={Home} />
                 <Route path='/login' component={LoginContainer} />
-                <PrivateRoute path='/add' isLoggedIn={this.props.isLoggedIn} component={Home} />
+                <PrivateRoute path='/add' isLoggedIn={this.props.isLoggedIn} component={AddMovieContainer} />
                 <PrivateRoute path='/movies' exact isLoggedIn={this.props.isLoggedIn} component={MovieListContainer} />
                 <PrivateRoute path='/movies/:id' isLoggedIn={this.props.isLoggedIn} component={MovieDetailContainer} />
               </Switch>

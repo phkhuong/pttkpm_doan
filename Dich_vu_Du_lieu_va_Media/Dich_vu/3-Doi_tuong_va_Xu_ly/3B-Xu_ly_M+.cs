@@ -76,7 +76,9 @@ public partial class XL_DICH_VU
     {
         var Du_lieu_Phan_he = new XL_DU_LIEU();
         Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
-        Du_lieu_Phan_he.Danh_sach_Nguoi_dung_Noi_bo = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Noi_bo;        
+        Du_lieu_Phan_he.Danh_sach_Nguoi_dung_Khach_tham_quan = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Khach_tham_quan;
+        Du_lieu_Phan_he.Danh_sach_Nguoi_dung_Noi_bo = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Noi_bo;
+
         Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();
@@ -128,6 +130,7 @@ public partial class XL_DICH_VU
             Phim_cua_Phan_he.Khoi_chieu = Phim.Khoi_chieu;
             Phim_cua_Phan_he.Quoc_gia = Phim.Quoc_gia;
             Phim_cua_Phan_he.Dao_dien = Phim.Dao_dien;
+            Phim_cua_Phan_he.Nha_san_xuat = Phim.Nha_san_xuat;
             Phim_cua_Phan_he.Dien_vien = Phim.Dien_vien;
             Phim_cua_Phan_he.Noi_dung = Phim.Noi_dung;
             Phim_cua_Phan_he.The_loai = Phim.The_loai;
@@ -159,6 +162,21 @@ public partial class XL_DICH_VU
         var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Ban_ve_Moi(Phim, Ban_ve);
         return Chuoi_Kq_Ghi;
     }
+    public string Ghi_Phim(XL_PHIM phim)
+    {
+        var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Phim(phim);
+        return Chuoi_Kq_Ghi;
+    }
+    public string Ghi_Phim_Moi(XL_PHIM phim)
+    {
+        var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Phim_Moi(phim);
+        return Chuoi_Kq_Ghi;
+    }
+    public string Xoa_Phim(string Ma_so)
+    {
+        var Chuoi_Kq_Ghi = XL_DU_LIEU.Xoa_Phim(Ma_so);
+        return Chuoi_Kq_Ghi;
+    }
     public string Ghi_Xac_nhan_Thanh_toan_Ve_dat(string Ma_so_Phim, XL_DAT_VE Ve_dat)
     {
         var Phim = Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);        
@@ -169,7 +187,7 @@ public partial class XL_DICH_VU
 //************************* Business-Layers BL **********************************
 public partial class XL_DICH_VU
 {
-    
+
     // Tính toán
     // Tính toán cơ sở : Trực tiếp trên  Đối tượng 
     public long Tinh_Doanh_thu_Phim(XL_PHIM Phim, DateTime Ngay)
@@ -191,7 +209,7 @@ public partial class XL_DICH_VU
 }
 //************************* Data-Layers DL **********************************
 public partial class XL_DU_LIEU
-{    
+{
     static DirectoryInfo Thu_muc_Project = new DirectoryInfo(HostingEnvironment.ApplicationPhysicalPath);
     static DirectoryInfo Thu_muc_Du_lieu = Thu_muc_Project.GetDirectories("2-Du_lieu_Luu_tru")[0];
     static DirectoryInfo Thu_muc_Cong_ty = Thu_muc_Du_lieu.GetDirectories("Cong_ty")[0];
@@ -260,7 +278,7 @@ public partial class XL_DU_LIEU
 
             Danh_sach_Phim.Add(Phim);
             var Danh_sach_Dat_ve_Khong_den_Tinh_tien = Phim.Danh_sach_Dat_ve.FindAll(Dat_ve =>
-               Dat_ve.Trang_thai =="DAT_VE" && DateTime.Compare(DateTime.Now, Dat_ve.Ngay_dat) < 0  );
+               Dat_ve.Trang_thai == "DAT_VE" && DateTime.Compare(DateTime.Now, Dat_ve.Ngay_dat) < 0);
             Danh_sach_Dat_ve_Khong_den_Tinh_tien.ForEach(x =>
             {
                 Phim.Danh_sach_Dat_ve.Remove(x);
@@ -270,7 +288,7 @@ public partial class XL_DU_LIEU
     }
 
     //******** Ghi *******
-    
+
     public static string Ghi_Dat_ve_Moi(XL_PHIM Phim, XL_DAT_VE Dat_ve)
     {
         var Kq = "";
@@ -283,7 +301,7 @@ public partial class XL_DU_LIEU
             Phim.Danh_sach_Dat_ve.Remove(Dat_ve);
             Dat_ve.Danh_sach_Ghe_dat.ForEach(Ghe_dat => Suat_chieu.Danh_sach_Ghe_trong.Add(Ghe_dat));
         }
-            
+
         return Kq;
     }
     public static string Ghi_Ban_ve_Moi(XL_PHIM Phim, XL_BAN_VE Ban_ve)
@@ -331,5 +349,52 @@ public partial class XL_DU_LIEU
         return Kq;
 
     }
+    public static string Ghi_Phim_Moi(XL_PHIM Phim)
+    {
+        var Kq = "";
+        var Duong_dan = $"{Thu_muc_Phim.FullName}\\{Phim.Ma_so}.json";
 
+        if (File.Exists(Duong_dan))
+            return "Phim đã tồn  tại.";
+
+        var Chuoi_JSON = Json.Encode(Phim);
+        using (var stream = new StreamWriter(Duong_dan))
+        {
+            try
+            {
+                stream.Write(Chuoi_JSON);
+                Kq = "OK";
+            }
+            catch (Exception Loi)
+            {
+                Kq = Loi.Message;
+            }
+        }
+
+        if (Kq != "OK")
+        {
+            File.Delete(Duong_dan);
+        }
+        return Kq;
+    }
+    public static string Xoa_Phim(string Ma_so_Phim_Xoa)
+    {
+        var Kq = "";
+        var Duong_dan = $"{Thu_muc_Phim.FullName}\\{Ma_so_Phim_Xoa}.json";
+
+        if (!File.Exists(Duong_dan))
+            return "Phim không tồn tại.";
+
+        try
+        {
+            File.Delete(Duong_dan);
+            Kq = "OK";
+        }
+        catch (Exception Loi)
+        {
+            Kq = Loi.Message;
+        }
+
+        return Kq;
+    }
 }

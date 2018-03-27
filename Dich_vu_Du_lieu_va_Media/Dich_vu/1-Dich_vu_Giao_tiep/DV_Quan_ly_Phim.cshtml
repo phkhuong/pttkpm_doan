@@ -7,7 +7,7 @@
     var Ma_so_Xu_ly = ""; // Biến Nhận
     var Chuoi_Kq = ""; // Biến Kêt quả
 
-    
+
     //*********Xử lý Nhập liệu Nếu có + Tạo Kết quả Nếu Hợp lệ  *********
     if (Request["Ma_so_Xu_ly"] != null)
     {
@@ -18,33 +18,170 @@
         {
             var Du_lieu_Kq = Du_lieu;
             Chuoi_Kq = Json.Encode(Du_lieu_Kq);
-        } else if(Ma_so_Xu_ly == "DANH_SACH_PHIM")
+        }
+        else if (Ma_so_Xu_ly == "DANH_SACH_PHIM")
         {
+            if (Du_lieu.Danh_sach_Phim.Count == 0)
+            {
+                Dich_vu = XL_DICH_VU.Khoi_dong_Dich_vu();
+                Du_lieu = Dich_vu.Tao_Du_lieu_Phan_he_Quan_ly_Phim();
+            }
             var Du_lieu_Kq = Du_lieu.Danh_sach_Phim;
             Chuoi_Kq = Json.Encode(Du_lieu_Kq);
-        } else if(Ma_so_Xu_ly == "DANG_NHAP")
+        }
+        else if (Ma_so_Xu_ly == "DANH_SACH_RAP")
+        {
+            if (Du_lieu.Danh_sach_Phim.Count == 0)
+            {
+                Dich_vu = XL_DICH_VU.Khoi_dong_Dich_vu();
+                Du_lieu = Dich_vu.Tao_Du_lieu_Phan_he_Quan_ly_Phim();
+            }
+            var Du_lieu_Kq = Du_lieu.Cong_ty.Danh_sach_Rap;
+            Chuoi_Kq = Json.Encode(Du_lieu_Kq);
+        }
+        else if (Ma_so_Xu_ly == "DANG_NHAP")
         {
             var Danh_sach_Quan_ly_Phim = Du_lieu.Danh_sach_Nguoi_dung_Noi_bo.FindAll(m => m.Nhom_Nguoi_dung.Ma_so == "QUAN_LY_PHIM");
             var Nguoi_dung_Nhan = Json.Decode<XL_NGUOI_DUNG_NOI_BO>(Chuoi_Nhan);
             var Nguoi_dung = Danh_sach_Quan_ly_Phim.FirstOrDefault(x => x.Ma_so == Nguoi_dung_Nhan.Ma_so && x.Mat_khau == Nguoi_dung_Nhan.Mat_khau);
-            if(Nguoi_dung != null)
+            if (Nguoi_dung != null)
             {
                 Chuoi_Kq = Json.Encode(Nguoi_dung);
-                
-            } else
+
+            }
+            else
             {
-                
+
                 Response.SetStatus(HttpStatusCode.NotFound);
 
                 Response.End();
             }
         }
+        else if (Ma_so_Xu_ly == "CAP_NHAT_PHIM")
+        {
+            var phim = Json.Decode<XL_PHIM>(Chuoi_Nhan);
+
+            if (phim != null && !Du_lieu.Danh_sach_Phim.Any(p => p.Ma_so == phim.Ma_so))
+            {
+                Response.SetStatus(HttpStatusCode.NotFound);
+                Response.End();
+            }
+            phim.Danh_sach_Suat_chieu.ForEach(sc =>
+            {
+                try
+                {
+                    var rap = Du_lieu.Cong_ty.Danh_sach_Rap.FirstOrDefault(r => r.Ma_so == sc.Rap.Ma_so);
+                    sc.Rap.Ten = rap.Ten;
+                    var phong = rap.Danh_sach_Phong_chieu.FirstOrDefault(p => p.Ma_so == sc.Phong_chieu.Ma_so);
+                    sc.Phong_chieu.Ten = phong.Ten;
+
+                }
+                catch (Exception ex)
+                {
+                    Response.SetStatus(HttpStatusCode.BadRequest);
+                    Response.End();
+                }
+
+            });
+
+            var kq = Dich_vu.Ghi_Phim(phim);
+            if (kq != "OK")
+            {
+                Response.SetStatus(HttpStatusCode.InternalServerError);
+                Chuoi_Kq = "Vui lòng thừ lại sau.";
+            }
+            else
+            {
+                Chuoi_Kq = Json.Encode(new { result = phim.Ten });
+            }
+        }
+        else if (Ma_so_Xu_ly == "THEM_PHIM_MOI")
+        {
+
+            var phim = new XL_PHIM();
+
+            try
+            {
+                phim = Json.Decode<XL_PHIM>(Chuoi_Nhan);
+                if (phim.Ten == null || phim.Dien_vien == null)
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.SetStatus(HttpStatusCode.BadRequest);
+                Response.End();
+            }
+
+            phim.Ma_so = Dich_vu.Tinh_Ma_so_Phim_moi(Du_lieu.Danh_sach_Phim);
+
+            phim.Danh_sach_Suat_chieu.ForEach(sc =>
+            {
+                try
+                {
+                    var rap = Du_lieu.Cong_ty.Danh_sach_Rap.FirstOrDefault(r => r.Ma_so == sc.Rap.Ma_so);
+                    sc.Rap.Ten = rap.Ten;
+                    var phong = rap.Danh_sach_Phong_chieu.FirstOrDefault(p => p.Ma_so == sc.Phong_chieu.Ma_so);
+                    sc.Phong_chieu.Ten = phong.Ten;
+
+                }
+                catch (Exception ex)
+                {
+                    Response.SetStatus(HttpStatusCode.BadRequest);
+                    Response.End();
+                }
+
+            });
+
+            var kq = Dich_vu.Ghi_Phim_Moi(phim);
+            if (kq != "OK")
+            {
+                Response.SetStatus(HttpStatusCode.InternalServerError);
+                Chuoi_Kq = "Vui lòng thừ lại sau.";
+            }
+            else
+            {
+                Chuoi_Kq = Json.Encode(new { result = phim.Ten, Ma_so = phim.Ma_so });
+            }
+        }
+        else if (Ma_so_Xu_ly == "XOA_PHIM")
+        {
+            string Ma_so_Phim_Xoa = "";
+
+            try
+            {
+                Ma_so_Phim_Xoa = Json.Decode(Chuoi_Nhan).Ma_so;
+            } catch (Exception ex)
+            {
+                Response.SetStatus(HttpStatusCode.BadRequest);
+            }
+
+            var Phim_can_Xoa = Du_lieu.Danh_sach_Phim.FirstOrDefault(p => p.Ma_so == Ma_so_Phim_Xoa);
+
+            if (Phim_can_Xoa == null)
+            {
+                Response.SetStatus(HttpStatusCode.NotFound);
+                Response.End();
+            }
+
+            string Ten_Phim = Phim_can_Xoa.Ten;
+            var kq = Dich_vu.Xoa_Phim(Ma_so_Phim_Xoa);
+            if (kq != "OK")
+            {
+                Response.SetStatus(HttpStatusCode.InternalServerError);
+                Chuoi_Kq = "Vui lòng thừ lại sau.";
+            }
+            else
+            {
+                Chuoi_Kq = Json.Encode(new { Ten = Ten_Phim, Ma_so = Ma_so_Phim_Xoa });
+            }
+        }
+
+        // Xử lý trả Kết quả
+        Response.ContentType = "text/json";
+
+        Response.Write(Chuoi_Kq);
     }
 
-    // Xử lý trả Kết quả
-    Response.ContentType = "text/json";
-    
-    Response.Write(Chuoi_Kq);
 }
-
-
