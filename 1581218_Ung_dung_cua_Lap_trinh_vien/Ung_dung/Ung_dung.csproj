@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4AA24FD7-86A3-47A4-8539-8EEB974517C5}</ProjectGuid>
+    <ProjectGuid>{E92402B0-B2EC-4A27-8949-CDB3A89B175C}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -81,10 +81,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1-Man_hinh_Giao_dien\DD_Chinh.css" />
-    <Content Include="1-Man_hinh_Giao_dien\DD_Chi_tiet_Phim.css" />
-    <Content Include="1-Man_hinh_Giao_dien\DD_Chon_Ghe.css" />
-    <Content Include="1-Man_hinh_Giao_dien\DD_Thong_tin_Ca_nhan.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -94,14 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1-Man_hinh_Giao_dien\MH_Chinh.cshtml" />
-    <Content Include="1-Man_hinh_Giao_dien\MH_Dang_nhap.cshtml" />
-    <Content Include="1-Man_hinh_Giao_dien\MH_Chi_tiet_Phim.cshtml" />
-    <Content Include="1-Man_hinh_Giao_dien\MH_Xu_ly_Ajax.cshtml" />
-    <Content Include="1-Man_hinh_Giao_dien\MH_Chon_Ghe.cshtml" />
-    <Content Include="1-Man_hinh_Giao_dien\MH_Thong_tin_Ca_nhan.cshtml" />
-    <Content Include="1-Man_hinh_Giao_dien\MH_Thanh_toan_Ve_dat.cshtml" />
-    <Content Include="1-Man_hinh_Giao_dien\MH_Chon_Ghe_Thanh_toan_Ve_dat.cshtml" />
-    <Content Include="1-Man_hinh_Giao_dien\MH_Thong_tin_Ca_nhan_Ve_dat.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -110,6 +98,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -123,9 +112,11 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>59613</DevelopmentServerPort>
+          <DevelopmentServerPort>52954</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:59613/</IISUrl>
+          <IISUrl>http://localhost:52880/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:52880/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

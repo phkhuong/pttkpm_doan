@@ -17,9 +17,11 @@ public class XL_NGUOI_DUNG
     public long Diem_tich_luy;
     public List<XL_PHIM> Danh_sach_Phim_Xem = new List<XL_PHIM>();
     public List<XL_RAP> Danh_sach_Rap = new List<XL_RAP>();
+    public List<XL_NGUOI_DUNG_NOI_BO> Danh_sach_Nguoi_dung_Noi_bo = new List<XL_NGUOI_DUNG_NOI_BO>();
     public XL_PHIM Phim_chon = new XL_PHIM();    
     public XL_DAT_VE Dat_ve = new XL_DAT_VE();
     public XL_BAN_VE Ban_ve = new XL_BAN_VE();
+    public XL_GHE Ghe_dat_Thanh_toan = new XL_GHE();
 
 }
 public class XL_NGUOI_DUNG_NOI_BO
@@ -73,6 +75,7 @@ public class XL_PHIM
     public List<XL_DAT_VE> Danh_sach_Dat_ve = new List<XL_DAT_VE>();
     public List<XL_BAN_VE> Danh_sach_Ban_ve = new List<XL_BAN_VE>();
     public List<XL_SUAT_CHIEU> Danh_sach_Suat_chieu = new List<XL_SUAT_CHIEU>();
+    public long Doanh_thu;
 }
 
 public class XL_SUAT_CHIEU

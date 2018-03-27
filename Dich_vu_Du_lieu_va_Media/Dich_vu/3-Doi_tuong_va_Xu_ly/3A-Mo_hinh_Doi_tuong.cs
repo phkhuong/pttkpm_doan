@@ -17,7 +17,8 @@ public class XL_NGUOI_DUNG_NOI_BO
     public XL_NHOM_NGUOI_DUNG Nhom_Nguoi_dung = new XL_NHOM_NGUOI_DUNG();
     public XL_RAP Rap = new XL_RAP();
     public long Doanh_thu;//Tính toán
-    public List<XL_NGUOI_DUNG_NOI_BO> Danh_sach_Nguoi_dung_Noi_bo = new List<XL_NGUOI_DUNG_NOI_BO>();
+
+
 }
 public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
 {
@@ -45,25 +46,7 @@ public class XL_PHONG_CHIEU
 
 }
 
-//public class XL_NHAN_VIEN_BAN_VE
-//{
-//    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-//    public XL_RAP Rap = new XL_RAP();
-//}
-//public class XL_QUAN_LY_NHAN_VIEN
-//{
-//    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-//    public XL_RAP Rap = new XL_RAP();
-//}
-//public class XL_QUAN_LY_PHIM
-//{
-//    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-//}
-//public class XL_KHACH_HANG
-//{
-//    public string Ho_ten,Dien_thoai,Email, Ma_so = "";
 
-//}
 //*************************** Đối tượng Xử lý Chính *********
 public class XL_PHIM
 {
@@ -117,5 +100,6 @@ public class XL_GHE
 //=========== Danh mục Nhóm  ===============
 public class XL_NHOM_NGUOI_DUNG
 {
-    public string Ten, Ma_so = "";
+    public string Ten = "", Ma_so = "";
+    public string Dia_chi_Dang_nhap = "";
 }

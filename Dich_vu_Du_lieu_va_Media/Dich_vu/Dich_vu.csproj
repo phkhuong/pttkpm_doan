@@ -107,7 +107,6 @@
     <Content Include="1-Dich_vu_Giao_tiep\DV_Khach_tham_quan.cshtml" />
     <Content Include="1-Dich_vu_Giao_tiep\DV_Nhan_vien_Ban_ve.cshtml" />
     <Content Include="2-Du_lieu_Luu_tru\Cong_ty\CONG_TY.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_1.json" />
     <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_10.json" />
     <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_11.json" />
     <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_12.json" />
@@ -128,6 +127,7 @@
     <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\QL_1.json" />
     <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\QL_2.json" />
     <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\QL_3.json" />
+    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_1.json" />
     <None Include="packages.config" />
     <Content Include="ViewPage1.cshtml" />
     <None Include="Web.Debug.config">
