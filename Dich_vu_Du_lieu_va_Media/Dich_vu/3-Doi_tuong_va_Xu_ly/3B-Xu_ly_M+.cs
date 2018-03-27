@@ -277,12 +277,15 @@ public partial class XL_DU_LIEU
             var Phim = Json.Decode<XL_PHIM>(Chuoi_JSON);
 
             Danh_sach_Phim.Add(Phim);
-            var Danh_sach_Dat_ve_Khong_den_Tinh_tien = Phim.Danh_sach_Dat_ve.FindAll(Dat_ve =>
-               Dat_ve.Trang_thai == "DAT_VE" && DateTime.Compare(DateTime.Now, Dat_ve.Ngay_dat) < 0);
-            Danh_sach_Dat_ve_Khong_den_Tinh_tien.ForEach(x =>
-            {
-                Phim.Danh_sach_Dat_ve.Remove(x);
-            });
+
+            //===========================Tắt điều kiện này để dữ liệu cũ có thể xài dược=====================
+
+            //var Danh_sach_Dat_ve_Khong_den_Tinh_tien = Phim.Danh_sach_Dat_ve.FindAll(Dat_ve =>
+            //   Dat_ve.Trang_thai == "DAT_VE" && DateTime.Compare(DateTime.Now, Dat_ve.Ngay_dat) < 0);
+            //Danh_sach_Dat_ve_Khong_den_Tinh_tien.ForEach(x =>
+            //{
+            //    Phim.Danh_sach_Dat_ve.Remove(x);
+            //});
         });
         return Danh_sach_Phim;
     }
@@ -338,7 +341,7 @@ public partial class XL_DU_LIEU
         return Kq;
     }
     
-    static string Ghi_Phim(XL_PHIM Phim)
+    public static string Ghi_Phim(XL_PHIM Phim)
     {
         var Kq = "";
         var Duong_dan = $"{Thu_muc_Phim.FullName}\\{Phim.Ma_so}.json";

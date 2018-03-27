@@ -19,7 +19,8 @@
         var So_luong = int.Parse(Chuoi_So_luong);
         Nguoi_dung.Dat_ve.Suat_chieu = Suat_chieu;
         Nguoi_dung.Dat_ve.So_luong = So_luong;
-        Nguoi_dung.Dat_ve.Tien = So_luong * Nguoi_dung.Phim_chon.Don_gia;
+        Nguoi_dung.Dat_ve.Don_gia = Nguoi_dung.Phim_chon.Don_gia;
+        Nguoi_dung.Dat_ve.Tien = So_luong * Nguoi_dung.Dat_ve.Don_gia;
         Response.Redirect("MH_Chon_Ghe");
     }
     //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
