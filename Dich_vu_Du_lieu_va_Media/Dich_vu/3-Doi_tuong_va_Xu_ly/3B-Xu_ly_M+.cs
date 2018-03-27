@@ -336,11 +336,18 @@ public partial class XL_DU_LIEU
     public static string Ghi_Xac_nhan_Thanh_toan_Ve_dat(XL_PHIM Phim, XL_DAT_VE Dat_ve)
     {
         var Kq = "";
-        Phim.Danh_sach_Dat_ve.FirstOrDefault(x => x.Ma_so == Dat_ve.Ma_so).Trang_thai = "DA_THANH_TOAN";
+        var Du_lieu_Dat_ve = Phim.Danh_sach_Dat_ve.FirstOrDefault(x => x.Ma_so == Dat_ve.Ma_so);
+        var Ngay_Thanh_toan_Ban_dau = Du_lieu_Dat_ve.Ngay_thanh_toan;
+        Du_lieu_Dat_ve.Trang_thai = "DA_THANH_TOAN";
+        Du_lieu_Dat_ve.Ngay_thanh_toan = Dat_ve.Ngay_thanh_toan;
+        Du_lieu_Dat_ve.Nhan_vien_Ban_ve = Dat_ve.Nhan_vien_Ban_ve;
         Kq = Ghi_Phim(Phim);
         if (Kq != "OK")
         {
-            Phim.Danh_sach_Dat_ve.FirstOrDefault(Ve_dat => Ve_dat == Dat_ve).Trang_thai = "DAT_VE";
+            Du_lieu_Dat_ve.Trang_thai = "DAT_VE";
+            Du_lieu_Dat_ve.Ngay_thanh_toan = Ngay_Thanh_toan_Ban_dau;
+            Du_lieu_Dat_ve.Nhan_vien_Ban_ve.Ma_so = null;
+            Du_lieu_Dat_ve.Nhan_vien_Ban_ve.Ho_ten = null;
         }
         return Kq;
     }
