@@ -25,6 +25,12 @@
     {
         Chuoi_HTML_Ket_qua = Ung_dung.Xem_Danh_sach_Phim_dang_chieu();
     }
+    else if (Ma_so_Chuc_nang == "DANG_NHAP")
+    {
+        var Ten_Dang_nhap = Request["Th_Ten_Dang_nhap"];
+        var Mat_khau = Request["Th_Mat_khau"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Dang_nhap(Ten_Dang_nhap, Mat_khau);
+    }
 }
 
 <!DOCTYPE html>

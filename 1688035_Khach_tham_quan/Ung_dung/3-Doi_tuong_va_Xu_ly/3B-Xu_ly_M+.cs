@@ -73,8 +73,8 @@ public partial class XL_UNG_DUNG
         {
             var Lan_Dang_nhap = new XL_LAN_DANG_NHAP();
             Nguoi_dung.Danh_sach_Lan_Dang_nhap.Add(Lan_Dang_nhap);
-            var Tham_so = $"Th_Ma_so_Chuc_nang=DANG_NHAP&&Th_Ten_Dang_nhap={Ten_Dang_nhap}&&Th_Mat_khau={Mat_khau}";
-            if (Nguoi_dung.Nhom_Nguoi_dung.Ma_so == "NHAN_VIEN_BAN_HANG")
+            var Tham_so = $"Th_Ma_so_Chuc_nang=DANG_NHAP&Th_Ten_Dang_nhap={Ten_Dang_nhap}&Th_Mat_khau={Mat_khau}";
+            if (Nguoi_dung.Nhom_Nguoi_dung.Ma_so == "NHAN_VIEN_BAN_VE")
             {
 
                 var Dia_chi_Xu_ly = $"{Nguoi_dung.Nhom_Nguoi_dung.Dia_chi_Dang_nhap}?{Tham_so}";
