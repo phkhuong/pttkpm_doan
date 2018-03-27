@@ -55,3 +55,7 @@ body {
 .login-form-button {
   width: 100%;
 }
+
+.ant-checkbox-group label {
+  font-family: 'Inconsolata', monospace !important;
+}

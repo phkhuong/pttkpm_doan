@@ -10,7 +10,7 @@
   		"Danh_sach_Phong_chieu":[
   			{
   				"Ma_so":"RAP_1_PC_1",
-  				"Tên": "Phòng chiếu 1",
+  				"Ten": "Phòng chiếu 1",
           "So_Ghe": 81,
           "Danh_sach_Ghe": [
             {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
@@ -26,7 +26,7 @@
   			},
   			{
   				"Ma_so":"RAP_1_PC_2",
-  				"Tên": "Phòng chiếu 2",
+  				"Ten": "Phòng chiếu 2",
           "So_Ghe": 81,
           "Danh_sach_Ghe": [
             {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
@@ -48,7 +48,7 @@
   		"Danh_sach_Phong_chieu":[
   			{
   				"Ma_so":"RAP_2_PC_1",
-  				"Tên": "Phòng chiếu 1",
+  				"Ten": "Phòng chiếu 1",
           "So_Ghe": 81,
           "Danh_sach_Ghe": [
             {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},
@@ -64,7 +64,7 @@
   			},
   			{
   				"Ma_so":"RAP_2_PC_2",
-  				"Tên": "Phòng chiếu 2",
+  				"Ten": "Phòng chiếu 2",
           "So_Ghe": 81,
           "Danh_sach_Ghe": [
             {"Ma_so": "I9"},	{"Ma_so": "I8"},	{"Ma_so": "I7"},	{"Ma_so": "I6"},	{"Ma_so": "I5"},	{"Ma_so": "I4"},	{"Ma_so": "I3"},	{"Ma_so": "I2"},	{"Ma_so": "I1"},

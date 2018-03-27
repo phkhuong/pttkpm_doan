@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { Row } from 'antd';
+import { Row, message } from 'antd';
 
 import Movie from "../components/Movie";
 
@@ -8,9 +8,18 @@ class MovieList extends React.Component {
     constructor(props) {
         super(props);
     }
+    
+    onSuccess(mess) {
+        message.success(mess);
+        this.props.resetApiResult();
+    }
+    onFail(mess) {
+        message.error(mess);
+        this.props.resetApiResult();
+    }
     render() {
         const markup = this.props.movies.map((movie) => (
-            <Movie key={movie.Ma_so} movie={movie}  />
+            <Movie key={movie.Ma_so} movie={movie} requestDeleteMovie={this.props.requestDeleteMovie} />
         ));
         return (
             <div>
@@ -19,6 +28,12 @@ class MovieList extends React.Component {
                 <Row>
                     {markup}
                 </Row>
+                {
+                    this.props.error && this.onFail(this.props.error)
+                }
+                {
+                    this.props.success && this.onSuccess(this.props.success)
+                }
             </div>
         );
     }

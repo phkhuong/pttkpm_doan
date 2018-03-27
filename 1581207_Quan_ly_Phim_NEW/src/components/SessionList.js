@@ -20,7 +20,7 @@ class SessionList extends React.Component {
             <div>
                 
                 <Tabs
-                    defaultActiveKey={this.props.sessions.length !== 0 && this.props.sessions[0].Ma_so}
+                    // defaultActiveKey={this.props.sessions.length !== 0 && this.props.sessions[0].Ma_so}
                     tabPosition="left"
                    
                 >

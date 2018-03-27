@@ -23,7 +23,7 @@ const NavMenu = (props) => {
             <Menu.Item key="/"><Link to="/">Home</Link></Menu.Item>
             <Menu.Item key="/movies"><Link to="/movies">Danh sách phim</Link ></Menu.Item>
             <Menu.Item key="/movies/:id">Chi tiết phim</Menu.Item>
-            <Menu.Item key="6"><Link to="/add">Thêm phim mới</Link></Menu.Item>
+            <Menu.Item key="/add"><Link to="/add">Thêm phim mới</Link></Menu.Item>
             {
                 props.user.Ma_so ? 
                     (
