@@ -63,9 +63,12 @@ class MyForm extends React.Component {
                 'Danh_sach_Suat_chieu': ds_suat_chieu,
                 'The_loai': fieldsValue['The_loai'].split(',').map(s => s.trim())
             }
-            // console.log('Received values of form: ', values);
+            console.log('Received values of form: ', values);
             // action -> api
-            this.props.requestAddMovie(values);
+            if(this.props.requestAddMovie)
+                this.props.requestAddMovie(values);
+            else if (this.props.requestUpdateMovie)
+                this.props.requestUpdateMovie(values);
         });
     }
     handleConfirmBlur = (e) => {
@@ -134,6 +137,11 @@ class MyForm extends React.Component {
         };
 
         const dateFormat = 'DD/MM/YYYY';
+        var btn
+        if(this.props.requestUpdateMovie)
+            btn = "Cập nhật Phim";
+        else
+            btn = "Thêm Phim mới";
 
         // movie detail
         if (this.props.movie) {
@@ -141,9 +149,9 @@ class MyForm extends React.Component {
             // if (Khoi_chieu != undefined) {
             //     Khoi_chieu = new Date(parseInt(Khoi_chieu.substr(6))).toLocaleDateString('vi-VN');
             // }
-            if (The_loai != undefined) {
-                The_loai = The_loai.join(', ');
-            }
+            // if (The_loai != undefined) {
+            //     The_loai = The_loai.join(', ');
+            // }
         } else {
             var Ma_so, Ten, Noi_dung, Rating, Thoi_luong, Quoc_gia, The_loai, Dien_vien, Dao_dien, Nha_san_xuat, Khoi_chieu, Don_gia, Phan_loai, Doanh_thu, Danh_sach_Suat_chieu;
         }
@@ -388,7 +396,7 @@ class MyForm extends React.Component {
                         {/* modal form */}
                     </FormItem>
                     <FormItem {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit">Thêm Phim Mới</Button>
+                        <Button type="primary" htmlType="submit">{btn}</Button>
                     </FormItem>
                 </Form>
 

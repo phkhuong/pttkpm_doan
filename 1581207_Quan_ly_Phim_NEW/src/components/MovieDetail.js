@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import * as moment from "moment";
 import { Link } from "react-router-dom";
 import { Dia_chi_Media } from "../api";
 
@@ -22,7 +23,7 @@ class MovieDetail extends React.Component {
     render() {
         let { Ma_so, Ten, Noi_dung, Rating, Thoi_luong, Quoc_gia, The_loai, Dien_vien, Dao_dien, Nha_san_xuat, Khoi_chieu, Don_gia, Phan_loai, Doanh_thu, Danh_sach_Suat_chieu } = this.props.movie;
         if (Khoi_chieu != undefined) {
-            Khoi_chieu = new Date(parseInt(Khoi_chieu.substr(6))).toLocaleDateString('vi-VN');
+            Khoi_chieu = moment(Khoi_chieu).format('DD/MM/YYYY');
         }
         if(The_loai != undefined){
             The_loai = The_loai.join(', ');
