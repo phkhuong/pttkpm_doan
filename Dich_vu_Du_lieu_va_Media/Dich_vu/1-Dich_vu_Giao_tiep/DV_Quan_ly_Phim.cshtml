@@ -60,7 +60,7 @@
         else if (Ma_so_Xu_ly == "CAP_NHAT_PHIM")
         {
             var phim = Json.Decode<XL_PHIM>(Chuoi_Nhan);
-
+            
             if (phim != null && !Du_lieu.Danh_sach_Phim.Any(p => p.Ma_so == phim.Ma_so))
             {
                 Response.SetStatus(HttpStatusCode.NotFound);
@@ -83,8 +83,8 @@
                 }
 
             });
-
-            var kq = Dich_vu.Ghi_Phim(phim);
+            
+            var kq = Dich_vu.Ghi_Phim_Cap_nhat(phim);
             if (kq != "OK")
             {
                 Response.SetStatus(HttpStatusCode.InternalServerError);
