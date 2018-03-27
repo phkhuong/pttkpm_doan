@@ -6,12 +6,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C8010188-8CAB-43A6-9C5C-40FD3503C399}</ProjectGuid>
+    <ProjectGuid>{E92402B0-B2EC-4A27-8949-CDB3A89B175C}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dich_vu</RootNamespace>
-    <AssemblyName>Dich_vu</AssemblyName>
+    <RootNamespace>Ung_dung</RootNamespace>
+    <AssemblyName>Ung_dung</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -81,21 +81,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Media\LOGO.png" />
-    <Content Include="Media\LOGO_MOBILE.png" />
-    <Content Include="Media\PHIM_1.jpg" />
-    <Content Include="Media\PHIM_10.jpg" />
-    <Content Include="Media\PHIM_11.jpg" />
-    <Content Include="Media\PHIM_12.jpg" />
-    <Content Include="Media\PHIM_13.jpg" />
-    <Content Include="Media\PHIM_2.jpg" />
-    <Content Include="Media\PHIM_3.jpg" />
-    <Content Include="Media\PHIM_4.jpg" />
-    <Content Include="Media\PHIM_5.jpg" />
-    <Content Include="Media\PHIM_6.jpg" />
-    <Content Include="Media\PHIM_7.jpg" />
-    <Content Include="Media\PHIM_8.jpg" />
-    <Content Include="Media\PHIM_9.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -104,31 +89,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1-Dich_vu_Giao_tiep\DV_Khach_tham_quan.cshtml" />
-    <Content Include="1-Dich_vu_Giao_tiep\DV_Nhan_vien_Ban_ve.cshtml" />
-    <Content Include="2-Du_lieu_Luu_tru\Cong_ty\CONG_TY.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_10.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_11.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_12.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_13.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_2.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_3.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_4.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_5.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_6.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_7.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_8.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_9.json" />
-    <Content Include="1-Dich_vu_Giao_tiep\DV_Quan_ly_Phim.cshtml" />
-    <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\NV_1.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\NV_2.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\NV_3.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\NV_4.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\QL_1.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\QL_2.json" />
-    <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\QL_3.json" />
+    <Content Include="1-Man_hinh_Giao_dien\MH_Chinh.cshtml" />
     <None Include="packages.config" />
-    <Content Include="ViewPage1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -136,9 +98,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="2-Du_lieu_Luu_tru\Nguoi_dung\Khach_tham_quan\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -152,11 +112,11 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62503</DevelopmentServerPort>
+          <DevelopmentServerPort>52954</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:59900/</IISUrl>
+          <IISUrl>http://localhost:52880/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:59900/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:52880/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -157,6 +157,12 @@ public partial class XL_DICH_VU
         var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Ban_ve_Moi(Phim, Ban_ve);
         return Chuoi_Kq_Ghi;
     }
+    public string Ghi_Xac_nhan_Thanh_toan_Ve_dat(string Ma_so_Phim, XL_DAT_VE Ve_dat)
+    {
+        var Phim = Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
+        var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Xac_nhan_Thanh_toan_Ve_dat(Phim, Ve_dat);
+        return Chuoi_Kq_Ghi;
+    }
 }
 //************************* Business-Layers BL **********************************
 public partial class XL_DICH_VU
@@ -294,6 +300,21 @@ public partial class XL_DU_LIEU
 
         return Kq;
     }
+    public static string Ghi_Xac_nhan_Thanh_toan_Ve_dat(XL_PHIM Phim, XL_DAT_VE Dat_ve)
+    {
+        var Kq = "";
+        Phim.Danh_sach_Dat_ve.Remove(Dat_ve);
+        Dat_ve.Trang_thai = "DA_THANH_TOAN";
+        Phim.Danh_sach_Dat_ve.Add(Dat_ve);
+        
+        Kq = Ghi_Phim(Phim);
+        if (Kq != "OK")
+        {
+            Phim.Danh_sach_Dat_ve.FirstOrDefault(Ve_dat => Ve_dat == Dat_ve).Trang_thai = "DAT_VE";
+        }
+        return Kq;
+    }
+    
     static string Ghi_Phim(XL_PHIM Phim)
     {
         var Kq = "";

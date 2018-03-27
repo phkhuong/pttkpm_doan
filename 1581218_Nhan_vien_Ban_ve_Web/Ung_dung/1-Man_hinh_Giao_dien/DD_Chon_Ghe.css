@@ -65,6 +65,9 @@
     .seat-map-wrapper .seat-cinema span.seat-cinema-unavailable:before {
         background-color: #e11c01;
     }
+    .seat-map-wrapper .seat-cinema span.seat-cinema-ghedat:before {
+        background-color: orange;
+    }
 
     .seat-map-wrapper .seat-cinema span.seat-cinema-normal:before {
         background-color: #dbdee1;
