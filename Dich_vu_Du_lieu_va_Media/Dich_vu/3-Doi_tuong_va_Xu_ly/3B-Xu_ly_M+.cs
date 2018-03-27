@@ -47,7 +47,6 @@ public partial class XL_DICH_VU
         var Du_lieu_Phan_he = new XL_DU_LIEU();
         Du_lieu_Phan_he.Cong_ty = Du_lieu_Dich_vu.Cong_ty;
         Du_lieu_Phan_he.Danh_sach_Nguoi_dung_Khach_tham_quan = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Khach_tham_quan;
-        Du_lieu_Phan_he.Danh_sach_Nguoi_dung_Noi_bo = Du_lieu_Dich_vu.Danh_sach_Nguoi_dung_Noi_bo;
         Du_lieu_Dich_vu.Danh_sach_Phim.ForEach(Phim =>
         {
             var Phim_cua_Phan_he = new XL_PHIM();

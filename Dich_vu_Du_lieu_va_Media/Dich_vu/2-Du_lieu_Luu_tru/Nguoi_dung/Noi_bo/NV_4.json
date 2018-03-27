@@ -5,8 +5,7 @@
   "Mat_khau": "NV_4",
   "Nhom_Nguoi_dung": {
     "Ten": "Nhân viên bán vé",
-    "Ma_so": "NHAN_VIEN_BAN_VE",
-    "Dia_chi_Dang_nhap": "http://localhost:59613/1-Man_hinh_Giao_dien/MH_Dang_nhap.cshtml"
+    "Ma_so": "NHAN_VIEN_BAN_VE"
   },
   "Rap": {
     "Ma_so": "RAP_2",

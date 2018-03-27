@@ -25,12 +25,6 @@
     {
         Chuoi_HTML_Ket_qua = Ung_dung.Xem_Danh_sach_Phim_dang_chieu();
     }
-    else if (Ma_so_Chuc_nang == "DANG_NHAP")
-    {
-        var Ten_Dang_nhap = Request["Th_Ten_Dang_nhap"];
-        var Mat_khau = Request["Th_Mat_khau"];
-        Chuoi_HTML_Ket_qua = Ung_dung.Dang_nhap(Ten_Dang_nhap, Mat_khau);
-    }
 }
 
 <!DOCTYPE html>
@@ -78,9 +72,6 @@
                             <td id="MH_Danh_sach_Phim_dang_chieu" class="CHUC_NANG" onclick="XEM_DANH_SACH_PHIM_DANG_CHIEU.submit();">
                                 PHIM ĐANG CHIẾU
                             </td>
-                            <td id="DANG_NHAP" class="CHUC_NANG" data-toggle="modal" data-target="#myModal">
-                                ĐĂNG NHẬP
-                            </td>
                         </tr>
                     </thead>
                 </table>
@@ -89,31 +80,6 @@
     </div>
     <div class="CUA_SO_KET_QUA">
         @Html.Raw(Chuoi_HTML_Ket_qua)
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Đăng Nhập</h4>
-                </div>
-                <div class="modal-body">
-                    <form method="post" class="form-signin">
-                        <input type="text" id="Th_Ten_Dang_nhap" name="Th_Ten_Dang_nhap" class="form-control" placeholder="Tên đăng nhập" required autofocus>
-                        <input type="password" id="Th_Mat_khau" name="Th_Mat_khau" class="form-control" placeholder="Mật khẩu" required>
-                        <input name="Th_Ma_so_Chuc_nang" type="hidden" value="DANG_NHAP" />
-                        <button id="Th_Dong_y" class="btn btn-lg btn-default btn-block btn-signin" type="submit">Đăng nhập</button>
-                    </form>
-                </div>
-                @*<div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>*@
-            </div>
-
-        </div>
     </div>
     <form id="XEM_DANH_SACH_PHIM_DANG_CHIEU" method="post">
         <input name="Th_Ma_so_Chuc_nang" type="hidden" value="XEM_DANH_SACH_PHIM_DANG_CHIEU" />

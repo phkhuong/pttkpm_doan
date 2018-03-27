@@ -2,18 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
-public class XL_LAN_DANG_NHAP
-{
-    public DateTime Ngay = DateTime.Now;
-
-}
 //*************************** Đối tượng Dữ liệu   *********
 public partial class XL_DU_LIEU
 {
     public XL_CONG_TY Cong_ty = new XL_CONG_TY();
-    public List<XL_NGUOI_DUNG_NOI_BO> Danh_sach_Nguoi_dung_Noi_bo = new List<XL_NGUOI_DUNG_NOI_BO>();
-    public List<XL_NGUOI_DUNG_KHACH_THAM_QUAN> Danh_sach_Nguoi_dung_Khach_tham_quan = new List<XL_NGUOI_DUNG_KHACH_THAM_QUAN>();
+    public List<XL_NGUOI_DUNG> Danh_sach_Nguoi_dung_Khach_tham_quan = new List<XL_NGUOI_DUNG>();
     public List<XL_PHIM> Danh_sach_Phim = new List<XL_PHIM>();
 }
 //=========== Đối tượng  Con người ===============
@@ -25,15 +18,6 @@ public class XL_NGUOI_DUNG
     public List<XL_RAP> Danh_sach_Rap = new List<XL_RAP>();
     public XL_PHIM Phim_chon = new XL_PHIM();
     public XL_DAT_VE Dat_ve = new XL_DAT_VE();
-}
-public class XL_NGUOI_DUNG_NOI_BO
-{
-    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-    public XL_NHOM_NGUOI_DUNG Nhom_Nguoi_dung = new XL_NHOM_NGUOI_DUNG();
-    public XL_RAP Rap = new XL_RAP();
-    public long Doanh_thu;//Tính toán
-
-    public List<XL_LAN_DANG_NHAP> Danh_sach_Lan_Dang_nhap = new List<XL_LAN_DANG_NHAP>();
 }
 public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
 {
@@ -103,11 +87,4 @@ public class XL_DAT_VE
 public class XL_GHE
 {
     public string Ma_so = "";
-}
-
-//=========== Danh mục Nhóm  ===============
-public class XL_NHOM_NGUOI_DUNG
-{
-    public string Ten = "", Ma_so = "";
-    public string Dia_chi_Dang_nhap = "";
 }

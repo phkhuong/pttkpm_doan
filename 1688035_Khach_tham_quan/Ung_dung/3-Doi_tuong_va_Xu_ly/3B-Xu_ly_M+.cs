@@ -14,7 +14,7 @@ public partial class XL_UNG_DUNG
     static XL_UNG_DUNG Ung_dung = null;
 
     public XL_DU_LIEU Du_lieu_Ung_dung = null;
-    //List<XL_NGUOI_DUNG> Danh_sach_Nguoi_dung_Khach_tham_quan = new List<XL_NGUOI_DUNG>();
+    List<XL_NGUOI_DUNG> Danh_sach_Nguoi_dung_Khach_tham_quan = new List<XL_NGUOI_DUNG>();
 
     public static XL_UNG_DUNG Khoi_dong_Ung_dung()
     {
@@ -28,7 +28,7 @@ public partial class XL_UNG_DUNG
         Du_lieu_Ung_dung = Du_lieu_tu_Dich_vu;
         //Bổ sung Thông tin cần thiết cho Tất cả người dùng 
         //===> khi xử lý Chức năng của Người dùng đăng nhập không cần đến Dữ liệu của Ứng dụng 
-        //Danh_sach_Nguoi_dung_Khach_tham_quan = Du_lieu_Ung_dung.Danh_sach_Nguoi_dung_Khach_tham_quan;
+        Danh_sach_Nguoi_dung_Khach_tham_quan = Du_lieu_Ung_dung.Danh_sach_Nguoi_dung_Khach_tham_quan;
         if(HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] == null)
         {
             var Nguoi_dung = new XL_NGUOI_DUNG();
@@ -41,20 +41,20 @@ public partial class XL_UNG_DUNG
     }
     //============= Xử lý Chức năng của Người dùng đăng nhập ==============
     //Lưu ý Quan trọng : Tất cả thông tin xử lý phải dựa vào thông tin của chính Người dùng đăng nhập 
-    //public XL_NGUOI_DUNG Dang_nhap(string Ten_Dang_nhap, string Mat_khau)
-    //{
-    //    var Nguoi_dung = Danh_sach_Nguoi_dung_Khach_tham_quan.FirstOrDefault(
-    //                            x => x.Ten_Dang_nhap == Ten_Dang_nhap
-    //                                  && x.Mat_khau == Mat_khau
-    //                                  );
+    public XL_NGUOI_DUNG Dang_nhap(string Ten_Dang_nhap, string Mat_khau)
+    {
+        var Nguoi_dung = Danh_sach_Nguoi_dung_Khach_tham_quan.FirstOrDefault(
+                                x => x.Ten_Dang_nhap == Ten_Dang_nhap
+                                      && x.Mat_khau == Mat_khau
+                                      );
 
-    //    if (Nguoi_dung != null)
-    //    {   //Khởi động  Thông tin Online  
-    //        Nguoi_dung.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
-    //        HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] = Nguoi_dung;
-    //    }
-    //    return Nguoi_dung;
-    //}
+        if (Nguoi_dung != null)
+        {   //Khởi động  Thông tin Online  
+            Nguoi_dung.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
+            HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] = Nguoi_dung;
+        }
+        return Nguoi_dung;
+    }
     public string Khoi_dong_Man_hinh_chinh()
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
@@ -62,32 +62,6 @@ public partial class XL_UNG_DUNG
 
         // Tạo chuỗi HTML kết quả xem 
         var Chuoi_HTML = Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(Nguoi_dung_Dang_nhap);
-        return Chuoi_HTML;
-    }
-    public string Dang_nhap(string Ten_Dang_nhap, string Mat_khau)
-    {
-        var Chuoi_HTML = $"<div class='alert alert-warning'>Đăng nhập không hợp lệ</div>";
-        var Nguoi_dung = Du_lieu_Ung_dung.Danh_sach_Nguoi_dung_Noi_bo.FirstOrDefault(
-              x => x.Ten_Dang_nhap == Ten_Dang_nhap && x.Mat_khau == Mat_khau);
-        if (Nguoi_dung != null)
-        {
-            var Lan_Dang_nhap = new XL_LAN_DANG_NHAP();
-            Nguoi_dung.Danh_sach_Lan_Dang_nhap.Add(Lan_Dang_nhap);
-            var Tham_so = $"Th_Ma_so_Chuc_nang=DANG_NHAP&Th_Ten_Dang_nhap={Ten_Dang_nhap}&Th_Mat_khau={Mat_khau}";
-            if (Nguoi_dung.Nhom_Nguoi_dung.Ma_so == "NHAN_VIEN_BAN_VE")
-            {
-
-                var Dia_chi_Xu_ly = $"{Nguoi_dung.Nhom_Nguoi_dung.Dia_chi_Dang_nhap}?{Tham_so}";
-                HttpContext.Current.Response.Redirect(Dia_chi_Xu_ly);
-            }
-            else
-            {
-                Chuoi_HTML = $"<div class='alert alert-warning'>Chưa thực hiện</div>"; ;
-            }
-
-
-        }
-        Chuoi_HTML += Khoi_dong_Man_hinh_chinh();
         return Chuoi_HTML;
     }
     public string Xem_Danh_sach_Phim_dang_chieu()

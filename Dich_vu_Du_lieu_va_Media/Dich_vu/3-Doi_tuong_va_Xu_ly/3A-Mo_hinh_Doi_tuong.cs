@@ -17,8 +17,7 @@ public class XL_NGUOI_DUNG_NOI_BO
     public XL_NHOM_NGUOI_DUNG Nhom_Nguoi_dung = new XL_NHOM_NGUOI_DUNG();
     public XL_RAP Rap = new XL_RAP();
     public long Doanh_thu;//Tính toán
-
-
+    public List<XL_NGUOI_DUNG_NOI_BO> Danh_sach_Nguoi_dung_Noi_bo = new List<XL_NGUOI_DUNG_NOI_BO>();
 }
 public class XL_NGUOI_DUNG_KHACH_THAM_QUAN
 {
@@ -100,6 +99,5 @@ public class XL_GHE
 //=========== Danh mục Nhóm  ===============
 public class XL_NHOM_NGUOI_DUNG
 {
-    public string Ten = "", Ma_so = "";
-    public string Dia_chi_Dang_nhap = "";
+    public string Ten, Ma_so = "";
 }
