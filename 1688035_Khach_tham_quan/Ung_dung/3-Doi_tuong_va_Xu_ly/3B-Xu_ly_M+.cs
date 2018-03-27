@@ -206,7 +206,13 @@ public partial class XL_UNG_DUNG
                     $"<div class='col-md-3'><div class='ticket-header'><section class='ticket-feature'>" +
                                 $"<article class='row'><div class='col-md-12' style='text-align:center'></div>" +
                                     $"{Tao_Bang_Thong_tin_Ve(Nguoi_dung_Dang_nhap)}" +
-                                $"</article></section></div></div></div>";
+                                $"</article></section></div>" +
+                                $"<form class='text-center' id='DIEU_HUONG' action='MH_Chon_Ghe.cshtml' method='post'>" +
+                    $"<input id='Th_Ma_so_Chuc_nang' name='Th_Ma_so_Chuc_nang' type='hidden' />" +
+                    $"<button class='btn btn-primary' type='button' style='border-radius:0;background-color:#f26b38;border:none;' onclick=\"Th_Ma_so_Chuc_nang.value = 'QUAY_LAI';DIEU_HUONG.submit()\">Quay lại</button>" +
+                    $"<button class='btn btn-primary' type='button' style='border-radius:0;background-color:#f26b38;border:none;' onclick=\"Th_Ma_so_Chuc_nang.value = 'TIEP_TUC';DIEU_HUONG.submit()\">Tiếp tục</button>" +
+                $"</form>" +
+                                $"</div></div>";
         return Chuoi_HTML;
     }
 
@@ -400,7 +406,7 @@ public partial class XL_UNG_DUNG
         }
         else if (Tinh_trang_Ghe == 1)
         {
-            Chuoi_HTML += $"<li onclick=\"" + $"{Chuoi_Xu_ly_Click}" + $"\" style='display:inline-block;background-color: green;text-align:center;width: 20px;height: 20px;margin-left:2px;'>{So_ghe}</li>";
+            Chuoi_HTML += $"<li onclick=\"" + $"{Chuoi_Xu_ly_Click}" + $"\" style='display:inline-block;background-color: #7dc71d;text-align:center;width: 20px;height: 20px;margin-left:2px;'>{So_ghe}</li>";
         }
         else
         {

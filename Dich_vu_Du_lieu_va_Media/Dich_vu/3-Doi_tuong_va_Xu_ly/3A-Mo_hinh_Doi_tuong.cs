@@ -45,25 +45,7 @@ public class XL_PHONG_CHIEU
 
 }
 
-//public class XL_NHAN_VIEN_BAN_VE
-//{
-//    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-//    public XL_RAP Rap = new XL_RAP();
-//}
-//public class XL_QUAN_LY_NHAN_VIEN
-//{
-//    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-//    public XL_RAP Rap = new XL_RAP();
-//}
-//public class XL_QUAN_LY_PHIM
-//{
-//    public string Ho_ten, Ma_so = "", Ten_Dang_nhap, Mat_khau;
-//}
-//public class XL_KHACH_HANG
-//{
-//    public string Ho_ten,Dien_thoai,Email, Ma_so = "";
 
-//}
 //*************************** Đối tượng Xử lý Chính *********
 public class XL_PHIM
 {

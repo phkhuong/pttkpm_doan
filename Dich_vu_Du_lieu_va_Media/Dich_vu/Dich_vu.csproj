@@ -127,6 +127,7 @@
     <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\QL_1.json" />
     <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\QL_2.json" />
     <Content Include="2-Du_lieu_Luu_tru\Nguoi_dung\Noi_bo\QL_3.json" />
+    <Content Include="2-Du_lieu_Luu_tru\Phim\PHIM_1.json" />
     <None Include="packages.config" />
     <Content Include="ViewPage1.cshtml" />
     <None Include="Web.Debug.config">

@@ -203,8 +203,10 @@ public partial class XL_UNG_DUNG
         
         Nguoi_dung_Dang_nhap.Ban_ve.So_luong = Ve_dat.Danh_sach_Ghe_dat.Count();
         Nguoi_dung_Dang_nhap.Ban_ve.Tien = Ve_dat.Danh_sach_Ghe_dat.Count() * Nguoi_dung_Dang_nhap.Phim_chon.Don_gia;
-        Nguoi_dung_Dang_nhap.Dat_ve = Ve_dat;
-        
+        var So_luot_Ban_ve = Nguoi_dung_Dang_nhap.Phim_chon.Danh_sach_Ban_ve.Count;
+        So_luot_Ban_ve++;
+        Nguoi_dung_Dang_nhap.Ma_so = Nguoi_dung_Dang_nhap.Phim_chon.Ma_so + "_BV_" + So_luot_Ban_ve.ToString();
+        Nguoi_dung_Dang_nhap.Dat_ve = Ve_dat;        
         var Chuoi_HTML = Tao_chuoi_HTML_Man_hinh_Chon_Ghe_Ve_dat(Ve_dat.Danh_sach_Ghe_dat);
         return Chuoi_HTML;        
 
@@ -488,7 +490,7 @@ public partial class XL_UNG_DUNG
     {
         var Ve_dat = new XL_DAT_VE();
         var Danh_sach_Dat_ve = Phim_chon.Danh_sach_Dat_ve;
-        var Danh_sach_Dat_ve_cua_Suat_chieu = Danh_sach_Dat_ve.FindAll(x => x.Suat_chieu.Ma_so == Suat_chieu.Ma_so);
+        var Danh_sach_Dat_ve_cua_Suat_chieu = Danh_sach_Dat_ve.FindAll(x => x.Suat_chieu.Ma_so == Suat_chieu.Ma_so && x.Trang_thai =="DAT_VE");
         Ve_dat = Danh_sach_Dat_ve_cua_Suat_chieu.FirstOrDefault(x => x.Danh_sach_Ghe_dat.Any(Ghe => Ghe.Ma_so == Ghe_dat.Ma_so));
         return Ve_dat;
     }
@@ -502,13 +504,17 @@ public partial class XL_UNG_DUNG
 
     public string Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(XL_NGUOI_DUNG Nguoi_dung)
     {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
         var Chuoi_HTML_Nguoi_dung_Dang_nhap = "";
         var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Nguoi_dung.Ma_so}.png' style = 'width: 50px; height: 50px; margin-left:10%'/>";
 
         var Chuoi_Thong_tin = $"<span style='color:red'>" +
                                   $"Xin chào {Nguoi_dung.Ho_ten}" +
                               $"</span><hr>";
-        return Chuoi_HTML_Nguoi_dung_Dang_nhap = Chuoi_Hinh + Chuoi_Thong_tin;
+        //var Chuoi_Bao_cao_thong_ke = $"<div style='color:blue; margin-left:10%'>" +
+        //                          $"Doanh thu ngày: {Tinh_Doanh_thu_ngay_Nhan_vien}" +
+        //                      $"</div><hr>";
+        return Chuoi_HTML_Nguoi_dung_Dang_nhap = Chuoi_Hinh + Chuoi_Thong_tin;// + Chuoi_Bao_cao_thong_ke;
     }
 
     public string Tao_Chuoi_HTML_Danh_sach_Phim_Xem(List<XL_PHIM> Danh_sach)
@@ -522,10 +528,11 @@ public partial class XL_UNG_DUNG
         Danh_sach.ForEach(Phim =>
         {
             var Chuoi_Xu_ly_Click = $"Th_Ma_so_Phim.value='{Phim.Ma_so}';MH_CHINH.submit() ";
-            var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' style='width: 50px; height:80px'/>";
+            var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' style='width: 50px; height:80px'/></br>";
 
             var Chuoi_Thong_tin = $"<div class='card-block THONG_TIN'>" +
                                       $"<h6 class='text-center'>{Phim.Ten}</h6>" +
+                                      $"<h6 class='text-left'>Doanh thu: {Phim.Doanh_thu}</h6>" +
                                   $"</div>";
 
             var Chuoi_HTML = $"<div class='KHUNG col-6 col-sm-6 col-md-4 col-lg-3' onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" +
@@ -557,9 +564,10 @@ public partial class XL_UNG_DUNG
         Danh_sach.ForEach(Phim =>
         {
             var Chuoi_Xu_ly_Click = $"Th_Ma_so_Phim.value='{Phim.Ma_so}';MH_CHINH.submit() ";
-            var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' style='width: 50px; height:80px'/>";
+            var Chuoi_Hinh = $"<img src='{Dia_chi_Media}/{Phim.Ma_so}.jpg' style='width: 50px; height:80px'/></br>";
             var Chuoi_Thong_tin = $"<div class='card-block THONG_TIN'>" +
                                       $"<h6 class='text-center'>{Phim.Ten}</h6>" +
+                                      $"<h6 class='text-left'>Doanh thu: {Phim.Doanh_thu}</h6>" +
                                   $"</div>";
             var Chuoi_HTML = $"<div class='KHUNG col-6 col-sm-6 col-md-4 col-lg-3' onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" +
                                  $"<div class='card'>" +
@@ -804,6 +812,19 @@ public partial class XL_UNG_DUNG
         return Suat_chieu;
     }
 
+    public long Tinh_Doanh_thu_ngay_Nhan_vien(List<XL_PHIM> Danh_sach, XL_NGUOI_DUNG Nguoi_dung)
+    {
+        var Doanh_thu_ngay_Nhan_vien = 0;
+        Danh_sach.ForEach(Phim =>
+        {
+            var Danh_sach_Ban_ve_Nhan_vien = Phim.Danh_sach_Ban_ve.FindAll(Ve_ban =>
+                Ve_ban.Nhan_vien_Ban_ve.Ma_so == Nguoi_dung.Ma_so
+            );
+            Danh_sach_Ban_ve_Nhan_vien.Sum(Ve_ban => Ve_ban.Tien);
+        }
+        );
+        return Doanh_thu_ngay_Nhan_vien;
+    }
 }
 
 //************************* Data-Layers DL **********************************
