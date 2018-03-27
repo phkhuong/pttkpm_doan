@@ -34,7 +34,6 @@ public class XL_CONG_TY
 public class XL_RAP
 {
     public string Ma_so, Ten = "";
-    public int So_ghe = 0;
     public List<XL_PHONG_CHIEU> Danh_sach_Phong_chieu = new List<XL_PHONG_CHIEU>();
 }
  
