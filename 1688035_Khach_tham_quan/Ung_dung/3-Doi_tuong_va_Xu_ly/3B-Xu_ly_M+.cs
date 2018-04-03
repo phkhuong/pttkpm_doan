@@ -262,34 +262,6 @@ public partial class XL_UNG_DUNG
         return Chuoi_HTML;
     }
 
-    public string Tao_chuoi_Nhap_Thong_tin_Ca_nhan()
-    {
-        var Chuoi_HTML = $"<h3>Thông Tin Cá Nhân</h3>" +
-            $"<form id='DAT_VE' method='post'>" +
-            $"<input name='Th_Ma_so_Chuc_nang' type='hidden' value='DAT_VE'/>" +
-            $"<div class='form-group row'>" +
-            $"<label for='Th_Ho_ten' class='col-2 col-form-label'>Họ Tên</label>" +
-            $"<div class='col-10'>" +
-            $"<input class='form-control' type='text' id='Th_Ho_ten' name='Th_Ho_ten'>" +
-            $"</div></div>"+
-            $"<div class='form-group row'>" +
-            $"<label for='Th_Email' class='col-2 col-form-label'>Email</label>" +
-            $"<div class='col-10'>" +
-            $"<input class='form-control' type='text' id='Th_Email' name='Th_Email'>" +
-            $"</div></div>"+
-            $"<div class='form-group row'>" +
-            $"<label for='Th_So_Dien_thoai' class='col-2 col-form-label'>Số điện thoại</label>" +
-            $"<div class='col-10'>" +
-            $"<input class='form-control' type='text' id='Th_So_Dien_thoai' name='Th_So_Dien_thoai'>" +
-            $"</div></div>"+
-            $"<div class='form-group row'>" +
-            $"<label for='Th_Ma_nhan_ve' class='col-2 col-form-label'>Mã Nhận Vé</label>" +
-            $"<div class='col-10'>" +
-            $"<input class='form-control' type='text' id='Th_Ma_nhan_ve' name='Th_Ma_nhan_ve'>" +
-            $"</div></div>"+
-            $"</form>";
-        return Chuoi_HTML;
-    }
     public string Dat_ve()
     {
         var Chuoi_HTML = "";
@@ -475,6 +447,35 @@ public partial class XL_UNG_DUNG
             $"<div class='ticket-price-total'>" +
             $"<p><b>Tổng tiền: &nbsp;</b><span>{Tien}</span></p>" + $"</div>";
         Chuoi_HTML += Chuoi_Thong_tin + $"</div></div>";
+        return Chuoi_HTML;
+    }
+
+    public string Tao_chuoi_Nhap_Thong_tin_Ca_nhan()
+    {
+        var Chuoi_HTML = $"<h3>Thông Tin Cá Nhân</h3>" +
+            $"<form id='DAT_VE' method='post'>" +
+            $"<input name='Th_Ma_so_Chuc_nang' type='hidden' value='DAT_VE'/>" +
+            $"<div class='form-group row'>" +
+            $"<label for='Th_Ho_ten' class='col-2 col-form-label'>Họ Tên</label>" +
+            $"<div class='col-10'>" +
+            $"<input class='form-control' type='text' id='Th_Ho_ten' name='Th_Ho_ten'>" +
+            $"</div></div>" +
+            $"<div class='form-group row'>" +
+            $"<label for='Th_Email' class='col-2 col-form-label'>Email</label>" +
+            $"<div class='col-10'>" +
+            $"<input class='form-control' type='text' id='Th_Email' name='Th_Email'>" +
+            $"</div></div>" +
+            $"<div class='form-group row'>" +
+            $"<label for='Th_So_Dien_thoai' class='col-2 col-form-label'>Số điện thoại</label>" +
+            $"<div class='col-10'>" +
+            $"<input class='form-control' type='text' id='Th_So_Dien_thoai' name='Th_So_Dien_thoai'>" +
+            $"</div></div>" +
+            $"<div class='form-group row'>" +
+            $"<label for='Th_Ma_nhan_ve' class='col-2 col-form-label'>Mã Nhận Vé</label>" +
+            $"<div class='col-10'>" +
+            $"<input class='form-control' type='text' id='Th_Ma_nhan_ve' name='Th_Ma_nhan_ve'>" +
+            $"</div></div>" +
+            $"</form>";
         return Chuoi_HTML;
     }
 }

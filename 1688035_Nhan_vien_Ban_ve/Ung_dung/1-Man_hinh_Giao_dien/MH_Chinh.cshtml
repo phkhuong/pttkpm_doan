@@ -3,6 +3,7 @@
     var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
     var Nguoi_dung = (XL_NGUOI_DUNG_NOI_BO)Session["Nguoi_dung_Dang_Nhap"];
     if (Nguoi_dung == null) { Response.Write("Người dùng không hợp lệ"); Response.End(); }
+    var Chuoi_Duong_dan_Hinh = Ung_dung.Dia_chi_Media + "/" + Nguoi_dung.Ma_so + ".png";
     //******************* Khai báo và Khởi động giá trị đầu cho Biến  ********************
     var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
     if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
@@ -22,7 +23,7 @@
         var Ma_so_Phim = Request["Th_Ma_so_Phim"];
         Chuoi_HTML_Ket_qua = Ung_dung.Chon_Phim(Ma_so_Phim);
     }
-    else if(Ma_so_Chuc_nang == "BAN_VE_TRUC_TIEP")
+    else if (Ma_so_Chuc_nang == "BAN_VE_TRUC_TIEP")
     {
         Chuoi_HTML_Ket_qua = Ung_dung.Ban_ve_Truc_tiep();
     }
@@ -58,11 +59,15 @@
                             <img src="@Ung_dung.Dia_chi_Media/LOGO_MOBILE.png" style="width:70%" class="d-inline-block align-top" alt="">
                         </a>
                     </div>
-                    <div class="TIM_KIEM col-md-8 col-sm-8 col-8">
+                    <div class="TIM_KIEM col-md-6 col-sm-6 col-6">
                         <form id="TRA_CUU" name="TRA_CUU" action="MH_Chinh.cshtml" method="post">
                             <input name="Th_Ma_so_Chuc_nang" type="hidden" value="TRA_CUU" />
                             <input type="text" id="Th_Chuoi_Tra_cuu" name="Th_Chuoi_Tra_cuu" class="form-control" placeholder="Tìm tên phim..." />
                         </form>
+                    </div>
+                    <div class="col-md-2 NGUOI_DUNG">
+                        @Html.Raw(Nguoi_dung.Ho_ten)
+                        <img src="@Chuoi_Duong_dan_Hinh" class="AVATAR" />
                     </div>
                 </div>
             </div>

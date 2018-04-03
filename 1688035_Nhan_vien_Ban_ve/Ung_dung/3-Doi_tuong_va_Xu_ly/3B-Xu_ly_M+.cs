@@ -25,6 +25,7 @@ public partial class XL_UNG_DUNG
     }
     void Khoi_dong_Du_lieu_Ung_dung()
     {
+        var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_NOI_BO)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
         var Du_lieu_tu_Dich_vu = XL_DU_LIEU.Doc_Du_lieu();
         Du_lieu_Ung_dung = Du_lieu_tu_Dich_vu;
 
@@ -45,7 +46,12 @@ public partial class XL_UNG_DUNG
                     }
                 });
             });
-
+            Nguoi_dung.Ban_ve = new XL_BAN_VE();
+            if (Nguoi_dung_Dang_nhap != null && Nguoi_dung_Dang_nhap.Ma_so == Nguoi_dung.Ma_so)
+            {
+                Nguoi_dung_Dang_nhap.Danh_sach_Dat_ve = Nguoi_dung.Danh_sach_Dat_ve;
+                Nguoi_dung_Dang_nhap.Danh_sach_Phim = Nguoi_dung.Danh_sach_Phim;
+            }
         });
     }
     //============= Xử lý Chức năng của Người dùng đăng nhập ==============
@@ -89,7 +95,7 @@ public partial class XL_UNG_DUNG
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_NOI_BO)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
         // Xử lý 
         Nguoi_dung_Dang_nhap.Danh_sach_Dat_ve_Xem = Nguoi_dung_Dang_nhap.Danh_sach_Dat_ve;
-        var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_Thanh_toan_Dat_ve.cshtml'  ></iframe>";
+        var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_Thanh_toan_Dat_ve.cshtml' style='padding-top:20px' ></iframe>";
         return Chuoi_HTML;
     }
 
@@ -99,7 +105,7 @@ public partial class XL_UNG_DUNG
         // Xử lý 
         Nguoi_dung_Dang_nhap.Danh_sach_Dat_ve_Xem = Tra_cuu_Ve_dat(Chuoi_Tra_cuu, Nguoi_dung_Dang_nhap.Danh_sach_Dat_ve);
         // Tạo chuỗi HTML kết quả xem 
-        var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_Thanh_toan_Dat_ve.cshtml'  ></iframe>";
+        var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_Thanh_toan_Dat_ve.cshtml'  style='padding-top:20px'></iframe>";
         return Chuoi_HTML;
     }
 
@@ -109,14 +115,13 @@ public partial class XL_UNG_DUNG
         // Xử lý 
         var Phim = Du_lieu_Ung_dung.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
         Nguoi_dung_Dang_nhap.Phim_chon = Phim;
-        var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_CHi_tiet_Phim.cshtml'  ></iframe>";
+        var Chuoi_HTML = "<iframe class='KHUNG_CHUC_NANG' src='MH_CHi_tiet_Phim.cshtml' style='padding-top:20px' ></iframe>";
         return Chuoi_HTML;
     }
 
     public string Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(XL_NGUOI_DUNG_NOI_BO Nguoi_dung_Dang_nhap)
     {
         var Chuoi_HTML = $"<div>" +
-                $"{ Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(Nguoi_dung_Dang_nhap)}" +
                 $"{ Tao_Chuoi_HTML_Danh_sach_Phim_Xem(Nguoi_dung_Dang_nhap.Danh_sach_Phim)}" +
             $"</div>";
         return Chuoi_HTML;
@@ -303,11 +308,6 @@ public partial class XL_UNG_DUNG
     public string Dia_chi_Media = $"{XL_DU_LIEU.Dia_chi_Dich_vu}/Media";
     public CultureInfo Dinh_dang_VN = CultureInfo.GetCultureInfo("vi-VN");
 
-    public string Tao_Chuoi_HTML_Nguoi_dung_Dang_nhap(XL_NGUOI_DUNG_NOI_BO Nguoi_dung)
-    {
-        return "";
-    }
-
     public string Tao_Chuoi_HTML_Danh_sach_Phim_Xem(List<XL_PHIM> Danh_sach)
     {
         var Chuoi_HTML_Danh_sach = "<div class='container'><form id='MH_CHINH' name='MH_CHINH' method='post'>";
@@ -408,7 +408,7 @@ public partial class XL_UNG_DUNG
         var Chuoi_HTML = "";
         if (Count % 9 == 1)
         {
-            Chuoi_HTML += "<ul style='list-style-type: none;margin:5px;cursor: pointer;'>";
+            Chuoi_HTML += "<ul style='list-style-type: none;margin:5px;padding-left: 0px;cursor: pointer;'>";
             Chuoi_HTML += $"<li style='display:inline-block;text-align:center;width: 20px;height: 20px;border: solid 1px;'>{Hang_ghe}</li><li style='display:inline-block;'><ul style='list-style-type: none;padding: 0px;'>";
         }
 
