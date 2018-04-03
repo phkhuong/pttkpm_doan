@@ -422,7 +422,7 @@ public partial class XL_UNG_DUNG
         var Chuoi_HTML = "";
         if (Count % 9 == 1)
         {
-            Chuoi_HTML += "<ul style='list-style-type: none;margin:5px;cursor: pointer;'>";
+            Chuoi_HTML += "<ul style='list-style-type: none;margin:5px;padding-left: 0px;cursor: pointer;'>";
             Chuoi_HTML += $"<li style='display:inline-block;text-align:center;width: 20px;height: 20px;border: solid 1px;'>{Hang_ghe}</li><li style='display:inline-block;'><ul style='list-style-type: none;padding: 0px;'>";
         }
 
