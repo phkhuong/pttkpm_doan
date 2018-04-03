@@ -1,0 +1,81 @@
+﻿@{
+    //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+    var Nguoi_dung = (XL_NGUOI_DUNG_NOI_BO)Session["Nguoi_dung_Dang_Nhap"];
+    if (Nguoi_dung == null) { Response.Write("Người dùng không hợp lệ"); Response.End(); }
+    Nguoi_dung.Ban_ve.Danh_sach_Ghe_ban.Clear();
+    //******************* Khai báo Biến  ********************
+    var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
+    if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
+    var Chuoi_HTML_Ket_qua = "";
+    if (Ma_so_Chuc_nang == "KHOI_DONG")
+    {
+        Chuoi_HTML_Ket_qua = Ung_dung.Khoi_dong_Man_hinh_Chi_tiet_Phim();
+    }
+    else if(Ma_so_Chuc_nang == "CHON_SUAT_CHIEU")
+    {
+        var Ma_so_Suat_chieu = Request["Th_Ma_so_Suat_chieu"];
+        var Chuoi_So_luong = Request["Th_So_luong"];
+        var Suat_chieu = Ung_dung.Tim_Suat_chieu(Ma_so_Suat_chieu, Nguoi_dung.Phim_chon);
+        var So_luong = int.Parse(Chuoi_So_luong);
+        Nguoi_dung.Ban_ve.Suat_chieu = Suat_chieu;
+        Nguoi_dung.Ban_ve.So_luong = So_luong;
+        Nguoi_dung.Ban_ve.Don_gia = Nguoi_dung.Phim_chon.Don_gia;
+        Nguoi_dung.Ban_ve.Tien = So_luong * Nguoi_dung.Ban_ve.Don_gia;
+        Response.Redirect("MH_Chon_Ghe");
+    }
+    //******************* Nhập liệu cho Biến Nhập nếu có - Tính Biến kết quả nếu Hợp lệ   *****************
+
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link rel="stylesheet" href="DD_Chi_tiet_Phim.css?v=@DateTime.Now.Ticks" type="text/css" />
+        <title></title>
+    </head>
+
+    <body>
+        <div class="container" style="padding-top:20px;">
+            <h3>LỊCH CHIẾU</h3>
+            <form  id='MH_CHI_TIET_PHIM' name='MH_CHI_TIET_PHIM' method='post' style="margin:30px 0px;">
+                <label for="Th_Ngay">Chọn ngày: </label>
+                <input id="Th_Ngay" name="Th_Ngay" type="date" value="2018-02-09" onchange="chonNgay(this.value)" style="margin-left:20px"/>
+                <label for="Th_So_luong">Số lượng vé: </label>
+                <input id="Th_So_luong" name="Th_So_luong" type="number" value="1"/>
+                <input id="Ma_so_Phim" type="hidden" value="@Nguoi_dung.Phim_chon.Ma_so" />
+                <input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_SUAT_CHIEU' />
+                <input name='Th_Ma_so_Suat_chieu' id='Th_Ma_so_Suat_chieu' type='hidden' />
+                <div id="Kq">
+                    @*  Chuỗi két quả danh sách suất chiếu từ Xử lý Ajax*@
+                </div>
+            </form>
+                @Html.Raw(Chuoi_HTML_Ket_qua)
+        </div>
+    </body>
+</html>
+<script>
+    function chonNgay(str) {
+        var xhttp;
+        if (str == "") {
+            document.getElementById("Kq").innerHTML = "";
+            return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("Kq").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "MH_Xu_ly_Ajax.cshtml?Ma_so_Xu_ly=CHON_NGAY&Ma_so_Phim=" + Ma_so_Phim.value + "&Ngay=" + str, true);
+        xhttp.send();
+    }
+    chonNgay(Th_Ngay.value);
+</script>

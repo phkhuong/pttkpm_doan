@@ -1,0 +1,97 @@
+﻿@{
+    //****************** Khởi động Dữ liệu Nguồn-Nội bộ **********
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+    var Nguoi_dung = (XL_NGUOI_DUNG_NOI_BO)Session["Nguoi_dung_Dang_Nhap"];
+    if (Nguoi_dung == null) { Response.Write("Người dùng không hợp lệ"); Response.End(); }
+    //******************* Khai báo và Khởi động giá trị đầu cho Biến  ********************
+    var Ma_so_Chuc_nang = Request["Th_Ma_so_Chuc_nang"]; // Biến Nhập
+    if (Ma_so_Chuc_nang == null) { Ma_so_Chuc_nang = "KHOI_DONG"; };
+
+    var Chuoi_HTML_Ket_qua = "";
+    if (Ma_so_Chuc_nang == "KHOI_DONG")
+    {
+        Chuoi_HTML_Ket_qua = Ung_dung.Khoi_dong_Man_hinh_chinh();
+    }
+    else if (Ma_so_Chuc_nang == "TRA_CUU")
+    {
+        var Chuoi_Tra_cuu = Request["Th_Chuoi_Tra_cuu"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Tra_cuu(Chuoi_Tra_cuu);
+    }
+    else if (Ma_so_Chuc_nang == "CHON_PHIM")
+    {
+        var Ma_so_Phim = Request["Th_Ma_so_Phim"];
+        Chuoi_HTML_Ket_qua = Ung_dung.Chon_Phim(Ma_so_Phim);
+    }
+    else if(Ma_so_Chuc_nang == "BAN_VE_TRUC_TIEP")
+    {
+        Chuoi_HTML_Ket_qua = Ung_dung.Ban_ve_Truc_tiep();
+    }
+    else if (Ma_so_Chuc_nang == "THANH_TOANH_VE_DAT")
+    {
+        Chuoi_HTML_Ket_qua = Ung_dung.Sang_Trang_Thanh_toan_Dat_ve();
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="DD_Chinh.css?v=@DateTime.Now.Ticks" type="text/css" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row TIEU_DE justify-content-center">
+            <div class="col-md-10 col-md-offset-1 content-section">
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-4 col-4 text-center hidden-sm-down LOGO">
+                        <a href="#">
+                            <img src="@Ung_dung.Dia_chi_Media/LOGO.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-4 text-center hidden-md-up LOGO">
+                        <a href="#">
+                            <img src="@Ung_dung.Dia_chi_Media/LOGO_MOBILE.png" style="width:70%" class="d-inline-block align-top" alt="">
+                        </a>
+                    </div>
+                    <div class="TIM_KIEM col-md-8 col-sm-8 col-8">
+                        <form id="TRA_CUU" name="TRA_CUU" action="MH_Chinh.cshtml" method="post">
+                            <input name="Th_Ma_so_Chuc_nang" type="hidden" value="TRA_CUU" />
+                            <input type="text" id="Th_Chuoi_Tra_cuu" name="Th_Chuoi_Tra_cuu" class="form-control" placeholder="Tìm tên phim..." />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row DANH_SACH_CHUC_NANG">
+            <div class="container">
+                <table class="table-responsive">
+                    <thead>
+                        <tr id="Th_Danh_sach_Chuc_nang">
+                            <td id="MH_Ban_ve_Truc_tiep" class="CHUC_NANG" onclick="Th_Ma_so_Chuc_nang.value='BAN_VE_TRUC_TIEP';DIEU_HUONG.submit();">
+                                BÁN VÉ TRỰC TIẾP
+                            </td>
+                            <td id="MH_Than_toan_Ve_dat" class="CHUC_NANG" onclick="Th_Ma_so_Chuc_nang.value='THANH_TOANH_VE_DAT';DIEU_HUONG.submit();">
+                                THANH TOÁN VÉ ĐẶT
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="CUA_SO_KET_QUA">
+        @Html.Raw(Chuoi_HTML_Ket_qua)
+    </div>
+    <!-- Modal -->
+    <form id="DIEU_HUONG" method="post">
+        <input id="Th_Ma_so_Chuc_nang" name="Th_Ma_so_Chuc_nang" type="hidden" />
+    </form>
+</body>
+</html>
