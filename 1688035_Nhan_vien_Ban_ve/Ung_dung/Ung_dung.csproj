@@ -104,6 +104,7 @@
     <Content Include="1-Man_hinh_Giao_dien\MH_Xu_ly_Ajax.cshtml" />
     <Content Include="1-Man_hinh_Giao_dien\MH_Dang_nhap.cshtml" />
     <Content Include="1-Man_hinh_Giao_dien\MH_Thanh_toan_Dat_ve.cshtml" />
+    <Content Include="1-Dich_vu_Giao_tiep\DV_Chinh.cshtml" />
     <None Include="packages.config" />
     <Content Include="ViewPage1.cshtml" />
     <None Include="Web.Debug.config">

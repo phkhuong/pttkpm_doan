@@ -1,0 +1,30 @@
+﻿@{
+    // *********Khởi động Dữ liệu nguồn/nội bộ ********
+    var Ung_dung = XL_UNG_DUNG.Khoi_dong_Ung_dung();
+
+    //*********Khai báo Biến/Đối tượng :Nhận & Kết quả *********
+    var Ma_so_Xu_ly = ""; // Biến Nhận
+    var Chuoi_Kq = ""; // Biến Kêt quả
+
+    //*********Xử lý Nhập liệu Nếu có + Tạo Kết quả Nếu Hợp lệ  *********
+    if (Request["Ma_so_Xu_ly"] != null)
+    {
+        Ma_so_Xu_ly = Request["Ma_so_Xu_ly"];// Nhận Tham số
+        var Bo_doc = new StreamReader(Request.InputStream);
+        var Chuoi_Nhan = Bo_doc.ReadToEnd(); // Nhận Đối tượng
+        if (Ma_so_Xu_ly == "GHI_THAY_DOI_DANH_SACH_GHE_TRONG")
+        {
+            var Ma_so_Phim = Request["Ma_so_Phim"];
+            var Ma_so_Suat_chieu = Request["Ma_so_Suat_chieu"];
+            var Danh_sach_Ghe_ban = Json.Decode<List<XL_GHE>>(Chuoi_Nhan);
+            Chuoi_Kq = Ung_dung.Ghi_Thay_doi_Danh_sach_Ghe_trong(Ma_so_Phim, Ma_so_Suat_chieu, Danh_sach_Ghe_ban);
+        }
+
+    }
+
+    // Xử lý trả Kết quả
+    Response.ContentType = "text/json";
+    Response.Write(Chuoi_Kq);
+}
+
+
