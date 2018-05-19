@@ -26,16 +26,25 @@ public partial class XL_UNG_DUNG
     {
         var Du_lieu_tu_Dich_vu = XL_DU_LIEU.Doc_Du_lieu();
         Du_lieu_Ung_dung = Du_lieu_tu_Dich_vu;
+        var Nguoi_dung = (XL_NGUOI_DUNG)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
         //Bổ sung Thông tin cần thiết cho Tất cả người dùng 
         //===> khi xử lý Chức năng của Người dùng đăng nhập không cần đến Dữ liệu của Ứng dụng 
         //Danh_sach_Nguoi_dung_Khach_tham_quan = Du_lieu_Ung_dung.Danh_sach_Nguoi_dung_Khach_tham_quan;
-        if(HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] == null)
+        if (Nguoi_dung == null)
         {
-            var Nguoi_dung = new XL_NGUOI_DUNG();
+            Nguoi_dung = new XL_NGUOI_DUNG();
             Nguoi_dung.Ten_Dang_nhap = "CHUA_DANG_NHAP";
             Nguoi_dung.Danh_sach_Phim_Xem = Du_lieu_Ung_dung.Danh_sach_Phim;
             Nguoi_dung.Danh_sach_Rap = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Rap;
             HttpContext.Current.Session["Nguoi_dung_Dang_nhap"] = Nguoi_dung;
+        }
+        else
+        {
+            Nguoi_dung.Danh_sach_Rap = Du_lieu_Ung_dung.Cong_ty.Danh_sach_Rap;
+            if(Nguoi_dung.Phim_chon.Ma_so != "")
+            {
+                Nguoi_dung.Phim_chon = Du_lieu_Ung_dung.Danh_sach_Phim.FirstOrDefault(Phim => Phim.Ma_so == Nguoi_dung.Phim_chon.Ma_so);
+            }
         }
         
     }

@@ -174,3 +174,34 @@ a {
     .OVERLAY_TEXT:hover {
         background-color: #f26b38;
     }
+
+h3:after {
+    display: block;
+    width: 50px;
+    height: 2px;
+    margin-top: 8px;
+    content: '';
+    background-color: #f26b38;
+}
+
+label {
+    margin-bottom: .5rem;
+}
+
+ul > li {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 10px 10px 0;
+    border: 1px solid #ced0da;
+    color: #43464b;
+    cursor: pointer;
+}
+
+    ul > li:hover {
+        border: 1px solid #f26b38;
+        color: #f26b38;
+    }
+
+#Kq{
+    margin-top: 20px;
+}

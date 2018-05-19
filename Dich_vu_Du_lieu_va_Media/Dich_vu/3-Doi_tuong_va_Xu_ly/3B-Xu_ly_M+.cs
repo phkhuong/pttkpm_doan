@@ -146,20 +146,65 @@ public partial class XL_DICH_VU
 
     public string Ghi_Dat_ve_Moi(string Ma_so_Phim, XL_DAT_VE Dat_ve)
     {
+        var Chuoi_Kq_Ghi = "";
         var Phim = Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
-        var So_luot_Dat_ve = Phim.Danh_sach_Dat_ve.Count;
-        So_luot_Dat_ve++;
-        Dat_ve.Ma_so = Phim.Ma_so + "_DV_" + So_luot_Dat_ve.ToString();
-        var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Dat_ve_Moi(Phim, Dat_ve);
+        var Suat_chieu = Phim.Danh_sach_Suat_chieu.FirstOrDefault(x => x.Ma_so == Dat_ve.Suat_chieu.Ma_so);
+        var Ghe_trung = new List<XL_GHE>();
+        foreach(XL_GHE Ghe_dat in Dat_ve.Danh_sach_Ghe_dat)
+        {
+            if(Suat_chieu.Danh_sach_Ghe_trong.All(Ghe_trong => Ghe_trong.Ma_so != Ghe_dat.Ma_so))
+            {
+                Ghe_trung.Add(Ghe_dat);
+                break;
+            }
+        }
+        if(Ghe_trung.Count == 0)
+        {
+            Suat_chieu.Danh_sach_Ghe_trong.RemoveAll(Ghe_trong => Dat_ve.Danh_sach_Ghe_dat.Any(Ghe_dat => Ghe_dat.Ma_so == Ghe_trong.Ma_so));
+            var So_luot_Dat_ve = Phim.Danh_sach_Dat_ve.Count;
+            So_luot_Dat_ve++;
+            Dat_ve.Ma_so = Phim.Ma_so + "_DV_" + So_luot_Dat_ve.ToString();
+            Phim.Danh_sach_Dat_ve.Add(Dat_ve);
+            Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Dat_ve_Moi(Phim, Dat_ve, Suat_chieu);
+        }
+        else
+        {
+            
+        }
         return Chuoi_Kq_Ghi;
     }
     public string Ghi_Ban_ve_Moi(string Ma_so_Phim, XL_BAN_VE Ban_ve)
     {
+        var Chuoi_Kq_Ghi = "";
         var Phim = Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
-        var So_luot_Ban_ve = Phim.Danh_sach_Ban_ve.Count;
-        So_luot_Ban_ve++;
-        Ban_ve.Ma_so = Phim.Ma_so + "_BV_" + So_luot_Ban_ve.ToString();
-        var Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Ban_ve_Moi(Phim, Ban_ve);
+        var Suat_chieu = Phim.Danh_sach_Suat_chieu.FirstOrDefault(x => x.Ma_so == Ban_ve.Suat_chieu.Ma_so);
+        var Ghe_khong_con_Trong = new List<XL_GHE>();
+        foreach (XL_GHE Ghe_dat in Ban_ve.Danh_sach_Ghe_ban)
+        {
+            if (Suat_chieu.Danh_sach_Ghe_trong.All(Ghe_trong => Ghe_trong.Ma_so != Ghe_dat.Ma_so))
+            {
+                Ghe_khong_con_Trong.Add(Ghe_dat);
+                break;
+            }
+        }
+        if(Ghe_khong_con_Trong.Count == 0)
+        {
+            Suat_chieu.Danh_sach_Ghe_trong.RemoveAll(Ghe_trong => Ban_ve.Danh_sach_Ghe_ban.Any(Ghe_dat => Ghe_dat.Ma_so == Ghe_trong.Ma_so));
+            var So_luot_Ban_ve = Phim.Danh_sach_Ban_ve.Count;
+            So_luot_Ban_ve++;
+            Ban_ve.Ma_so = Phim.Ma_so + "_BV_" + So_luot_Ban_ve.ToString();
+            Phim.Danh_sach_Ban_ve.Add(Ban_ve);
+            Chuoi_Kq_Ghi = XL_DU_LIEU.Ghi_Ban_ve_Moi(Phim, Ban_ve, Suat_chieu);
+        }
+        else
+        {
+            Chuoi_Kq_Ghi = "Ghế";
+            Ghe_khong_con_Trong.ForEach(Ghe => {
+                Chuoi_Kq_Ghi += $" {Ghe.Ma_so}";
+            });
+            Chuoi_Kq_Ghi += "đã được đặt hoặc bán";
+        }
+        
         return Chuoi_Kq_Ghi;
     }
     public string Ghi_Phim(XL_PHIM phim)
@@ -306,12 +351,10 @@ public partial class XL_DU_LIEU
 
     //******** Ghi *******
 
-    public static string Ghi_Dat_ve_Moi(XL_PHIM Phim, XL_DAT_VE Dat_ve)
+    public static string Ghi_Dat_ve_Moi(XL_PHIM Phim, XL_DAT_VE Dat_ve, XL_SUAT_CHIEU Suat_chieu)
     {
         var Kq = "";
-        Phim.Danh_sach_Dat_ve.Add(Dat_ve);
-        var Suat_chieu = Phim.Danh_sach_Suat_chieu.FirstOrDefault(x => x.Ma_so == Dat_ve.Suat_chieu.Ma_so);
-        Suat_chieu.Danh_sach_Ghe_trong.RemoveAll(Ghe_trong => Dat_ve.Danh_sach_Ghe_dat.Any(Ghe_dat => Ghe_dat.Ma_so == Ghe_trong.Ma_so));
+        
         Kq = Ghi_Phim(Phim);
         if (Kq != "OK")
         {
@@ -321,12 +364,10 @@ public partial class XL_DU_LIEU
 
         return Kq;
     }
-    public static string Ghi_Ban_ve_Moi(XL_PHIM Phim, XL_BAN_VE Ban_ve)
+    public static string Ghi_Ban_ve_Moi(XL_PHIM Phim, XL_BAN_VE Ban_ve, XL_SUAT_CHIEU Suat_chieu)
     {
         var Kq = "";
-        Phim.Danh_sach_Ban_ve.Add(Ban_ve);
-        var Suat_chieu = Phim.Danh_sach_Suat_chieu.FirstOrDefault(x => x.Ma_so == Ban_ve.Suat_chieu.Ma_so);
-        Suat_chieu.Danh_sach_Ghe_trong.RemoveAll(Ghe_trong => Ban_ve.Danh_sach_Ghe_ban.Any(Ghe_dat => Ghe_dat.Ma_so == Ghe_trong.Ma_so));
+        
         Kq = Ghi_Phim(Phim);
         if (Kq != "OK")
         {

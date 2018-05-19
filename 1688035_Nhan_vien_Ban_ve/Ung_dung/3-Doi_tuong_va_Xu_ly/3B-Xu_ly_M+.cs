@@ -30,7 +30,6 @@ public partial class XL_UNG_DUNG
         Du_lieu_Ung_dung = Du_lieu_tu_Dich_vu;
 
         //Bổ sung Thông tin cần thiết cho Tất cả người dùng 
-        //===> khi xử lý Chức năng của Người dùng đăng nhập không cần đến Dữ liệu của Ứng dụng 
         Danh_sach_Nguoi_dung_Noi_bo = Du_lieu_Ung_dung.Danh_sach_Nguoi_dung_Noi_bo.FindAll(Nguoi_dung => Nguoi_dung.Nhom_Nguoi_dung.Ma_so == "NHAN_VIEN_BAN_VE");
         Danh_sach_Nguoi_dung_Noi_bo.ForEach(Nguoi_dung =>
         {
@@ -87,6 +86,8 @@ public partial class XL_UNG_DUNG
     public string Ban_ve_Truc_tiep()
     {
         var Nguoi_dung_Dang_nhap = (XL_NGUOI_DUNG_NOI_BO)HttpContext.Current.Session["Nguoi_dung_Dang_nhap"];
+        Nguoi_dung_Dang_nhap.Phim_chon = new XL_PHIM();
+        Nguoi_dung_Dang_nhap.Ban_ve = new XL_BAN_VE();
         var Chuoi_HTML = Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(Nguoi_dung_Dang_nhap);
         return Chuoi_HTML;
     }
@@ -121,8 +122,19 @@ public partial class XL_UNG_DUNG
 
     public string Tao_Chuoi_HTML_Xem_Man_hinh_Chinh(XL_NGUOI_DUNG_NOI_BO Nguoi_dung_Dang_nhap)
     {
-        var Chuoi_HTML = $"<div>" +
-                $"{ Tao_Chuoi_HTML_Danh_sach_Phim_Xem(Nguoi_dung_Dang_nhap.Danh_sach_Phim)}" +
+        var Chuoi_HTML = $"<div class='container' style='padding-top:20px;'>"+
+            $"<h3>LỊCH CHIẾU "+Nguoi_dung_Dang_nhap.Rap.Ten.ToUpper()+$"</h3>"+
+            $"<form id='MH_CHI_TIET_PHIM' name='MH_CHI_TIET_PHIM' method='post' style='margin:30px 0px;'>"+
+                $"<label for='Th_Ngay'>Chọn ngày: </label>"+
+                $"<input id='Th_Ngay' name='Th_Ngay' type='date' value='2018-02-09' onchange='chonNgay(this.value)' style='margin-left:20px' />"+
+                $"<label for='Th_So_luong'>Số lượng vé: </label>"+
+                $"<input id='Th_So_luong' name='Th_So_luong' type='number' value='1' />"+
+                $"<input name='Th_Ma_so_Phim' id='Th_Ma_so_Phim' type='hidden' />"+
+                $"<input name='Th_Ma_so_Chuc_nang' type='hidden' value='CHON_SUAT_CHIEU' />"+
+                $"<input name='Th_Ma_so_Suat_chieu' id='Th_Ma_so_Suat_chieu' type='hidden' /><hr>"+
+                $"<div id='Kq'>"+
+                $"</div>"+
+            $"</form>"+
             $"</div>";
         return Chuoi_HTML;
     }
@@ -238,7 +250,7 @@ public partial class XL_UNG_DUNG
                                 $"</article></section></div>" +
                                 $"<form class='text-center' id='DIEU_HUONG' action='MH_Chon_Ghe.cshtml' method='post'>" +
                     $"<input id='Th_Ma_so_Chuc_nang' name='Th_Ma_so_Chuc_nang' type='hidden' />" +
-                    $"<button class='btn btn-primary' type='button' style='border-radius:0;background-color:#f26b38;border:none;' onclick=\"Th_Ma_so_Chuc_nang.value = 'QUAY_LAI';DIEU_HUONG.submit()\">Quay lại</button>" +
+                    //$"<button class='btn btn-primary' type='button' style='border-radius:0;background-color:#f26b38;border:none;' onclick=\"Th_Ma_so_Chuc_nang.value = 'QUAY_LAI';DIEU_HUONG.submit()\">Quay lại</button>" +
                     $"<button class='btn btn-primary' type='button' style='border-radius:0;background-color:#f26b38;border:none;' onclick=\"Th_Ma_so_Chuc_nang.value = 'BAN_VE';DIEU_HUONG.submit()\">Đặt vé</button>" +
                 $"</form>"+
                                 $"</div></div>";
@@ -377,22 +389,34 @@ public partial class XL_UNG_DUNG
         Chuoi_HTML += Chuoi_Hinh + Chuoi_Thong_tin + Chuoi_Noi_dung + "</div>";
         return Chuoi_HTML;
     }
-    public string Tao_Chuoi_Suat_chieu(XL_PHIM Phim, XL_RAP Rap, DateTime Ngay_chon)
+    public string Tao_Chuoi_Suat_chieu( XL_NGUOI_DUNG_NOI_BO Nguoi_dung, DateTime Ngay_chon)
     {
-        var Chuoi_Html = "";
-        Chuoi_Html += $"<h5>{Rap.Ten}</h5>";
-        var Chuoi_Danh_sach_Suat_chieu = "<div><ul>";
-        foreach (XL_SUAT_CHIEU Suat_chieu in Phim.Danh_sach_Suat_chieu)
+        var Chuoi_Html = "<div class='row'>";
+
+        
+        foreach(XL_PHIM Phim in Nguoi_dung.Danh_sach_Phim)
         {
-            if (Suat_chieu.Rap.Ma_so == Rap.Ma_so && Suat_chieu.Bat_dau.Date == Ngay_chon.Date)
+            var Co_Suat_chieu = false;
+            var Chuoi_Danh_sach_Suat_chieu = $"<div class='col-lg-6 col-md-6>'><h5>{Phim.Ten}</h5><div><ul>";
+            foreach (XL_SUAT_CHIEU Suat_chieu in Phim.Danh_sach_Suat_chieu)
             {
-                var Chuoi_Xu_ly_Click = $"Th_Ma_so_Suat_chieu.value='{Suat_chieu.Ma_so}';MH_CHI_TIET_PHIM.submit() ";
-                Chuoi_Danh_sach_Suat_chieu += $"<li onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" + $"{Suat_chieu.Bat_dau.ToString("HH:mm")}" + "</li>";
+                if (Suat_chieu.Rap.Ma_so == Nguoi_dung.Rap.Ma_so && Suat_chieu.Bat_dau.Date == Ngay_chon.Date)
+                {
+                    Co_Suat_chieu = true;
+                    var Chuoi_Xu_ly_Click = $"Th_Ma_so_Phim.value='{Phim.Ma_so}';Th_Ma_so_Suat_chieu.value='{Suat_chieu.Ma_so}';MH_CHI_TIET_PHIM.submit() ";
+                    Chuoi_Danh_sach_Suat_chieu += $"<li onclick=\"" + $"{Chuoi_Xu_ly_Click}" + "\">" + $"{Suat_chieu.Bat_dau.ToString("HH:mm")}" + "</li>";
+                }
             }
+            if (Co_Suat_chieu)
+            {
+                Chuoi_Danh_sach_Suat_chieu += "</ul></div></div>";
+                Chuoi_Html += Chuoi_Danh_sach_Suat_chieu;
+            }
+            
         }
-        Chuoi_Danh_sach_Suat_chieu += "</ul></div>";
-        Chuoi_Html += Chuoi_Danh_sach_Suat_chieu;
-        Chuoi_Html += "</form>";
+        
+        
+        Chuoi_Html += "</div>";
         return Chuoi_Html;
     }
 

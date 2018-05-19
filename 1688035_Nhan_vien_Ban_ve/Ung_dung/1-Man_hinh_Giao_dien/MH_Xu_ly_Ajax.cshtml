@@ -12,11 +12,9 @@
         Ma_so_Xu_ly = Request["Ma_so_Xu_ly"];// Nhận Tham số 
         if(Ma_so_Xu_ly == "CHON_NGAY")
         {
-            var Ma_so_Phim = Request["Ma_so_Phim"];
             var Chuoi_Ngay = Request["Ngay"];
-            var Phim = Ung_dung.Tim_Phim(Ma_so_Phim, Danh_sach_Phim);
             var Ngay = DateTime.Parse(Chuoi_Ngay);
-            var Chuoi_Danh_sach_Suat_chieu = Ung_dung.Tao_Chuoi_Suat_chieu(Phim, Nguoi_dung.Rap, Ngay);
+            var Chuoi_Danh_sach_Suat_chieu = Ung_dung.Tao_Chuoi_Suat_chieu(Nguoi_dung, Ngay);
             Chuoi_Kq += Chuoi_Danh_sach_Suat_chieu;
         }
     }

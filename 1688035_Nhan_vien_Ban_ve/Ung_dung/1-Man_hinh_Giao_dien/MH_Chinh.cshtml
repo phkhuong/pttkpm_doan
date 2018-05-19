@@ -31,6 +31,29 @@
     {
         Chuoi_HTML_Ket_qua = Ung_dung.Sang_Trang_Thanh_toan_Dat_ve();
     }
+    else if (Ma_so_Chuc_nang == "CHON_SUAT_CHIEU")
+    {
+        var Ma_so_Phim = Request["Th_Ma_so_Phim"];
+        var Ma_so_Suat_chieu = Request["Th_Ma_so_Suat_chieu"];
+        var Chuoi_So_luong = Request["Th_So_luong"];
+        var Phim = Nguoi_dung.Danh_sach_Phim.FirstOrDefault(x => x.Ma_so == Ma_so_Phim);
+        var Suat_chieu = Ung_dung.Tim_Suat_chieu(Ma_so_Suat_chieu, Phim);
+        var So_luong = int.Parse(Chuoi_So_luong);
+        if (Phim != null)
+        {
+            Nguoi_dung.Phim_chon = Phim;
+            Nguoi_dung.Ban_ve.Suat_chieu = Suat_chieu;
+            Nguoi_dung.Ban_ve.So_luong = So_luong;
+            Nguoi_dung.Ban_ve.Don_gia = Nguoi_dung.Phim_chon.Don_gia;
+            Nguoi_dung.Ban_ve.Tien = So_luong * Nguoi_dung.Ban_ve.Don_gia;
+            Chuoi_HTML_Ket_qua = "<iframe class='KHUNG_CHUC_NANG' src='MH_Chon_ghe.cshtml' style='padding-top:20px' ></iframe>";
+        }
+        else
+        {
+            Chuoi_HTML_Ket_qua = "Lỗi: Phim không hợp lệ";
+        }
+
+    }
 }
 
 <!DOCTYPE html>
@@ -100,3 +123,21 @@
     </form>
 </body>
 </html>
+<script>
+    function chonNgay(str) {
+        var xhttp;
+        if (str == "") {
+            document.getElementById("Kq").innerHTML = "";
+            return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("Kq").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "MH_Xu_ly_Ajax.cshtml?Ma_so_Xu_ly=CHON_NGAY" + "&Ngay=" + str, true);
+        xhttp.send();
+    }
+    chonNgay(Th_Ngay.value);
+</script>
